@@ -61,13 +61,13 @@ shift + cmd - k : chunkc tiling::window --warp north
 shift + cmd - l : chunkc tiling::window --warp east
 
 # make floating window fill screen
-shift + alt - up     : chunkc tiling::window --grid-layout 1:1:0:0:1:1
+# shift + alt - up     : chunkc tiling::window --grid-layout 1:1:0:0:1:1
 
 # make floating window fill left-half of screen
-shift + alt - left   : chunkc tiling::window --grid-layout 1:2:0:0:1:1
+# shift + alt - left   : chunkc tiling::window --grid-layout 1:2:0:0:1:1
 
 # make floating window fill right-half of screen
-shift + alt - right  : chunkc tiling::window --grid-layout 1:2:1:0:1:1
+# shift + alt - right  : chunkc tiling::window --grid-layout 1:2:1:0:1:1
 
 # send window to desktop
 shift + alt - x : chunkc tiling::window --send-to-desktop $(chunkc get _last_active_desktop)
@@ -79,6 +79,10 @@ shift + alt - 3 : chunkc tiling::window --send-to-desktop 3
 shift + alt - 4 : chunkc tiling::window --send-to-desktop 4
 shift + alt - 5 : chunkc tiling::window --send-to-desktop 5
 shift + alt - 6 : chunkc tiling::window --send-to-desktop 6
+shift + alt - 7 : chunkc tiling::window --send-to-desktop 7
+shift + alt - 8 : chunkc tiling::window --send-to-desktop 8
+shift + alt - 9 : chunkc tiling::window --send-to-desktop 9
+shift + alt - 0 : chunkc tiling::window --send-to-desktop 10
 
 # focus monitor
 ctrl + alt - z  : chunkc tiling::monitor -f prev
