@@ -32,3 +32,7 @@ if [ -f ~/.bashhub/bashhub.sh ]; then
     source ~/.bashhub/bashhub.sh
 fi
 
+alias git="hub"
+alias l="exa"
+
+export GPG_TTY=$(tty)
