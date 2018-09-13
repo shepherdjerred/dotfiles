@@ -1,3 +1,43 @@
+" Dein
+if &compatible
+ set nocompatible
+endif
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
+if dein#load_state('~/.cache/dein')
+ call dein#begin('~/.cache/dein')
+
+ call dein#add('~/.cache/dein')
+ call dein#add('Shougo/deoplete.nvim')
+ if !has('nvim')
+   call dein#add('roxma/nvim-yarp')
+   call dein#add('roxma/vim-hug-neovim-rpc')
+ endif
+
+ call dein#add('l04m33/vlime', {'rtp': 'vim/'})
+
+ call dein#end()
+ call dein#save_state()
+endif
+
+
+
+" Pathogen
+execute pathogen#infect()
+
+
+
+" Status line
+let g:lightline = {
+\ 'colorscheme': 'one'
+\ }
+
+" Hide -- INSERT --
+set noshowmode
+
+
+
 " https://dougblack.io/words/a-good-vimrc.html
 
 set number " Show line numbers
@@ -19,4 +59,13 @@ set showmatch " Show matching parens/brackets
 " Search
 set incsearch
 set hlsearch
+
+" Vlime
+let g:vlime_cl_impl = "my_sbcl"
+        function! VlimeBuildServerCommandFor_my_sbcl(vlime_loader, vlime_eval)
+            return ["/usr/local/bin/clisp",
+                        \ "-i", "~/.cache/dein/repos/github.com/l04m33/vlime/lisp/start-vlime.lisp",
+                        \ "-i", a:vlime_loader,
+                        \ "-x", a:vlime_eval]
+        endfunction
 

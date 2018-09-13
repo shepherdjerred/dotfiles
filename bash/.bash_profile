@@ -1,4 +1,5 @@
 export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/flutter/bin:$PATH
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
@@ -17,8 +18,6 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 PS1="\u@macbook \w "
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-
 export ANDROID_HOME=$HOME/Library/Android/sdk
 
 export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$PATH
@@ -36,3 +35,9 @@ alias git="hub"
 alias l="exa"
 
 export GPG_TTY=$(tty)
+
+# jenv
+#export JAVA_HOME=$(/usr/libexec/java_home -v 10.0.1)
+export JENV_ROOT=/usr/local/opt/jenv
+
+eval "$(jenv init -)"
