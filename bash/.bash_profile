@@ -41,3 +41,5 @@ export GPG_TTY=$(tty)
 export JENV_ROOT=/usr/local/opt/jenv
 
 eval "$(jenv init -)"
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}

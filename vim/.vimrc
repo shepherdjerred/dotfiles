@@ -48,10 +48,13 @@ syntax enable " Highlight based on language/syntax
 " Tab settings
 set tabstop=4
 set softtabstop=4
+set shiftwidth=4
+set autoindent
+set smartindent
 set expandtab
 
 " set cursorline " Emphasize the line the cursor is one
-" filetype indent on " Indent based on file type
+filetype indent on " Indent based on file type
 
 set wildmenu " Visual tab compleition with commands
 set showmatch " Show matching parens/brackets
@@ -64,8 +67,7 @@ set hlsearch
 let g:vlime_cl_impl = "my_sbcl"
         function! VlimeBuildServerCommandFor_my_sbcl(vlime_loader, vlime_eval)
             return ["/usr/local/bin/clisp",
-                        \ "-i", "~/.cache/dein/repos/github.com/l04m33/vlime/lisp/start-vlime.lisp",
-                        \ "-i", a:vlime_loader,
-                        \ "-x", a:vlime_eval]
+                        \ "-i", "~/.cache/dein/repos/github.com/l04m33/vlime/lisp/start-vlime.lisp"]
         endfunction
 
+autocmd FileType lisp setlocal shiftwidth=4 tabstop=4
