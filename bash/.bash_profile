@@ -43,3 +43,6 @@ export JENV_ROOT=/usr/local/opt/jenv
 eval "$(jenv init -)"
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi

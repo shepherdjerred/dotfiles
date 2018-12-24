@@ -2,6 +2,7 @@
 if &compatible
  set nocompatible
 endif
+
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
@@ -26,6 +27,11 @@ endif
 " Pathogen
 execute pathogen#infect()
 
+
+" Set clipboard to system while in visual mode
+" https://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
+vmap <C-x> :!pbcopy<CR>  
+vmap <C-c> :w !pbcopy<CR><CR> 
 
 
 " Status line
@@ -70,4 +76,4 @@ let g:vlime_cl_impl = "my_sbcl"
                         \ "-i", "~/.cache/dein/repos/github.com/l04m33/vlime/lisp/start-vlime.lisp"]
         endfunction
 
-autocmd FileType lisp setlocal shiftwidth=4 tabstop=4
+autocmd FileType lisp setlocal shiftwidth=2 tabstop=2 softtabstop=2
