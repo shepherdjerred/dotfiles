@@ -36,13 +36,14 @@ alias l="exa"
 
 export GPG_TTY=$(tty)
 
-# jenv
-#export JAVA_HOME=$(/usr/libexec/java_home -v 10.0.1)
-export JENV_ROOT=/usr/local/opt/jenv
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
-eval "$(jenv init -)"
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home
+
+#  export PATH=~/.local/bin:$PATH
+
+export PATH="/usr/local/opt/qt/bin:$PATH"
