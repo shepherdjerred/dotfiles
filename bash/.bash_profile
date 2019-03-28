@@ -47,3 +47,5 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/H
 #  export PATH=~/.local/bin:$PATH
 
 export PATH="/usr/local/opt/qt/bin:$PATH"
+
+export PATH="/Library/TeX/texbin:$PATH"

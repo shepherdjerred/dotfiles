@@ -1,2 +1,0 @@
-provisionql         qlimagesize         qlstephen           quicklook-json      suspicious-package
-qlcolorcode         qlmarkdown          qlvideo             quicklookapk        webpquicklook
