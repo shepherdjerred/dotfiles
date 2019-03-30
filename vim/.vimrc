@@ -1,53 +1,26 @@
-" Dein
-if &compatible
- set nocompatible
-endif
-
-" Add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
-if dein#load_state('~/.cache/dein')
- call dein#begin('~/.cache/dein')
-
- call dein#add('~/.cache/dein')
- call dein#add('Shougo/deoplete.nvim')
- if !has('nvim')
-   call dein#add('roxma/nvim-yarp')
-   call dein#add('roxma/vim-hug-neovim-rpc')
- endif
-
- call dein#add('l04m33/vlime', {'rtp': 'vim/'})
-
- call dein#end()
- call dein#save_state()
-endif
-
-
-
-" Pathogen
-execute pathogen#infect()
-
+" Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/syntastic'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+call plug#end()
 
 " Set clipboard to system while in visual mode
 " https://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
-vmap <C-x> :!pbcopy<CR>  
-vmap <C-c> :w !pbcopy<CR><CR> 
-
-
-" Status line
-let g:lightline = {
-\ 'colorscheme': 'one'
-\ }
+" vmap <C-x> :!pbcopy<CR>  
+" vmap <C-c> :w !pbcopy<CR><CR> 
+set clipboard=unnamed
 
 " Hide -- INSERT --
-set noshowmode
-
-
+" set noshowmode
 
 " https://dougblack.io/words/a-good-vimrc.html
 
 set number " Show line numbers
-" colorscheme zenburn
 
 syntax enable " Highlight based on language/syntax
 
@@ -59,21 +32,13 @@ set autoindent
 set smartindent
 set expandtab
 
-" set cursorline " Emphasize the line the cursor is one
 filetype indent on " Indent based on file type
 
-set wildmenu " Visual tab compleition with commands
-set showmatch " Show matching parens/brackets
+" Visual tab compleition with commands
+set wildmenu
 
-" Search
-set incsearch
+" Show matching parens/brackets
+set showmatch
+
+" Highlight search matches
 set hlsearch
-
-" Vlime
-let g:vlime_cl_impl = "my_sbcl"
-        function! VlimeBuildServerCommandFor_my_sbcl(vlime_loader, vlime_eval)
-            return ["/usr/local/bin/clisp",
-                        \ "-i", "~/.cache/dein/repos/github.com/l04m33/vlime/lisp/start-vlime.lisp"]
-        endfunction
-
-autocmd FileType lisp setlocal shiftwidth=2 tabstop=2 softtabstop=2
