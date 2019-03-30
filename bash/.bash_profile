@@ -61,8 +61,16 @@ export PATH="/usr/local/opt/qt/bin:$PATH"
 # LaTeX
 export PATH="/Library/TeX/texbin:$PATH"
 
+# Travis
+# added by travis gem
+[ -f /Users/jerred/.travis/travis.sh ] && source /Users/jerred/.travis/travis.sh
+
+# vi keybindings
+set -o vi
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if [ -f ~/.bashhub/bashhub.sh ]; then
     source ~/.bashhub/bashhub.sh
 fi
+
