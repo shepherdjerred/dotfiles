@@ -6,3 +6,5 @@
 	autocrlf = input
 [commit]
 	gpgsign = true
+[credential]
+	helper = osxkeychain
