@@ -1,2 +1,2 @@
-alias l=exa
-alias la=exa -la
+alias l="exa"
+alias la="exa -la"
