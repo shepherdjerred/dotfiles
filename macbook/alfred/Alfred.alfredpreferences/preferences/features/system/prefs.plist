@@ -2,9 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentthemeuid</key>
-	<string>theme.custom.5337C62C-AFFF-401A-8984-0631F4EC58DE</string>
-	<key>darkthemeuid</key>
-	<string>theme.bundled.osxdark</string>
+	<key>logoutConfirm</key>
+	<true/>
+	<key>quitallConfirm</key>
+	<true/>
+	<key>restartConfirm</key>
+	<true/>
+	<key>shutdownConfirm</key>
+	<true/>
+	<key>sleepConfirm</key>
+	<true/>
 </dict>
 </plist>
