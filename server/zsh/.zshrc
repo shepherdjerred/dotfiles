@@ -1,4 +1,5 @@
 export ZSH="/home/jerred/.oh-my-zsh"
+
 ZSH_THEME=powerlevel10k/powerlevel10k
 plugins=(
     git
