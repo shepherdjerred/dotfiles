@@ -11,6 +11,9 @@ sandbox_init_pyenv() {
     fi
 }
 sandbox_hook pyenv python
+sandbox_hook pyenv pip
+sandbox_hook pyenv ansible
+sandbox_hook pyenv ansible-playbook
 
 sandbox_init_rvm() {
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

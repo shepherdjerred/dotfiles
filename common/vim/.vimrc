@@ -7,6 +7,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
+Plug 'pearofducks/ansible-vim'
 call plug#end()
 
 " Set clipboard to system while in visual mode
@@ -42,3 +43,7 @@ set showmatch
 
 " Highlight search matches
 set hlsearch
+
+" YAML
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
