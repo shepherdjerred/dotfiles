@@ -1,0 +1,6 @@
+romkatv/powerlevel10k
+robbyrussell/oh-my-zsh path:plugins/git
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+shepherdjerred/zsh-histdb
+shepherdjerred/sandboxd
