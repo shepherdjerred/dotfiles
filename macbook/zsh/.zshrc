@@ -1,7 +1,5 @@
 export ZSH="/Users/jerred/.oh-my-zsh"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
 source $ZSH/oh-my-zsh.sh
 
 # Load plugins
