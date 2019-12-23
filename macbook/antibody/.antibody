@@ -2,5 +2,6 @@ romkatv/powerlevel10k
 robbyrussell/oh-my-zsh path:plugins/git
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
+zsh-users/zsh-syntax-highlighting
 shepherdjerred/zsh-histdb
 shepherdjerred/sandboxd
