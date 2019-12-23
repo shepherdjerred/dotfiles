@@ -1,118 +1,38 @@
 1Password 7.app
-ASUS Device Discovery.app
 Affinity Photo.app
-Airmail 3.app
-Alfred 3.app
-Anki.app
-App Store.app
-Aseprite.app
-Automator.app
+Alfred 4.app
 Bartender 3.app
-Bear.app
 BetterTouchTool.app
-Books.app
-Boostnote.app
-Calculator.app
-Calendar.app
-Chess.app
-Chrome Remote Desktop Host Uninstaller.app
-Contacts.app
 DaisyDisk.app
-Dashboard.app
 Deliveries.app
-Dictionary.app
-Discord.app
-Disk Inventory X.app
 Docker.app
-Etcher.app
-FaceTime.app
 Fantastical 2.app
-Font Book.app
-ForkLift.app
 GPG Keychain.app
-Gifox.app
-GitKraken.app
 Google Chrome.app
-Google Drive File Stream.app
-Hex Fiend.app
-Home.app
-IINA.app
-Image Capture.app
-JProfiler.app
+Irvue.app
 JetBrains Toolbox.app
 Kaleidoscope.app
-Keylord.app
-Keynote.app
-Kitematic.app
-Launchpad.app
-Logi Options.app
-Mail.app
-Maps.app
-Marp.app
-Messages.app
+MailMate.app
 Microsoft Excel.app
+Microsoft OneNote.app
+Microsoft Outlook.app
 Microsoft PowerPoint.app
 Microsoft Word.app
-MindNode.app
-Mission Control.app
-Monity.app
-News.app
-Notable.app
-Notes.app
 Notion.app
-Numbers.app
-Oni.app
-PacketSender.app
-Pages.app
-Paprika Recipe Manager 3.app
+OneDrive.app
+Patterns.app
 Paw.app
-Photo Booth.app
-Photos.app
-Plex Media Player.app
-Postman.app
-Preview.app
-Python 3.6
-QuickTime Player.app
 Reeder.app
-Regex.app
-Reminders.app
 Resilio Sync.app
 Safari.app
-SceneBuilder.app
-Scroll Reverser.app
-Siri.app
-Sketch.app
-Slack.app
 Spotify.app
-StarUML.app
-Steam.app
-Stickies.app
-Stocks.app
-Studio 3T.app
 Sublime Merge.app
 Sublime Text.app
 Suspicious Package.app
-SynfigStudio.app
-System Preferences.app
-Tadam.app
-TeX
 Telegram.app
 Texpad.app
-TextEdit.app
-The Unarchiver.app
-Tiled.app
-Time Machine.app
 Transmit.app
-Typora.app
 Utilities
-VMware Fusion.app
-VimR.app
-VisualVM.app
-VoiceMemos.app
 Xcode.app
-YourKit-Java-Profiler-2019.1.app
-calibre.app
+balenaEtcher.app
 iTerm.app
-iTunes.app
-openglex5.app
-unetbootin.app
