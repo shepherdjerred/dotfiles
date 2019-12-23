@@ -3,8 +3,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'pearofducks/ansible-vim'
@@ -14,10 +12,10 @@ call plug#end()
 " https://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
 " vmap <C-x> :!pbcopy<CR>  
 " vmap <C-c> :w !pbcopy<CR><CR> 
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " Hide -- INSERT --
-" set noshowmode
+set noshowmode
 
 " https://dougblack.io/words/a-good-vimrc.html
 
@@ -45,5 +43,6 @@ set showmatch
 set hlsearch
 
 " YAML
+" (for ansible)
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
