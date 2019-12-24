@@ -1,7 +1,9 @@
 romkatv/powerlevel10k
-robbyrussell/oh-my-zsh path:plugins/git
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
 zsh-users/zsh-syntax-highlighting
 shepherdjerred/zsh-histdb
 shepherdjerred/sandboxd
+robbyrussel/oh-my-zsh path:plugins/asdf
+robbyrussell/oh-my-zsh path:plugins/git
+robbyrussell/oh-my-zsh path:plugins/vim

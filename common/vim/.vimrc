@@ -1,3 +1,10 @@
+" Install vim-plug if it doesn't already exist
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
@@ -6,7 +13,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'pearofducks/ansible-vim'
+Plug 'takac/vim-hardtime'
 call plug#end()
+
+" Enable hard mode
+let g:hardtime_default_on = 1
 
 " Set clipboard to system while in visual mode
 " https://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
