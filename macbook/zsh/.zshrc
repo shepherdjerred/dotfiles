@@ -6,7 +6,11 @@ source $ZSH/oh-my-zsh.sh
 source <(antibody init)
 antibody bundle < ~/.antibody
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Bindings for history search 
+bindkey '\eOA' history-substring-search-up # or ^[OA
+bindkey '\eOB' history-substring-search-down # or ^[OB
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
