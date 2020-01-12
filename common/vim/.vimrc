@@ -14,6 +14,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'pearofducks/ansible-vim'
 Plug 'takac/vim-hardtime'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Enable hard mode
