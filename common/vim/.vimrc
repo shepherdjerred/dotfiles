@@ -20,6 +20,7 @@ call plug#end()
 
 " Enable hard mode
 let g:hardtime_default_on = 1
+let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 " Set clipboard to system while in visual mode
 " https://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
