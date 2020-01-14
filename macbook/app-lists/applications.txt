@@ -11,28 +11,24 @@ GPG Keychain.app
 Google Chrome.app
 Irvue.app
 JetBrains Toolbox.app
-Kaleidoscope.app
+Lungo.app
 MailMate.app
 Microsoft Excel.app
-Microsoft OneNote.app
-Microsoft Outlook.app
 Microsoft PowerPoint.app
 Microsoft Word.app
 Notion.app
-OneDrive.app
 Patterns.app
 Paw.app
 Reeder.app
 Resilio Sync.app
 Safari.app
 Spotify.app
+Steam.app
 Sublime Merge.app
 Sublime Text.app
-Suspicious Package.app
 Telegram.app
 Texpad.app
 Transmit.app
 Utilities
-Xcode.app
-balenaEtcher.app
+VimR.app
 iTerm.app
