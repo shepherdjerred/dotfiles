@@ -8,15 +8,26 @@ endif
 " Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'pearofducks/ansible-vim'
 Plug 'takac/vim-hardtime'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+" Plug '/usr/local/opt/fzf'
+" Plug 'junegunn/fzf.vim'
+Plug 'vim-scripts/paredit.vim'
+Plug 'jgdavey/tslime.vim'
+Plug 'luochen1990/rainbow'
 call plug#end()
+
+" For tslime
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
+
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
 
 " Enable hard mode
 let g:hardtime_default_on = 1
