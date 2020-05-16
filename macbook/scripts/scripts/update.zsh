@@ -9,3 +9,6 @@ pip install --upgrade pip
 npm update; npm upgrade
 
 asdf update
+
+_ yabai --uninstall-sa
+_ yabai --install-sa
