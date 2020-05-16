@@ -1,10 +1,12 @@
 romkatv/powerlevel10k
 zsh-users/zsh-autosuggestions
-zsh-users/zsh-syntax-highlighting
+zdharma/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
 shepherdjerred/zsh-histdb
 robbyrussell/oh-my-zsh path:plugins/asdf
 robbyrussell/oh-my-zsh path:plugins/git
 robbyrussell/oh-my-zsh path:plugins/vi-mode
 robbyrussell/oh-my-zsh path:plugins/autojump
-robbyrussell/oh-my-zsh path:plugins/fzf
+hlissner/zsh-autopair
+djui/alias-tips
+
