@@ -10,5 +10,7 @@ npm update; npm upgrade
 
 asdf update
 
-_ yabai --uninstall-sa
-_ yabai --install-sa
+yabai --uninstall-sa
+yabai --install-sa
+killall Dock
+
