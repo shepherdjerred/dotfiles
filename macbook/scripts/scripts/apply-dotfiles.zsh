@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
-./common/scripts/scripts/apply-dotfiles.sh
-stow -v -t ~ -d macbook \
+./common/scripts/scripts/apply-common-dotfiles.zsh
+stow -v -t ~ -d macbook --ignore=".DS_Store" \
   antibody \
   git \
   gpg \
