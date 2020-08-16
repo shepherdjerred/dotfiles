@@ -33,5 +33,7 @@ Temporary Items
 
 vim/.vim/.netrwhist
 id_rsa
-id_rsa.pub
 credentials
+*.iml
+.idea
+
