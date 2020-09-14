@@ -1,0 +1,2 @@
+alias bd=". bd -si"
+
