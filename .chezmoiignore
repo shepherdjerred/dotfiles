@@ -1,0 +1,10 @@
+{{ if ne .chezmoi.os "darwin" -}}
+.skhdrc
+.yabairc
+scripts/tweaks.sh
+.oh-my-zsh/sublime-text.zsh
+.oh-my-zsh/travis.zsh
+{{ else if eq .chezmoi.os "windows" -}}
+.oh-my-zsh/custom/brew.zsh
+{{ end }}
+
