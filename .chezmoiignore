@@ -1,3 +1,6 @@
+README.md
+.gitignore
+
 {{ if ne .chezmoi.os "darwin" -}}
 .skhdrc
 .yabairc

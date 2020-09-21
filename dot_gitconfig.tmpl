@@ -7,4 +7,9 @@
 [commit]
 	gpgsign = true
 [credential]
-	helper = "{{ .gitcred }}"
+{{ if eq .chezmoi.os "darwin" -}}
+	helper = osxkeychain
+{{ else if eq .chezmoi.os "linux" -}}
+    helper = store"
+{{ end -}}
+
