@@ -10,6 +10,6 @@
 {{ if eq .chezmoi.os "darwin" -}}
 	helper = osxkeychain
 {{ else if eq .chezmoi.os "linux" -}}
-    helper = store"
+    helper = store
 {{ end -}}
 
