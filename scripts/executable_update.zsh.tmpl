@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#!/usr/bin/env zsh
 
 zsh $ZSH/tools/upgrade.sh
 antibody update
@@ -16,6 +16,9 @@ npm install -g npm
 asdf update
 asdf plugin update --all
 
+{{ if eq .chezmoi.os "darwin" -}}
 yabai --uninstall-sa
 yabai --install-sa
 killall Dock
+{{ end -}}
+

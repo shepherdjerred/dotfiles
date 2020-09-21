@@ -2,7 +2,6 @@ romkatv/powerlevel10k
 zsh-users/zsh-autosuggestions
 zdharma/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
-shepherdjerred/zsh-histdb
 robbyrussell/oh-my-zsh path:plugins/asdf
 robbyrussell/oh-my-zsh path:plugins/git
 robbyrussell/oh-my-zsh path:plugins/vi-mode
