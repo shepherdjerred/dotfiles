@@ -1,5 +1,8 @@
 README.md
 .gitignore
+alfred
+better-touch-tool
+app-lists
 
 {{ if ne .chezmoi.os "darwin" -}}
 .skhdrc
