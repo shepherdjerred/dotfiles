@@ -4,3 +4,4 @@ qlmarkdown
 qlstephen
 qlvideo
 quicklook-json
+sekey

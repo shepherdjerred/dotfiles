@@ -1,27 +1,39 @@
 1Password 7.app
+Adobe Creative Cloud
+Adobe Lightroom CC
+Adobe Photoshop 2020
 Affinity Photo.app
 Alfred 4.app
-Bartender 3.app
+Bartender 4.app
 BetterTouchTool.app
+Citra
 DaisyDisk.app
 Deliveries.app
+Discord.app
 Docker.app
 Fantastical 2.app
 GPG Keychain.app
+GarageBand.app
 Google Chrome.app
 Irvue.app
 JetBrains Toolbox.app
+League of Legends.app
+Loopback.app
 Lungo.app
 MailMate.app
 Microsoft Excel.app
 Microsoft PowerPoint.app
 Microsoft Word.app
+Minecraft.app
 Notion.app
+Numi.app
 Patterns.app
 Paw.app
-Reeder.app
+Racket v7.5
+Reeder.localized
 Resilio Sync.app
 Safari.app
+SeKey.app
 Spotify.app
 Steam.app
 Sublime Merge.app
@@ -31,4 +43,6 @@ Texpad.app
 Transmit.app
 Utilities
 VimR.app
+Xcode.app
 iTerm.app
+zoom.us.app
