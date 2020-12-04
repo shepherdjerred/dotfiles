@@ -1,4 +1,4 @@
-java adoptopenjdk-14.0.2+12
+java adoptopenjdk-15.0.1+9
 nodejs 14.11.0
 python 3.8.5
 clojure 1.10.1
