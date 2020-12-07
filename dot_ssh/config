@@ -1,3 +1,5 @@
+Host mac-mini
+  HostName mac-mini.home.shepherdjerred.com
 Host nas
   HostName nas.home.shepherdjerred.com
   User jerred
