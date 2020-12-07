@@ -12,4 +12,7 @@
 {{ else if eq .chezmoi.os "linux" -}}
     helper = store
 {{ end -}}
+[pull]
+	ff = only
+	rebase = true
 
