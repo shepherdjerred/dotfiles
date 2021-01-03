@@ -10,7 +10,9 @@ app-lists
 scripts/tweaks.sh
 .oh-my-zsh/sublime-text.zsh
 .oh-my-zsh/travis.zsh
-{{ else if ne .chezmoi.os "windows" -}}
+{{ end }}
+
+{{ if ne .chezmoi.os "windows" -}}
 .oh-my-zsh/custom/brew.zsh
 {{ end }}
 
