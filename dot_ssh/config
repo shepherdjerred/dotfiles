@@ -17,4 +17,7 @@ Host minecraft
 Host factorio
   HostName factorio.shepherdjerred.com
   User ec2-user
+Host amongus
+  HostName amongus.shepherdjerred.com
+  User ec2-user
 

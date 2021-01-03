@@ -7,7 +7,6 @@ vim +PlugUpdate +qall
 
 gem update
 
-# pip
 pip install --upgrade pip
 
 npm update; npm upgrade
@@ -17,8 +16,22 @@ asdf update
 asdf plugin update --all
 
 {{ if eq .chezmoi.os "darwin" -}}
-yabai --uninstall-sa
-yabai --install-sa
+# stop, and upgrade yabai
+brew services stop yabai
+brew upgrade yabai
+
+# uninstall the scripting addition
+sudo yabai --uninstall-sa
+
+# installing the scripting addition will restart Dock.app
+sudo yabai --install-sa
+
+# finally, start yabai
+brew services start yabai
+
 killall Dock
-{{ end -}}
+
+$(cd /Users/jerred/Library/Application\ Support/Übersicht/widgets/simple-bar && git checkout master && git pull && git checkout patch && git merge master)
+$(cd /Users/jerred/.hammerspoon/stackline && git checkout master && git pull && git checkout patch && git merge master)
+{{ end }}
 
