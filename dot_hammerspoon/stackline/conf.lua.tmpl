@@ -9,8 +9,13 @@ c.advanced = {}
 
 -- Paths
 c.paths.getStackIdxs                  = hs.configdir .. '/stackline/bin/yabai-get-stack-idx'
+{{ if eq .chezmoi.arch "arm64" -}}
 c.paths.jq                            = '/opt/homebrew/bin/jq'
 c.paths.yabai                         = '/opt/homebrew/bin/yabai'
+{{ else if eq .chezmoi.arch "amd64" -}}
+c.paths.jq                            = '/usr/local/bin/jq'
+c.paths.yabai                         = '/usr/local/bin/yabai'
+{{ end }}
 
 -- Appearance
 c.appearance.color                    = { white = 0.90 }    -- Indicator background color, e.g., {red = 0.5, blue = 0 }
@@ -30,7 +35,7 @@ c.appearance.offset.y                 = 2                   -- Distance from top
 c.appearance.offset.x                 = 20                   -- Distance away from the edge of the window to render indicators
 
 c.appearance.shouldFade               = true                -- Enable/disable fade animations
-c.appearance.fadeDuration             = 0.2                 -- Duration of fade animations (seconds) 
+c.appearance.fadeDuration             = 0.2                 -- Duration of fade animations (seconds)
 
 -- Features
 c.features.clickToFocus               = true                -- Click indicator to focus window. Mouse clicks are tracked when enabled
