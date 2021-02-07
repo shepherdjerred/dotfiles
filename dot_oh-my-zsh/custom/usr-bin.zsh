@@ -1,2 +1,2 @@
-export PATH="$PATH:/Users/jerred/bin"
+export PATH="$PATH:$HOME/bin"
 

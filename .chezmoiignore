@@ -5,16 +5,23 @@ alfred
 better-touch-tool
 app-lists
 .ssh/known_hosts
+windows
+nix
 
 {{ if ne .chezmoi.os "darwin" -}}
 .skhdrc
 .yabairc
 scripts/tweaks.sh
-.oh-my-zsh/sublime-text.zsh
-.oh-my-zsh/travis.zsh
+.oh-my-zsh/custom/sublime-text.zsh
+.oh-my-zsh/custom/travis.zsh
+.oh-my-zsh/custom/arm.zsh
+.oh-my-zsh/custom/arm-brew.zsh
+.oh-my-zsh/custom/arm-go.zsh
+.oh-my-zsh/custom/travis.zsh
+.oh-my-zsh/custom/brew.zsh
 {{ end }}
 
-{{ if ne .chezmoi.os "windows" -}}
+{{ if ne .chezmoi.os "linux" }}
 .oh-my-zsh/custom/brew.zsh
 {{ end }}
 
