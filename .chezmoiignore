@@ -4,6 +4,7 @@ LICENSE.md
 alfred
 better-touch-tool
 app-lists
+.ssh/known_hosts
 
 {{ if ne .chezmoi.os "darwin" -}}
 .skhdrc
