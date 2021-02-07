@@ -23,8 +23,19 @@ $packages = @(
 ("Valve.Steam"),
 ("ElectronicArts.Origin"),
 ("Blizzard.BattleNet"),
-("Telegram.TelegramDesktop")
+("Telegram.TelegramDesktop"),
+("Armin2208.WindowsAutoNightMode"),
+("Nvidia.GeForceExperience")
 )
+
+# manual:
+# microsoft office
+# adobe creative cloud
+# blitz
+# aerial
+# bing wallpaper
+# resilio sync
+# affinity
 
 foreach ($package in $packages) {
   winget install $package
