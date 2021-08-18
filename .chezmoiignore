@@ -11,7 +11,7 @@ nix
 {{ if ne .chezmoi.os "darwin" -}}
 .skhdrc
 .yabairc
-scripts/tweaks.sh
+bin/tweaks.sh
 .oh-my-zsh/custom/sublime-text.zsh
 .oh-my-zsh/custom/travis.zsh
 .oh-my-zsh/custom/arm.zsh

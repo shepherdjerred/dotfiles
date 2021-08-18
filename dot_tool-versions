@@ -1,6 +1,5 @@
-java adoptopenjdk-15.0.2+7
+java openjdk-17
 nodejs lts
-python 3.9.1
-ruby 3.0.0
+python 3.9.6
+ruby 3.0.2
 rust nightly
-
