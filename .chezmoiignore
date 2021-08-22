@@ -5,6 +5,7 @@ LICENSE.md
 .ssh/id_rsa
 bin/bootstrap
 .aws/credentials
+requirements.txt
 
 {{ if ne .chezmoi.os "darwin" -}}
 .skhdrc
@@ -43,3 +44,7 @@ git
 .DS_Store
 .Trash
 .cache
+.config/chezmoi
+.config/configstore
+.config/iterm2
+.config/op
