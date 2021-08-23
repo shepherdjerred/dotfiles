@@ -1,0 +1,6 @@
+ansible
+awscli
+passlib # for ansible
+jupyter
+wheel
+

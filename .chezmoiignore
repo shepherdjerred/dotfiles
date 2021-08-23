@@ -48,3 +48,8 @@ git
 .config/configstore
 .config/iterm2
 .config/op
+.config/fish/completions
+.config/fish/conf.d
+.config/fish/fish_variables
+.config/fish/functions
+.tmux
