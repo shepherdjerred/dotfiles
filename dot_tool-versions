@@ -2,3 +2,4 @@ java openjdk-17
 nodejs lts
 python 3.9.6
 rust nightly
+haskell 9.0.1
