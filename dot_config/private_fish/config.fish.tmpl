@@ -3,4 +3,7 @@ if status is-interactive
     starship init fish | source
 end
 
+set GPG_TTY (tty)
+export GPG_TTY
+
 source {{ get .homebrew_path .chezmoi.arch }}/opt/asdf/asdf.fish
