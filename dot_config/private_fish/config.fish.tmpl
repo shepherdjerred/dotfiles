@@ -3,4 +3,4 @@ if status is-interactive
     starship init fish | source
 end
 
-source /usr/local/opt/asdf/asdf.fish
+source {{ get .homebrew_path .chezmoi.arch }}/opt/asdf/asdf.fish

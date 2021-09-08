@@ -3,4 +3,4 @@ awscli
 passlib # for ansible
 jupyter
 wheel
-
+powerline-status

@@ -1,0 +1,7 @@
+{
+  "python_version": "3.9.7",
+  "homebrew_path": {
+    "x86_64": "/usr/local",
+    "arm64": "/opt/homebrew"
+  }
+}

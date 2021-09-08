@@ -56,3 +56,5 @@ set hlsearch
 " (for ansible)
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+" https://www.chezmoi.io/docs/how-to/#configure-vim-to-run-chezmoi-apply-whenever-you-save-a-dotfile
+autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %

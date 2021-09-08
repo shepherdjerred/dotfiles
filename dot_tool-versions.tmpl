@@ -1,0 +1,14 @@
+java openjdk-17
+
+{{ if eq .chezmoi.arch "amd64" -}}
+nodejs lts
+{{ else -}}
+nodejs 16.9.0
+{{ end -}}
+
+python {{ .python_version }}
+rust nightly
+haskell 9.0.1
+golang 1.17
+r 4.1.1
+ruby 3.0.2
