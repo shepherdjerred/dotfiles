@@ -1,11 +1,6 @@
 README.md
 LICENSE.md
 .gitignore
-.ssh/known_hosts
-.ssh/id_rsa
-bin/bootstrap
-.aws/credentials
-requirements.txt
 
 {{ if ne .chezmoi.os "darwin" -}}
 .skhdrc
@@ -53,3 +48,5 @@ git
 .config/fish/fish_variables
 .config/fish/functions
 .tmux
+.ssh/known_hosts
+.aws/credentials
