@@ -1,6 +1,6 @@
 ansible
 awscli
-passlib # for ansible
+passlib
 jupyter
 wheel
 powerline-status

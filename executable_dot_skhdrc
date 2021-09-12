@@ -1,5 +1,4 @@
 # open terminal
-# cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
 # focus window
 alt - h : yabai -m window --focus west
@@ -156,8 +155,6 @@ alt - p : yabai -m window --toggle sticky;\
 # change layout of desktop
 ctrl + alt - a : yabai -m space --layout bsp
 ctrl + alt - d : yabai -m space --layout float
-
-shift + alt - b :  hs -c 'stackline.config:toggle("appearance.showIcons")'
 
 # Focus window up/down in stack
 ctrl - n : yabai -m window --focus stack.next

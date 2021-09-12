@@ -14,9 +14,6 @@ asdf update
 asdf plugin update --all
 
 {{ if eq .chezmoi.os "darwin" -}}
-bundle install
-brew bundle
-
 # stop, and upgrade yabai
 brew services stop yabai
 brew upgrade yabai
