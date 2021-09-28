@@ -2,10 +2,13 @@ if status is-interactive
     alias vim nvim
     alias ls exa
     alias l exa
+    alias xmake "make -f Makefile.macos"
+
     starship init fish | source
+    [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
 end
 
-set GPG_TTY (tty)
-export GPG_TTY
+set GOROOT (asdf where golang)/go
+set GOPATH (asdf where golang)/packages
 
 source {{ get .homebrew_path .chezmoi.arch }}/opt/asdf/asdf.fish
