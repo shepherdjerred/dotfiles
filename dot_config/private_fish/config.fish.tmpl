@@ -1,8 +1,18 @@
 if status is-interactive
+    # Bring interactive shells into the future
     alias vim nvim
     alias ls exa
     alias l exa
+    alias cat bat
+    alias grep ripgrep
+    alias !! __fish_prepend_sudo
+
     alias xmake "make -f Makefile.macos"
+
+    set -gx EDITOR vim
+    fish_vi_key_bindings
+
+    __abbr_tips_init
 
     starship init fish | source
     [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
