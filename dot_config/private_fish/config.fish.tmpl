@@ -4,12 +4,12 @@ if status is-interactive
     alias ls exa
     alias l exa
     alias cat bat
-    alias grep ripgrep
+    alias grep rg
     alias !! __fish_prepend_sudo
 
     alias xmake "make -f Makefile.macos"
 
-    set -gx EDITOR vim
+    set -gx EDITOR nvim
     fish_vi_key_bindings
 
     __abbr_tips_init

@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 sudo yabai --load-sa
 
 # bar settings
@@ -35,11 +35,13 @@ yabai -m config mouse_action2                resize
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  20
+yabai -m config top_padding                  40
 yabai -m config bottom_padding               10
-yabai -m config left_padding                 10
+yabai -m config left_padding                 14
 yabai -m config right_padding                10
 yabai -m config window_gap                   10
 
+yabai -m rule --add app="(System Preferences|Jetbrains Toolbox)" manage=off
+yabai -m rule --add app="^IntelliJ IDEA" title!="(.*\[(.*)\].*)|(.*\(\:.*\).*)" manage=off
 
 echo "yabai configuration loaded.."
