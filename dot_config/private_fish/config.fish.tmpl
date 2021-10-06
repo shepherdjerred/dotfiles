@@ -18,7 +18,16 @@ if status is-interactive
     [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
 end
 
+{{ if eq .chezmoi.os "linux" -}}
+set fish_user_paths ~/.local/bin/ $fish_user_paths
+set fish_user_paths ~/bin/ $fish_user_paths
+set fish_user_paths ~/.ash/bin/ $fish_user_paths
+set fish_user_paths /home/linuxbrew/.linuxbrew/bin $fish_user_paths
+{{ end -}}
+
 set GOROOT (asdf where golang)/go
 set GOPATH (asdf where golang)/packages
 
+{{ if eq .chezmoi.os "darwin" -}}
 source {{ get .homebrew_path .chezmoi.arch }}/opt/asdf/asdf.fish
+{{ end -}}
