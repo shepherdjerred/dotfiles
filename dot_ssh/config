@@ -10,4 +10,28 @@ Host minecraft
 Host factorio
   HostName factorio.shepherdjerred.com
   User jerred
-
+Host dev
+  HostName ec2-3-128-189-181.us-east-2.compute.amazonaws.com
+  User ec2-user
+Host ppms01
+    User shepherdjerred
+    HostName 18.207.68.232
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+    ForwardAgent yes
+Host ppmp01
+    User shepherdjerred
+    HostName 34.200.201.1
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+    ForwardAgent yes
+Host *.ppms01
+    User shepherdjerred
+    ProxyCommand ssh ppms01 nc -q0 %h %p
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+Host *.ppmp01
+    User shepherdjerred
+    ProxyCommand ssh ppmp01 nc -q0 %h %p
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
