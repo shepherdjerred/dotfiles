@@ -1,3 +1,11 @@
 [default]
 region = us-east-1
 output = json
+
+[profile rspm-Admin]
+sso_start_url = https://rstudio.awsapps.com/start
+sso_region = us-east-2
+sso_account_id = 387904689009
+sso_role_name = PowerUser
+region = us-east-1
+output = json
