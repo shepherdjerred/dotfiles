@@ -1,3 +1,7 @@
+ Host *
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_rsa
 Host nas
   HostName nas.home.shepherdjerred.com
   User jerred
