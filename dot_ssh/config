@@ -15,8 +15,8 @@ Host factorio
   HostName factorio.shepherdjerred.com
   User jerred
 Host dev
-  HostName ec2-3-128-189-181.us-east-2.compute.amazonaws.com
-  User ec2-user
+  HostName 2600:1f13:1c1:fe00:4359:abb3:59d1:2db5
+  User jerred
 Host ppms01
     User shepherdjerred
     HostName 18.207.68.232
