@@ -5,6 +5,10 @@ set fish_user_paths ~/.ash/bin/ $fish_user_paths
 set fish_user_paths /home/linuxbrew/.linuxbrew/bin $fish_user_paths
 
 source ~/.asdf/asdf.fish
+
+if status is-interactive
+  export GPG_TTY=(tty)
+end
 {{ end -}}
 
 if status is-interactive
