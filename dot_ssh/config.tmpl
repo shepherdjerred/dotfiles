@@ -1,6 +1,8 @@
  Host *
+ {{ if eq .chezmoi.os "darwin" -}}
   UseKeychain yes
   AddKeysToAgent yes
+{{ end -}}
   IdentityFile ~/.ssh/id_rsa
 Host nas
   HostName nas.home.shepherdjerred.com
