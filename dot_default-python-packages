@@ -1,5 +1,7 @@
 ansible
+ansible-lint
 awscli
+aws-shell
 passlib
 jupyter
 wheel

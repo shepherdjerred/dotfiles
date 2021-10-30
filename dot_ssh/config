@@ -15,7 +15,7 @@ Host factorio
   HostName factorio.shepherdjerred.com
   User jerred
 Host dev
-  HostName 2600:1f13:1c1:fe00:4359:abb3:59d1:2db5
+  HostName shepherdjerred.dev.rstudiopm.com
   User jerred
 Host ppms01
     User shepherdjerred
