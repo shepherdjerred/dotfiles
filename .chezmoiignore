@@ -6,6 +6,7 @@ LICENSE.md
 .skhdrc
 .yabairc
 bin/tweaks
+bin/focus
 {{ end }}
 
 # These exist to hide files from `chezmoi unmanaged`
