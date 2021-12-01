@@ -1,9 +1,9 @@
 killall Slack
 killall MailMate
-killall Zoom
 killall Notion
 killall Obsidian
 killall Telegram
 killall Messenger
 killall Zoom
 killall Reeder
+killall Messages
