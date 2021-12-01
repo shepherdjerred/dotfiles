@@ -6,3 +6,5 @@ passlib
 jupyter
 wheel
 powerline-status
+jupyter
+pre-commit
