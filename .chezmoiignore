@@ -9,6 +9,8 @@ bin/tweaks
 bin/focus
 {{ end }}
 
+bin/organize-media
+
 # These exist to hide files from `chezmoi unmanaged`
 Applications
 Desktop
