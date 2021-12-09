@@ -20,6 +20,7 @@ npm install -g npm
 {{ end -}}
 
 asdf plugin update --all
+asdf install
 
 {{ if eq .chezmoi.os "darwin" -}}
 # stop, and upgrade yabai
