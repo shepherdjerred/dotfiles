@@ -6,17 +6,25 @@ brew bundle dump --file ~/.local/share/chezmoi/dot_homebrew/Brewfile
 
 vim +PlugUpdate +qall
 
+{{ with $languages := get .languages .chezmoi.hostname -}}
+{{ if hasKey $languages "rust" -}}
+rustup update
+{{ end -}}
+{{ if hasKey $languages "python" -}}
 pip install --upgrade pip
-
+{{ end -}}
+{{ if hasKey $languages "nodejs" -}}
 npm update; npm upgrade
 npm install -g npm
+{{ end -}}
+{{ end -}}
 
 asdf plugin update --all
 
 {{ if eq .chezmoi.os "darwin" -}}
 # stop, and upgrade yabai
 brew services stop yabai
-brew upgrade yabai
+# brew upgrade yabai
 
 # uninstall the scripting addition
 sudo yabai --uninstall-sa

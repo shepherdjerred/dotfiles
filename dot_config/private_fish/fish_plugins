@@ -1,6 +1,9 @@
 jorgebucaran/fisher
 jorgebucaran/autopair.fish
 jhillyerd/plugin-git
-rodrigobdz/fish-apple-touchbar
 gazorby/fish-abbreviation-tips
 danhper/fish-ssh-agent
+
+{{ if eq .chezmoi.os "darwin" -}}
+rodrigobdz/fish-apple-touchbar
+{{ end -}}

@@ -6,9 +6,15 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin "arcticicestudio/nord-tmux"
 
+{{ with $languages := get .languages .chezmoi.hostname -}}
+{{ if hasKey $languages "python" -}}
+{{ with $python_version := get $languages "python" | splitList "." }}
 # Powerline
 run-shell "powerline-daemon -q"
-source "~/.asdf/installs/python/{{ .python_version }}/lib/python3.9/site-packages/powerline/bindings/tmux/powerline.conf"
+source "~/.asdf/installs/python/{{ $python_version | join "." }}/lib/python{{ slice $python_version 0 2 | join "." }}/site-packages/powerline/bindings/tmux/powerline.conf"
+{{ end -}}
+{{ end -}}
+{{ end -}}
 
 # number panes and windows starting at one
 set -g base-index 1 

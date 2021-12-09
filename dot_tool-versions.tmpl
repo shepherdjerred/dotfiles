@@ -1,9 +1,3 @@
-java openjdk-17
-nodejs lts
-python {{ .python_version }}
-rust nightly
-haskell 9.2.1
-golang 1.17.3
-R 4.1.2
-ruby 3.0.3
-groovy 3.0.9
+{{ range $key, $value := get .languages .chezmoi.hostname }} 
+{{ $key }} {{ $value -}}
+{{ end }}
