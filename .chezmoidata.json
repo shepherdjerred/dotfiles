@@ -14,11 +14,10 @@
       "rust": "nightly",
       "groovy": "3.0.9"
     },
-    "ip-172-31-28-207.us-east-2.compute.internal": {
+    "ip-172-31-28-207": {
       "nodejs": "lts-gallium",
       "ruby": "3.0.3",
       "golang": "1.17.5",
-      "haskell": "9.2.1",
       "java": "openjdk-17",
       "python": "3.10.1",
       "rust": "nightly",
