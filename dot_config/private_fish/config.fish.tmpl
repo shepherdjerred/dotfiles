@@ -33,7 +33,7 @@ if status is-interactive
 end
 
 {{ with $languages := get .languages .chezmoi.hostname -}}
-{{ if hasKey $languages "go" -}}
+{{ if hasKey $languages "golang" -}}
 set GOROOT (asdf where golang)/go
 set GOPATH (asdf where golang)/packages
 {{ end -}}
