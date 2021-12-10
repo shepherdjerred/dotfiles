@@ -19,9 +19,12 @@ if status is-interactive
     alias cat bat
     alias grep rg
     alias !! __fish_prepend_sudo
-    alias finder "open -a Finder"
 
+    {{ if eq .chezmoi.os "darwin" -}}
+    alias finder "open -a Finder"
     alias xmake "make -f Makefile.macos"
+    [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+    {{ end }}
 
     set -gx EDITOR nvim
     fish_vi_key_bindings
@@ -29,7 +32,6 @@ if status is-interactive
     __abbr_tips_init
 
     starship init fish | source
-    [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
 end
 
 {{ with $languages := get .languages .chezmoi.hostname -}}
@@ -41,4 +43,16 @@ set GOPATH (asdf where golang)/packages
 
 {{ if eq .chezmoi.os "darwin" -}}
 source {{ get .homebrew_path .chezmoi.arch }}/opt/asdf/asdf.fish
+
+# For installing R with asdf
+set brew_prefix (brew --prefix)
+export LDFLAGS="-L$brew_prefix/opt/xz/lib $LDFLAGS"
+export CPPFLAGS="-I$brew_prefix/opt/xz/include $CPPFLAGS"
+export PKG_CONFIG_PATH="$brew_prefix/opt/xz/lib/pkgconfig:$PKG_CONFIG_PATH"
+export LDFLAGS="-L$brew_prefix/opt/pcre2/lib $LDFLAGS"
+export CPPFLAGS="-I$brew_prefix/opt/pcre2/include $CPPFLAGS"
+export PKG_CONFIG_PATH="$brew_prefix/opt/pcre2/lib/pkgconfig:$PKG_CONFIG_PATH"
+export LDFLAGS="-L$brew_prefix/opt/jpeg/lib $LDFLAGS"
+export CPPFLAGS="-I$brew_prefix/opt/jpeg/include $CPPFLAGS"
+export PKG_CONFIG_PATH="$brew_prefix/opt/jpeg/lib/pkgconfig:$PKG_CONFIG_PATH"
 {{ end -}}
