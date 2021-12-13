@@ -2,10 +2,35 @@
 region = us-east-1
 output = json
 
-[profile rspm-Admin]
+
+[profile rstudio]
+sso_start_url = https://rstudio.awsapps.com/start
+sso_region = us-east-2
+sso_account_id = 263245908434
+sso_role_name = PackageManagerTeam
+region = us-east-1
+output = json
+
+[profile rspm-team-Admin]
+sso_start_url = https://rstudio.awsapps.com/start
+sso_region = us-east-2
+sso_account_id = 528395739535 |
+sso_role_name = PowerUser
+region = us-east-1
+output = json
+
+[profile rspm-staging-User]
+sso_start_url = https://rstudio.awsapps.com/start
+sso_region = us-east-2
+sso_account_id = 623396076422 |
+sso_role_name = User
+region = us-east-1
+output = json
+
+[profile rspm-prod-User]
 sso_start_url = https://rstudio.awsapps.com/start
 sso_region = us-east-2
 sso_account_id = 387904689009
-sso_role_name = PowerUser
+sso_role_name = User
 region = us-east-1
 output = json

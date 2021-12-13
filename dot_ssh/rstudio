@@ -1,0 +1,31 @@
+Host ppms01
+    User shepherdjerred
+    HostName 18.207.68.232
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+    ForwardAgent yes
+Host ppmp01
+    User shepherdjerred
+    HostName 34.200.201.1
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+    ForwardAgent yes
+Host *.ppms01
+    User shepherdjerred
+    ProxyCommand ssh ppms01 nc -q0 %h %p
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+Host *.ppmp01
+    User shepherdjerred
+    ProxyCommand ssh ppmp01 nc -q0 %h %p
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+Host login.rstudiopm
+    HostName login.rstudiopm.rstudioservices.com
+Host cran.rstudiopm
+    ProxyCommand ssh login.rstudiopm nc -q0 %h.rstudioservices.com %p
+Host bastion.rstudiopm.com
+    User AWSReservedSSO_User_b7c739abeba7e834/jerred.shepherd@rstudio.com
+Host *.rstudiopm
+    ProxyCommand ssh bastion.rstudiopm.com nc -q0 %h %p
+    User AWSReservedSSO_User_b7c739abeba7e834/jerred.shepherd@rstudio.com
