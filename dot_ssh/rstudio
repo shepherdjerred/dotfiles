@@ -25,7 +25,7 @@ Host login.rstudiopm
 Host cran.rstudiopm
     ProxyCommand ssh login.rstudiopm nc -q0 %h.rstudioservices.com %p
 Host bastion.rstudiopm.com
-    User AWSReservedSSO_User_b7c739abeba7e834/jerred.shepherd@rstudio.com
+    User awsreservedsso_user_b7c739abeba7
 Host *.rstudiopm
     ProxyCommand ssh bastion.rstudiopm.com nc -q0 %h %p
-    User AWSReservedSSO_User_b7c739abeba7e834/jerred.shepherd@rstudio.com
+    User awsreservedsso_user_b7c739abeba7

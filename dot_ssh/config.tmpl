@@ -1,3 +1,5 @@
+Include rstudio
+
 Host *
 {{ if eq .chezmoi.os "darwin" -}}
   UseKeychain yes
@@ -19,5 +21,3 @@ Host factorio
 Host dev
   HostName ec2-3-128-189-181.us-east-2.compute.amazonaws.com
   User jerred
-
-Include rstudio
