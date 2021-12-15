@@ -2,7 +2,6 @@
 region = us-east-1
 output = json
 
-
 [profile rstudio]
 sso_start_url = https://rstudio.awsapps.com/start
 sso_region = us-east-2
