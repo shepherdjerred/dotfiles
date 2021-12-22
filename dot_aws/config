@@ -2,6 +2,11 @@
 region = us-east-1
 output = json
 
+# todo: put this stuff in 1password and retrieve
+[profile tsmc]
+aws_access_key_id=
+aws_secret_access_key=
+
 [profile rstudio]
 sso_start_url = https://rstudio.awsapps.com/start
 sso_region = us-east-2
