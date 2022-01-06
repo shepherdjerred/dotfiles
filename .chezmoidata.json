@@ -16,7 +16,7 @@
       "R": "4.1.2"
     },
     "ip-10-0-101-139": {
-      "nodejs": "lts-gallium",
+      "nodejs": "lts-fermium",
       "ruby": "3.0.3",
       "golang": "1.17.5",
       "java": "openjdk-17",
