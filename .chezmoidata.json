@@ -4,7 +4,7 @@
     "arm64": "/opt/homebrew"
   },
   "languages": {
-    "jerred-macbook": {
+    "jerred-macbook.local": {
       "nodejs": "lts-gallium",
       "ruby": "3.0.3",
       "golang": "1.17.6",

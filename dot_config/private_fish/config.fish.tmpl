@@ -20,6 +20,7 @@ if status is-interactive
     alias cat bat
     alias grep rg
     alias !! __fish_prepend_sudo
+    alias git "git-branchless wrap"
 
     {{ if eq .chezmoi.os "darwin" -}}
     alias finder "open -a Finder"
