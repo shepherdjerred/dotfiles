@@ -5,7 +5,7 @@
   },
   "languages": {
     "jerred-macbook.local": {
-      "nodejs": "lts-gallium",
+      "nodejs": "lts",
       "ruby": "3.0.3",
       "golang": "1.17.6",
       "haskell": "9.2.1",
@@ -16,7 +16,7 @@
       "R": "4.1.2"
     },
     "ip-10-0-101-139": {
-      "nodejs": "lts-fermium",
+      "nodejs": "lts",
       "ruby": "3.0.3",
       "golang": "1.17.6",
       "java": "openjdk-17",
