@@ -24,7 +24,7 @@ brew "chezmoi"
 brew "cmake"
 brew "direnv"
 brew "dust"
-brew "emacs", restart_service: true
+brew "emacs"
 brew "exa"
 brew "pcre2"
 brew "fish"

@@ -6,6 +6,10 @@ output = json
 aws_access_key_id={{ (onepasswordItemFields "ydp3okfo6rdddjvprhjme3gzvq").aws_access_key_id.v }}
 aws_secret_access_key={{ (onepasswordItemFields "ydp3okfo6rdddjvprhjme3gzvq").aws_secret_access_key.v }}
 
+[profile personal]
+aws_access_key_id={{ (onepasswordItemFields "jg4gq6tl35glpmdgmkikskxpuy").aws_access_key_id.v }}
+aws_secret_access_key={{ (onepasswordItemFields "jg4gq6tl35glpmdgmkikskxpuy").aws_secret_access_key.v }}
+
 [profile rstudio]
 sso_start_url = https://rstudio.awsapps.com/start
 sso_region = us-east-2
