@@ -2,10 +2,17 @@
 	email = shepherdjerred@gmail.com
 	name = Jerred Shepherd
 	signingkey = AE916DBD9E0A6A73
+[color]
+	ui = auto
 [core]
 	autocrlf = input
+	pager = bat
+	excludesfile = ~/.gitignore_global
+	editor = nvim
+	whitespace = -trailing-space
 [commit]
 	gpgsign = true
+	template = ~/.gitmessage
 [credential]
 {{ if eq .chezmoi.os "darwin" -}}
 	helper = osxkeychain
@@ -27,3 +34,22 @@
     diffFilter = delta --color-only --features=interactive
 [fetch]
     prune = true
+[help]
+	autocorrect = 5
+[diff]
+	mnemonicPrefix = true
+	rename = true
+	tool = code
+[difftool "code"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[log]
+	abbrevCommit = true
+[tab]
+	sort = version:refname
+[versionsort]
+	prereleaseSuffix = -pre
+	prereleaseSuffix = .pre
+	prereleaseSuffix = -beta
+	prereleaseSuffix = .beta
+	prereleaseSuffix = -rc
+	prereleaseSuffix = .rc
