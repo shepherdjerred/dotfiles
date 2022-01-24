@@ -21,7 +21,6 @@ if status is-interactive
     alias l exa
     alias cat bat
     alias grep rg
-    alias !! __fish_prepend_sudo
 
     {{ if eq .chezmoi.os "darwin" -}}
     alias finder "open -a Finder"
@@ -35,6 +34,14 @@ if status is-interactive
     __abbr_tips_init
 
     starship init fish | source
+end
+
+function sudo --description "Replacement for Bash 'sudo !!' command to run last command using sudo."
+    if test "$argv" = !!
+    eval command sudo $history[1]
+else
+    command sudo $argv
+    end
 end
 
 {{ with $languages := get .languages .chezmoi.hostname -}}

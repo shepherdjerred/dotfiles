@@ -7,6 +7,7 @@ LICENSE.md
 .yabairc
 bin/tweaks
 bin/focus
+bin/checkmake
 {{ end }}
 
 bin/organize-media

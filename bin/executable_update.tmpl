@@ -16,6 +16,7 @@ pip install --upgrade pip
 {{ if hasKey $languages "nodejs" -}}
 npm update; npm upgrade
 npm install -g npm
+rm -v ~/package-lock.json
 {{ end -}}
 {{ end -}}
 
