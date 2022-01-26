@@ -8,7 +8,7 @@
 	ui = auto
 [core]
 	autocrlf = input
-	pager = bat
+	pager = delta
 	excludesfile = ~/.gitignore_global
 	editor = nvim
 	whitespace = -trailing-space
@@ -33,7 +33,7 @@
     reflog = delta
     show = delta
 [interactive]
-    diffFilter = delta --color-only --features=interactive
+    diffFilter = delta --color-only
 [fetch]
     prune = true
 [help]
@@ -42,6 +42,7 @@
 	mnemonicPrefix = true
 	rename = true
 	tool = code
+    colorMoved = default
 [difftool "code"]
 	cmd = code --wait --diff $LOCAL $REMOTE
 [log]
@@ -57,3 +58,7 @@
 	prereleaseSuffix = .rc
 [rerere]
 	enabled = true
+[merge]
+    conflictstyle = diff3
+[delta]
+    navigate = true
