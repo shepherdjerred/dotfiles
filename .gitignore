@@ -35,4 +35,4 @@ id_rsa
 credentials
 *.iml
 .idea
-
+.vscode
