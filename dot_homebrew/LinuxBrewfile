@@ -1,7 +1,7 @@
 brew "starship"
 brew "ripgrep"
 brew "bat"
-brew "btm"
+brew "bottom"
 brew "git-delta"
 brew "gh"
 brew "docker-compose"
