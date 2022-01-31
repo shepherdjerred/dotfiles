@@ -1,8 +1,8 @@
-starship
-ripgrep
-bat
-btm
-git-delta
-gh
-docker-compose
-shellcheck
+brew "starship"
+brew "ripgrep"
+brew "bat"
+brew "btm"
+brew "git-delta"
+brew "gh"
+brew "docker-compose"
+brew "shellcheck"
