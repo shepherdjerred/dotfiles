@@ -6,23 +6,21 @@
   "languages": {
     "jerred-macbook.local": {
       "nodejs": "lts",
-      "ruby": "3.0.3",
       "golang": "1.17.6",
       "haskell": "9.2.1",
       "java": "openjdk-17",
-      "python": "3.10.1",
+      "python": "3.10.2",
       "rust": "stable",
-      "groovy": "3.0.9",
+      "groovy": "4.0.0",
       "R": "4.1.2"
     },
-    "ip-10-0-211-116": {
+    "ip-10-0-211-116.us-west-2.compute.internal": {
       "nodejs": "lts",
-      "ruby": "3.0.3",
       "golang": "1.17.6",
       "java": "openjdk-17",
-      "python": "3.10.1",
+      "python": "3.10.2",
       "rust": "nightly",
-      "groovy": "3.0.9"
+      "groovy": "4.0.0"
     }
   }
 }
