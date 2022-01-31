@@ -1,8 +1,11 @@
 #!/bin/bash
 
 brew update; brew upgrade
+{{ with $brewfile := get .brewfile .chezmoi.hostname -}}
+brew bundle install --file ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
 rm ~/.local/share/chezmoi/dot_homebrew/Brewfile
-brew bundle dump --file ~/.local/share/chezmoi/dot_homebrew/Brewfile
+brew bundle dump --file ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
+{{ end -}}
 
 vim +PlugUpdate +qall
 

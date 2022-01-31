@@ -22,5 +22,9 @@
       "rust": "nightly",
       "groovy": "4.0.0"
     }
+  },
+  "brewfile": {
+    "jerred-macbook.local": "Brewfile",
+    "ip-10-0-211-116.us-west-2.compute.internal": "LinuxBrewfile"
   }
 }
