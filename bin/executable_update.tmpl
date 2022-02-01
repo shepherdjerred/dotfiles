@@ -1,5 +1,10 @@
 #!/bin/bash
 
+{{ if eq .chezmoi.os "darwin" -}}
+sudo yum update; true
+sudo apt update; sudo apt upgrade; true
+{{ end -}}
+
 brew update; brew upgrade
 {{ with $brewfile := get .brewfile .chezmoi.hostname -}}
 brew bundle install --file ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
