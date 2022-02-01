@@ -21,11 +21,12 @@ if status is-interactive
     alias l exa
     alias cat bat
     alias grep rg
-    {{ if eq .chezmoi.hostname "" -}}
+    {{ if eq .chezmoi.hostname "dionysus" -}}
+    alias nmake "make -f scripts/makefiles/Makefile"
+    {{ end -}}
 
     {{ if eq .chezmoi.os "darwin" -}}
     alias finder "open -a Finder"
-    alias xmake "make -f Makefile.macos"
     [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
     {{ end }}
 
