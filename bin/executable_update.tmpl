@@ -8,7 +8,7 @@ sudo apt update; sudo apt upgrade; true
 brew update; brew upgrade
 {{ with $brewfile := get .brewfile .chezmoi.hostname -}}
 brew bundle install --file ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
-rm ~/.local/share/chezmoi/dot_homebrew/Brewfile
+rm ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
 brew bundle dump --file ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
 {{ end -}}
 
