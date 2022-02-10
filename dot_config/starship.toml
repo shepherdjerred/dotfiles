@@ -2,9 +2,3 @@ add_newline = false
 
 [aws]
 disabled = true
-
-[ruby]
-disabled = true
-
-[python]
-disabled = true
