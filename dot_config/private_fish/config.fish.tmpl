@@ -12,8 +12,6 @@ if status is-interactive
 end
 {{ end -}}
 
-set fish_user_paths "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $fish_user_paths
-
 if status is-interactive
     # Bring interactive shells into the future
     alias vim nvim
@@ -36,14 +34,6 @@ if status is-interactive
     __abbr_tips_init
 
     starship init fish | source
-end
-
-function sudo --description "Replacement for Bash 'sudo !!' command to run last command using sudo."
-    if test "$argv" = !!
-    eval command sudo $history[1]
-else
-    command sudo $argv
-    end
 end
 
 {{ with $languages := get .languages .chezmoi.hostname -}}
