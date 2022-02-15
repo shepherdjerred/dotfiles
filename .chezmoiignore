@@ -1,6 +1,7 @@
 README.md
 LICENSE.md
 .gitignore
+.pre-commit-config.yaml
 
 {{ if ne .chezmoi.os "darwin" -}}
 .skhdrc
