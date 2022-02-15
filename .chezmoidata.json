@@ -6,7 +6,7 @@
   "languages": {
     "jerred-macbook.local": {
       "nodejs": "lts",
-      "golang": "1.17.6",
+      "golang": "1.17.7",
       "haskell": "9.2.1",
       "java": "openjdk-17",
       "python": "3.10.2",
@@ -16,7 +16,7 @@
     },
     "dionysus": {
       "nodejs": "lts",
-      "golang": "1.17.6",
+      "golang": "1.17.7",
       "java": "openjdk-17",
       "python": "3.10.2",
       "rust": "nightly",
