@@ -2,6 +2,7 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 brew "act"
 brew "autojump"
+brew "llvm", link: false
 brew "awscli"
 brew "bat"
 brew "bottom"
