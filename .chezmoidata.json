@@ -4,7 +4,7 @@
     "arm64": "/opt/homebrew"
   },
   "languages": {
-    "jerred-macbook.local": {
+    "jerred-macbook": {
       "nodejs": "lts",
       "golang": "1.17.8",
       "haskell": "9.2.2",
