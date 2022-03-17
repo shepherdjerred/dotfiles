@@ -20,7 +20,7 @@ if status is-interactive
     alias cat bat
     alias grep rg
     {{ if eq .chezmoi.hostname "dionysus" -}}
-    alias nmake "make -f scripts/makefiles/Makefile"
+    alias nmake "make -f $(git rev-parse --show-toplevel)/scripts/makefiles/Makefile"
     {{ end -}}
 
     {{ if eq .chezmoi.os "darwin" -}}
