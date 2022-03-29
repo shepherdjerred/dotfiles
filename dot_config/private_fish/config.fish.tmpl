@@ -19,6 +19,9 @@ if status is-interactive
     alias l exa
     alias cat bat
     alias grep rg
+    {{ if eq .chezmoi.hostname "desktop" -}}
+    alias bat batcat
+    {{ end -}}
     {{ if eq .chezmoi.hostname "dionysus" -}}
     alias nmake "make -f (git rev-parse --show-toplevel)/scripts/makefiles/Makefile"
     {{ end -}}

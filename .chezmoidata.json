@@ -4,6 +4,16 @@
     "arm64": "/opt/homebrew"
   },
   "languages": {
+    "desktop": {
+      "nodejs": "lts",
+      "golang": "1.18",
+      "haskell": "9.2.2",
+      "java": "openjdk-17",
+      "python": "3.10.2",
+      "rust": "stable",
+      "groovy": "4.0.1",
+      "R": "4.1.2"
+    },
     "jerred-macbook": {
       "nodejs": "lts",
       "golang": "1.18",
