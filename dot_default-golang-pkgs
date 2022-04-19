@@ -1,10 +1,1 @@
 golang.org/x/tools/gopls@latest
-gopkgs
-go-outline
-dlv
-dlv-dap
-staticcheck
-gotests
-gomodifytags
-impl
-goplay

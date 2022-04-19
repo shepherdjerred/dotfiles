@@ -16,7 +16,7 @@
     },
     "jerred-macbook": {
       "nodejs": "lts",
-      "golang": "1.18",
+      "golang": "1.18.1",
       "haskell": "9.2.2",
       "java": "openjdk-17",
       "python": "3.10.2",
@@ -26,7 +26,7 @@
     },
     "dionysus": {
       "nodejs": "lts",
-      "golang": "1.18",
+      "golang": "1.18.1",
       "java": "openjdk-17",
       "python": "3.10.2",
       "rust": "stable",
