@@ -22,9 +22,7 @@ if status is-interactive
     {{ if eq .chezmoi.hostname "desktop" -}}
     alias bat batcat
     {{ end -}}
-    {{ if eq .chezmoi.hostname "dionysus" -}}
     alias nmake "make -f (git rev-parse --show-toplevel)/scripts/makefiles/Makefile"
-    {{ end -}}
 
     {{ if eq .chezmoi.os "darwin" -}}
     alias finder "open -a Finder"

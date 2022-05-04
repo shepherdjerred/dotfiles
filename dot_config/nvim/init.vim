@@ -11,12 +11,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'preservim/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'pearofducks/ansible-vim'
-    Plug 'takac/vim-hardtime'
 call plug#end()
-
-" Enable hard mode
-let g:hardtime_default_on = 1
-let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 let NERDTreeShowHidden=1
 

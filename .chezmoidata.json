@@ -22,7 +22,8 @@
       "python": "3.10.2",
       "rust": "stable",
       "groovy": "4.0.1",
-      "R": "4.1.2"
+      "R": "4.1.2",
+      "ruby": "3.1.2"
     },
     "dionysus": {
       "nodejs": "lts",
