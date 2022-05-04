@@ -23,7 +23,7 @@
       "rust": "stable",
       "groovy": "4.0.1",
       "R": "4.1.2",
-      "ruby": "3.1.2"
+      "ruby": "3.0.4"
     },
     "dionysus": {
       "nodejs": "lts",
