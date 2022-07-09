@@ -17,7 +17,6 @@
     }
   },
   "brewfile": {
-    "jerred-macbook.local": "Brewfile",
-    "dionysus": "DionysusBrewfile"
+    "jerred-macbook.local": "Brewfile"
   }
 }
