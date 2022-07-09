@@ -4,34 +4,16 @@
     "arm64": "/opt/homebrew"
   },
   "languages": {
-    "desktop": {
-      "nodejs": "lts",
-      "golang": "1.18",
-      "haskell": "9.2.2",
-      "java": "openjdk-17",
-      "python": "3.10.2",
-      "rust": "stable",
-      "groovy": "4.0.1",
-      "R": "4.1.2"
-    },
     "jerred-macbook": {
       "nodejs": "lts",
-      "golang": "1.18.1",
-      "haskell": "9.2.2",
+      "golang": "1.18.3",
+      "haskell": "9.2.3",
       "java": "openjdk-17",
-      "python": "3.10.2",
-      "rust": "stable",
-      "groovy": "4.0.1",
-      "R": "4.1.2",
-      "ruby": "3.0.4"
-    },
-    "dionysus": {
-      "nodejs": "lts",
-      "golang": "1.18.1",
-      "java": "openjdk-17",
-      "python": "3.10.2",
-      "rust": "stable",
-      "groovy": "4.0.1"
+      "python": "3.10.5",
+      "rust": "nightly",
+      "ruby": "3.1.2",
+      "groovy": "4.0.3",
+      "R": "4.2.1"
     }
   },
   "brewfile": {

@@ -1,5 +1,3 @@
-ansible
-ansible-lint
 aws-shell
 passlib
 jupyter

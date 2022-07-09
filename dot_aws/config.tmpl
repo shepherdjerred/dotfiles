@@ -3,12 +3,12 @@ region = us-east-1
 output = json
 
 [profile tsmc]
-aws_access_key_id={{ (onepasswordItemFields "ydp3okfo6rdddjvprhjme3gzvq").aws_access_key_id }}
-aws_secret_access_key={{ (onepasswordItemFields "ydp3okfo6rdddjvprhjme3gzvq").aws_secret_access_key }}
+aws_access_key_id={{ (onepasswordItemFields "ydp3okfo6rdddjvprhjme3gzvq").aws_access_key_id.value }}
+aws_secret_access_key={{ (onepasswordItemFields "ydp3okfo6rdddjvprhjme3gzvq").aws_secret_access_key.value }}
 
 [profile personal]
-aws_access_key_id={{ (onepasswordItemFields "jg4gq6tl35glpmdgmkikskxpuy").aws_access_key_id }}
-aws_secret_access_key={{ (onepasswordItemFields "jg4gq6tl35glpmdgmkikskxpuy").aws_secret_access_key }}
+aws_access_key_id={{ (onepasswordItemFields "jg4gq6tl35glpmdgmkikskxpuy").aws_access_key_id.value }}
+aws_secret_access_key={{ (onepasswordItemFields "jg4gq6tl35glpmdgmkikskxpuy").aws_secret_access_key.value }}
 
 [profile rstudio]
 sso_start_url = https://rstudio.awsapps.com/start
