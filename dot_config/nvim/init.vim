@@ -10,8 +10,16 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'preservim/nerdtree'
     Plug 'vim-airline/vim-airline'
-    Plug 'pearofducks/ansible-vim'
+    Plug 'phaazon/hop.nvim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'nacro90/numb.nvim'
+    Plug 'camspiers/snap'
+    Plug 'andymass/vim-matchup'
+    Plug 'f-person/git-blame.nvim'
+    Plug 'tpope/vim-surround'
 call plug#end()
+
+:lua require'hop'.setup()
 
 let NERDTreeShowHidden=1
 
@@ -34,7 +42,7 @@ set expandtab
 
 filetype indent on " Indent based on file type
 
-" Visual tab compleition with commands
+" Visual tab completion with commands
 set wildmenu
 
 " Show matching parens/brackets
