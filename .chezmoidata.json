@@ -6,7 +6,7 @@
   "languages": {
     "jerred-macbook": {
       "nodejs": "lts",
-      "golang": "1.18.4",
+      "golang": "1.19",
       "haskell": "9.2.3",
       "java": "openjdk-17",
       "python": "3.10.5",

@@ -1,5 +1,8 @@
 add_newline = false
 
+[gcloud]
+disabled = true
+
 [aws]
 symbol = "  "
 
@@ -68,4 +71,3 @@ symbol = "🅢 "
 
 [rust]
 symbol = " "
-
