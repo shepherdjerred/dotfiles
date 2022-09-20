@@ -4,9 +4,11 @@ Host *
 {{ if eq .chezmoi.os "darwin" -}}
   UseKeychain yes
   AddKeysToAgent yes
-{{ end }}
+{{ end -}}
   IdentityFile ~/.ssh/id_rsa
 Host zeus
   HostName ts.zeus.sjer.red
 Host zeus-public
   HostName public.zeus.sjer.red
+Host omscs
+  HostName 100.64.209.19
