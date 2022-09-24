@@ -6,13 +6,13 @@
   "languages": {
     "jerred-macbook": {
       "nodejs": "lts",
-      "golang": "1.19",
-      "haskell": "9.2.3",
+      "golang": "1.19.1",
+      "haskell": "9.4.2",
       "java": "openjdk-17",
-      "python": "3.10.5",
+      "python": "3.10.7",
       "rust": "nightly",
-      "ruby": "3.1.2",
-      "groovy": "4.0.4",
+      "ruby": "3.0.4",
+      "groovy": "4.0.5",
       "R": "4.2.1"
     }
   },
