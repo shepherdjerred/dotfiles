@@ -14,7 +14,7 @@ end
 
 if status is-interactive
     # Bring interactive shells into the future
-    alias vim lvim
+    alias vim nvim
     alias ls exa
     alias l exa
     alias cat bat
@@ -29,7 +29,7 @@ if status is-interactive
     [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
     {{ end }}
 
-    set -gx EDITOR lvim
+    set -gx EDITOR nvim
     fish_vi_key_bindings
 
     __abbr_tips_init
