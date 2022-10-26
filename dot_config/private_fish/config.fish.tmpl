@@ -1,35 +1,17 @@
-{{ if eq .chezmoi.os "linux" -}}
-set fish_user_paths ~/.local/bin/ $fish_user_paths
-set fish_user_paths ~/bin/ $fish_user_paths
-set fish_user_paths ~/.ash/bin/ $fish_user_paths
-set fish_user_paths /home/linuxbrew/.linuxbrew/bin $fish_user_paths
-set fish_user_paths /home/linuxbrew/.linuxbrew/sbin $fish_user_paths
-
-source ~/.asdf/asdf.fish
-
-if status is-interactive
-    export GPG_TTY=(tty)
-end
-{{ end -}}
+fish_add_path /opt/homebrew/bin
 
 if status is-interactive
     # Bring interactive shells into the future
     alias vim nvim
     alias ls exa
     alias l exa
-    alias cat bat
-    alias grep rg
-    {{ if eq .chezmoi.hostname "desktop" -}}
-    alias bat batcat
-    {{ end -}}
     alias nmake "make -f (git rev-parse --show-toplevel)/scripts/makefiles/Makefile"
 
     {{ if eq .chezmoi.os "darwin" -}}
-    alias finder "open -a Finder"
-    [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+      alias finder "open -a Finder"
     {{ end }}
 
-    set -gx EDITOR nvim
+    set -gx EDITOR vim
     fish_vi_key_bindings
 
     __abbr_tips_init
@@ -37,25 +19,6 @@ if status is-interactive
     starship init fish | source
 end
 
-{{ with $languages := get .languages .chezmoi.hostname -}}
-{{ if hasKey $languages "golang" -}}
-set GOROOT (asdf where golang)/go
-set GOPATH (asdf where golang)/packages
-{{ end -}}
-{{ end -}}
-
 {{ if eq .chezmoi.os "darwin" -}}
-source {{ get .homebrew_path .chezmoi.arch }}/opt/asdf/asdf.fish
-
-# For installing R with asdf
-set brew_prefix (brew --prefix)
-export LDFLAGS="-L$brew_prefix/opt/xz/lib $LDFLAGS"
-export CPPFLAGS="-I$brew_prefix/opt/xz/include $CPPFLAGS"
-export PKG_CONFIG_PATH="$brew_prefix/opt/xz/lib/pkgconfig:$PKG_CONFIG_PATH"
-export LDFLAGS="-L$brew_prefix/opt/pcre2/lib $LDFLAGS"
-export CPPFLAGS="-I$brew_prefix/opt/pcre2/include $CPPFLAGS"
-export PKG_CONFIG_PATH="$brew_prefix/opt/pcre2/lib/pkgconfig:$PKG_CONFIG_PATH"
-export LDFLAGS="-L$brew_prefix/opt/jpeg/lib $LDFLAGS"
-export CPPFLAGS="-I$brew_prefix/opt/jpeg/include $CPPFLAGS"
-export PKG_CONFIG_PATH="$brew_prefix/opt/jpeg/lib/pkgconfig:$PKG_CONFIG_PATH"
+source {{ get .homebrew_path .chezmoi.arch }}/opt/asdf/libexec/asdf.fish
 {{ end -}}

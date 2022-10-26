@@ -13,7 +13,11 @@ rm ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
 brew bundle dump --file ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
 {{ end -}}
 
+fisher update jorgebucaran/fisher
 vim +PlugUpdate +qall
+
+asdf plugin update --all
+asdf install
 
 {{ with $languages := get .languages .chezmoi.hostname -}}
 {{ if hasKey $languages "rust" -}}
@@ -28,6 +32,3 @@ npm install -g npm
 rm -v ~/package-lock.json
 {{ end -}}
 {{ end -}}
-
-asdf plugin update --all
-asdf install

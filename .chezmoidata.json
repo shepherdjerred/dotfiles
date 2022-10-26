@@ -7,13 +7,11 @@
     "jerred-macbook": {
       "nodejs": "lts",
       "golang": "1.19.2",
-      "haskell": "9.4.2",
       "java": "openjdk-17",
-      "python": "3.10.8",
+      "python": "3.11.0",
       "rust": "nightly",
-      "ruby": "3.0.4",
-      "groovy": "4.0.6",
-      "R": "4.2.1"
+      "ruby": "3.1.2",
+      "groovy": "4.0.6"
     }
   },
   "brewfile": {

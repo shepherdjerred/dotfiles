@@ -4,7 +4,7 @@
 defaults write com.apple.finder AppleShowAllFiles true
 
 # Quit finder menu option
-defaults write com.apple.finder QuitMenuItem -bool true && \
+defaults write com.apple.finder QuitMenuItem -bool true
 
 # Path bar
 defaults write com.apple.finder ShowPathbar -bool true
