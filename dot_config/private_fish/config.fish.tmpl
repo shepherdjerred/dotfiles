@@ -1,8 +1,9 @@
 fish_add_path /opt/homebrew/bin
+fish_add_path /Users/jerred/.local/bin/lvim
 
 if status is-interactive
     # Bring interactive shells into the future
-    alias vim nvim
+    alias vim lvim
     alias ls exa
     alias l exa
     alias nmake "make -f (git rev-parse --show-toplevel)/scripts/makefiles/Makefile"
@@ -11,7 +12,7 @@ if status is-interactive
       alias finder "open -a Finder"
     {{ end }}
 
-    set -gx EDITOR vim
+    set -gx EDITOR lvim
     fish_vi_key_bindings
 
     __abbr_tips_init

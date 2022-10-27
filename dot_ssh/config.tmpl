@@ -1,7 +1,7 @@
 Include rstudio
 
 Host *
-{{ if eq .chezmoi.os "darwin" -}}
+{{ if eq .chezmoi.os "darwin" }}
   UseKeychain yes
   AddKeysToAgent yes
 {{ end }}
