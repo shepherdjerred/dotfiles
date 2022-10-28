@@ -1,5 +1,5 @@
 fish_add_path /opt/homebrew/bin
-fish_add_path /Users/jerred/.local/bin/lvim
+fish_add_path /Users/jerred/.local/bin
 
 if status is-interactive
     # Bring interactive shells into the future
@@ -7,6 +7,10 @@ if status is-interactive
     alias ls exa
     alias l exa
     alias nmake "make -f (git rev-parse --show-toplevel)/scripts/makefiles/Makefile"
+
+    # Force brew binaries
+    alias pipenv /opt/homebrew/bin/pipenv
+    alias aws /opt/homebrew/bin/aws
 
     {{ if eq .chezmoi.os "darwin" -}}
       alias finder "open -a Finder"
