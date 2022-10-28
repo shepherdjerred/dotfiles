@@ -10,9 +10,15 @@ vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true 
 vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', '<D-c>', '"+y', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', '<D-s>', 'w', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('', '<D-s>', 'w', { noremap = true, silent = true })
 
 lvim.plugins = {
+  {
+    "shaunsingh/nord.nvim",
+    config = function()
+      vim.cmd [[colorscheme nord]]
+    end
+  },
   {
     "phaazon/hop.nvim",
     event = "BufRead",
@@ -20,37 +26,6 @@ lvim.plugins = {
       require("hop").setup()
       vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
       vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
-    end,
-  },
-  {
-    'Mofiqul/vscode.nvim',
-    config = function ()
-      vim.o.background = 'dark'
-      vim.cmd('colorscheme vscode')
-      vim.cmd('color vscode')
-      local c = require('vscode.colors')
-      require('vscode').setup({
-          -- Enable transparent background
-          transparent = true,
-
-          -- Enable italic comment
-          italic_comments = true,
-
-          -- Disable nvim-tree background color
-          disable_nvimtree_bg = true,
-
-          -- Override colors (see ./lua/vscode/colors.lua)
-          color_overrides = {
-              vscLineNumber = '#FFFFFF',
-          },
-
-          -- Override highlight groups (see ./lua/vscode/theme.lua)
-          group_overrides = {
-              -- this supports the same val table as vim.api.nvim_set_hl
-              -- use colors from this colorscheme by requiring vscode.colors!
-              Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
-          }
-    })
     end,
   },
   {
