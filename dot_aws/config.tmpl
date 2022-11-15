@@ -2,15 +2,11 @@
 region = us-east-1
 output = json
 
-[profile tsmc]
-aws_access_key_id={{ (onepasswordItemFields "ydp3okfo6rdddjvprhjme3gzvq").aws_access_key_id.value }}
-aws_secret_access_key={{ (onepasswordItemFields "ydp3okfo6rdddjvprhjme3gzvq").aws_secret_access_key.value }}
-
 [profile personal]
 aws_access_key_id={{ (onepasswordItemFields "jg4gq6tl35glpmdgmkikskxpuy").aws_access_key_id.value }}
 aws_secret_access_key={{ (onepasswordItemFields "jg4gq6tl35glpmdgmkikskxpuy").aws_secret_access_key.value }}
 
-[profile rstudio]
+[profile posit]
 sso_start_url = https://rstudio.awsapps.com/start
 sso_region = us-east-2
 sso_account_id = 263245908434
@@ -18,7 +14,7 @@ sso_role_name = PackageManagerTeam
 region = us-east-1
 output = json
 
-[profile rspm-team-admin]
+[profile ppm-team-admin]
 sso_start_url = https://rstudio.awsapps.com/start
 sso_region = us-east-2
 sso_account_id = 528395739535
@@ -26,7 +22,7 @@ sso_role_name = PowerUser
 region = us-west-2
 output = json
 
-[profile rspm-staging-readonly]
+[profile ppm-staging-readonly]
 sso_start_url = https://rstudio.awsapps.com/start
 sso_region = us-east-2
 sso_account_id = 623396076422
@@ -34,7 +30,7 @@ sso_role_name = User
 region = us-east-1
 output = json
 
-[profile rspm-prod-readonly]
+[profile ppm-prod-readonly]
 sso_start_url = https://rstudio.awsapps.com/start
 sso_region = us-east-2
 sso_account_id = 387904689009
