@@ -17,12 +17,6 @@ function install_1password() {
         sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
 
     sudo apt update && sudo apt install 1password-cli
-    op account add --address my.1password.com --email shepherdjerred@gmail.com --secret-key "$ONEPASSWORD_SECRET_KEY"
-}
-
-function setup_gpg() {
-    gpg --import "$HOME"/.gnupg/public.asc
-    gpg --import "$HOME"/.gnupg/secret.asc
 }
 
 function shell() {
@@ -30,18 +24,15 @@ function shell() {
     sudo chsh --shell /home/linuxbrew/.linuxbrew/bin/fish "$USER"
 }
 
-function install_lunarvim() {
-    LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-}
-
 install_1password
 brew bundle install --file dot_homebrew/codespaces.Brewfile
 chezmoi init --apply --source="." --keep-going --force
+
 asdf plugin add python
-asdf plugin add node
+asdf plugin add nodejs
 asdf plugin add rust
 asdf install
+
 fish -c "fisher update"
-install_lunarvim
-setup_gpg
+
 shell
