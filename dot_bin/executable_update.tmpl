@@ -1,34 +1,41 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -exu
 
 {{ if eq .chezmoi.os "linux" -}}
-# TODO: use appropriate command
-sudo yum update; true
-sudo apt update; sudo apt upgrade; true
+{{ if eq .system_package_manager "apt" -}}
+sudo apt update; sudo apt upgrade
+{{ else if eq .system_package_manager "yum" -}}
+sudo yum update
+{{ end -}}
 {{ end -}}
 
-brew update; brew upgrade
-{{ with $brewfile := get .brewfile .chezmoi.hostname -}}
-brew bundle install --file ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
-rm ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
-brew bundle dump --file ~/.local/share/chezmoi/dot_homebrew/{{$brewfile}}
-{{ end -}}
-
-fisher update jorgebucaran/fisher
+fisher update
 vim +PlugUpdate +qall
 
-asdf plugin update --all
-asdf install
+if [ -x brew ]; then
+  brew update
+  brew upgrade
+  brew bundle install --file ~/.homebrew/Brewfile
+  rm ~/.homebrew/Brewfile
+  brew bundle dump --file ~/.homebrew/Brewfile
+fi
 
-{{ with $languages := get .languages .chezmoi.hostname -}}
-{{ if hasKey $languages "rust" -}}
-rustup update
-{{ end -}}
-{{ if hasKey $languages "python" -}}
-pip install --upgrade pip
-{{ end -}}
-{{ if hasKey $languages "nodejs" -}}
-npm update; npm upgrade
-npm install -g npm
-rm -v ~/package-lock.json
-{{ end -}}
-{{ end -}}
+if [ -x asdf ]; then
+  asdf plugin update --all
+  asdf install
+fi
+
+if [ -x rustup ]; then
+  rustup update
+fi
+
+if [ -x pip ]; then
+  pip install --upgrade pip
+fi
+
+if [ -x npm ]; then
+  npm update; npm upgrade
+  npm install -g npm
+  rm -v ~/package-lock.json
+fi

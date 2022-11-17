@@ -5,7 +5,7 @@ if "test ! -d ~/.tmux/plugins/tpm" \
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 
-{{ with $languages := get .languages .chezmoi.hostname -}}
+{{ with $languages := get .languages .machine_id -}}
 {{ if hasKey $languages "python" -}}
 {{ with $python_version := get $languages "python" | splitList "." }}
 # Powerline
@@ -32,7 +32,7 @@ set -g monitor-activity on
 setw -g mouse on
 set -s focus-events on
 setw -g mode-keys vi
-set-option -g default-shell {{ get .homebrew_path .chezmoi.arch }}/bin/fish
+set-option -g default-shell $(brew --prefix)/bin/fish
 set -g default-terminal xterm-256color
 
 # Turn off repeating keys (really annoying for arrow keys when switching panes)

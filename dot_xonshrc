@@ -1,9 +1,0 @@
-execx($(starship init xonsh))
-
-aliases['vim'] = 'lvim'
-aliases['ls'] = 'exa'
-aliases['l'] = 'exa'
-aliases['cat'] = 'bat'
-aliases['grep'] = 'rg'
-aliases['nmake'] = 'make -f $(git rev-parse --show-toplevel)/scripts/makefiles/Makefile'
-aliases['finder'] = 'open -a Finder'

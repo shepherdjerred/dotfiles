@@ -1,20 +1,13 @@
 {
-  "homebrew_path": {
-    "x86_64": "/usr/local",
-    "arm64": "/opt/homebrew"
-  },
-  "languages": {
-    "jerred-macbook": {
-      "nodejs": "lts",
-      "golang": "1.19.3",
-      "java": "openjdk-17",
-      "python": "3.11.0",
-      "rust": "nightly",
-      "ruby": "3.1.2",
-      "groovy": "4.0.6"
+    "languages": {
+        "macbook": {
+            "nodejs": "lts",
+            "golang": "1.19.3",
+            "java": "openjdk-17",
+            "python": "3.11.0",
+            "rust": "nightly",
+            "ruby": "3.1.2",
+            "groovy": "4.0.6"
+        }
     }
-  },
-  "brewfile": {
-    "jerred-macbook.local": "Brewfile"
-  }
 }

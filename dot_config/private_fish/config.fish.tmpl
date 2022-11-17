@@ -1,4 +1,4 @@
-fish_add_path /opt/homebrew/bin
+fish_add_path (brew prefix)/bin
 fish_add_path /Users/jerred/.local/bin
 fish_add_path /Users/jerred/.bin
 
@@ -10,8 +10,8 @@ if status is-interactive
     alias nmake "make -f (git rev-parse --show-toplevel)/scripts/makefiles/Makefile"
 
     # Force brew binaries
-    alias pipenv /opt/homebrew/bin/pipenv
-    alias aws /opt/homebrew/bin/aws
+    alias pipenv (brew prefix)/bin/pipenv
+    alias aws (brew prefix)/bin/aws
 
     {{ if eq .chezmoi.os "darwin" -}}
       alias finder "open -a Finder"
@@ -25,6 +25,4 @@ if status is-interactive
     starship init fish | source
 end
 
-{{ if eq .chezmoi.os "darwin" -}}
-source {{ get .homebrew_path .chezmoi.arch }}/opt/asdf/libexec/asdf.fish
-{{ end -}}
+source (brew --prefix)/opt/asdf/libexec/asdf.fish

@@ -4,8 +4,6 @@ LICENSE.md
 .pre-commit-config.yaml
 
 {{ if ne .chezmoi.os "darwin" -}}
-.skhdrc
-.yabairc
 bin/tweaks
 bin/focus
 bin/checkmake
@@ -72,3 +70,9 @@ bin/
 .vnc
 .vscode
 .rustup
+.bash_history
+.config/fish/themes
+.config/grammarly-languageserver
+.zsh_sessions
+.zsh_history
+install.sh

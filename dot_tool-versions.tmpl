@@ -1,3 +1,5 @@
-{{ range $key, $value := get .languages .chezmoi.hostname }} 
+{{- if (get .languages .machine_id) -}}
+{{ range $key, $value := get .languages .machine_id }}
 {{ $key }} {{ $value -}}
 {{ end }}
+{{ end -}}

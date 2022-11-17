@@ -1,1 +1,4 @@
 golang.org/x/tools/gopls@latest
+gotest.tools/gotestsum@latest
+github.com/mitchellh/gox@latest
+github.com/golangci/golangci-lint/cmd/golangci-lint@latest
