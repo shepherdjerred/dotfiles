@@ -3,6 +3,11 @@ add_newline = false
 [gcloud]
 disabled = true
 
+[container]
+{{ if eq .is_codespaces true }}
+disabled = true
+{{ end }}
+
 [aws]
 symbol = "  "
 

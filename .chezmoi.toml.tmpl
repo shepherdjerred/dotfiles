@@ -1,6 +1,6 @@
 {{ $machine_id := promptStringOnce . "machine_id" "Machine ID" }}
-{{ $is_codespaces := promptBoolOnce . "is_codespaces" "Is this on GitHub Codespaces?" }}
-{{ $system_package_manager := promptStringOnce . "system_package_manager" "What is the system packager manager?" }}
+{{ $is_codespaces := promptBoolOnce . "is_codespaces" "Is this on GitHub Codespaces" }}
+{{ $system_package_manager := promptStringOnce . "system_package_manager" "What is the system packager manager" }}
 
 [data]
     github_username = "shepherdjerred"

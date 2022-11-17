@@ -30,7 +30,6 @@ git
 .lesshst
 .ipython
 .jupyter
-.gnupg
 .docker
 .cups
 .vim

@@ -2,6 +2,8 @@ fish_add_path (brew --prefix)/bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.bin
 
+set -gx GPG_TTY (tty)
+
 if status is-interactive
     # Bring interactive shells into the future
     alias vim lvim
