@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eu
+set -euv
 
 function install_1password() {
     curl -sS https://downloads.1password.com/linux/keys/1password.asc |
@@ -26,9 +26,9 @@ function setup_fish() {
 }
 
 function setup_asdf() {
-    asdf plugin add python
-    asdf plugin add nodejs
-    asdf plugin add rust
+    asdf plugin add python || true
+    asdf plugin add nodejs || true
+    asdf plugin add rust || true
     asdf install
 }
 
@@ -36,7 +36,7 @@ install_1password
 op account add --address my.1password.com --email shepherdjerred@gmail.com --secret-key "$ONEPASSWORD_SECRET_KEY"
 chezmoi apply --source="."
 
-brew bundle install --file dot_homebrew/codespaces.Brewfile
+brew bundle install --file ~/.homebrew/codespaces.Brewfile
 
 setup_asdf
 setup_fish
