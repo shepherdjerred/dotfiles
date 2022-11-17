@@ -34,7 +34,7 @@ function setup_asdf() {
 
 install_1password
 op account add --address my.1password.com --email shepherdjerred@gmail.com --secret-key "$ONEPASSWORD_SECRET_KEY"
-chezmoi apply --source="."
+chezmoi apply --source="$HOME/dotfiles"
 
 brew bundle install --file ~/.homebrew/codespaces.Brewfile
 
@@ -44,3 +44,5 @@ setup_fish
 LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 gpg --import "$HOME"/.gnupg/public.asc
 gpg --import "$HOME"/.gnupg/secret.asc
+
+chezmoi apply --source="$HOME/dotfiles"
