@@ -1,6 +1,6 @@
-fish_add_path (brew prefix)/bin
-fish_add_path /Users/jerred/.local/bin
-fish_add_path /Users/jerred/.bin
+fish_add_path (brew --prefix)/bin
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.bin
 
 if status is-interactive
     # Bring interactive shells into the future
@@ -10,8 +10,8 @@ if status is-interactive
     alias nmake "make -f (git rev-parse --show-toplevel)/scripts/makefiles/Makefile"
 
     # Force brew binaries
-    alias pipenv (brew prefix)/bin/pipenv
-    alias aws (brew prefix)/bin/aws
+    alias pipenv (brew --prefix)/bin/pipenv
+    alias aws (brew --prefix)/bin/aws
 
     {{ if eq .chezmoi.os "darwin" -}}
       alias finder "open -a Finder"

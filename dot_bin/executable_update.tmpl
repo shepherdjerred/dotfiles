@@ -10,10 +10,10 @@ sudo yum update
 {{ end -}}
 {{ end -}}
 
-fisher update
+fish -c "fisher update"
 vim +PlugUpdate +qall
 
-if [ -x brew ]; then
+if command -v brew > /dev/null; then
   brew update
   brew upgrade
   brew bundle install --file ~/.homebrew/Brewfile
@@ -21,20 +21,20 @@ if [ -x brew ]; then
   brew bundle dump --file ~/.homebrew/Brewfile
 fi
 
-if [ -x asdf ]; then
+if command -v asdf > /dev/null; then
   asdf plugin update --all
   asdf install
 fi
 
-if [ -x rustup ]; then
+if command -v rustup > /dev/null; then
   rustup update
 fi
 
-if [ -x pip ]; then
+if command -v pip > /dev/null; then
   pip install --upgrade pip
 fi
 
-if [ -x npm ]; then
+if command -v npm > /dev/null; then
   npm update; npm upgrade
   npm install -g npm
   rm -v ~/package-lock.json
