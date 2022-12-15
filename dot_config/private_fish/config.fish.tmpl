@@ -1,5 +1,7 @@
 {{ if and (eq .chezmoi.arch "arm64") (eq .chezmoi.os "darwin") }}
   fish_add_path (brew --prefix)/bin
+{{ else }}
+  fish_add_path $HOME/bin
 {{ end }}
 
 fish_add_path $HOME/.local/bin

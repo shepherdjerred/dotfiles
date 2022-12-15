@@ -39,10 +39,10 @@ function setup_asdf() {
 }
 
 # for arm64
-export PATH=$PATH:$(pwd)/bin/
+export PATH="$PATH":"$HOME"/bin/
 
 install_1password
-op account add --address my.1password.com --email shepherdjerred@gmail.com --secret-key "$ONEPASSWORD_SECRET_KEY"
+op account add --address my.1password.com --email shepherdjerred@gmail.com
 chezmoi apply --source="$HOME/dotfiles"
 
 if command -v brew >/dev/null; then
