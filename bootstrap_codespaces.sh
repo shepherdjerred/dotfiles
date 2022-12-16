@@ -57,7 +57,7 @@ else
     # exa
     sudo apt install -y exa
     # neovim
-    sudo add-apt-repository --yes ppa:neovim-ppa/stable
+    sudo add-apt-repository --yes ppa:neovim-ppa/unstable
     sudo apt update
     sudo apt install -y neovim
     # fish
