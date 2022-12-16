@@ -14,7 +14,7 @@ if status is-interactive
     if type -q lvim
       alias vim lvim
       set -gx EDITOR lvim
-    else if -q nvim
+    else if type -q nvim
       alias vim nvim
       set -gx EDITOR nvim
     else
