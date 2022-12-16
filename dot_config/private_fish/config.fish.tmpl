@@ -11,9 +11,20 @@ set -gx GPG_TTY (tty)
 
 if status is-interactive
     # Bring interactive shells into the future
-    alias vim lvim
-    alias ls exa
-    alias l exa
+    if type -q lvim
+      alias vim lvim
+      set -gx EDITOR lvim
+    else if -q nvim
+      alias vim nvim
+      set -gx EDITOR nvim
+    else
+      set -gx EDITOR vim
+    end
+
+    if type -q exa
+      alias ls exa
+      alias l exa
+    end
     alias nmake "make -f (git rev-parse --show-toplevel)/scripts/makefiles/Makefile"
 
     # Force brew binaries
@@ -26,7 +37,6 @@ if status is-interactive
       alias finder "open -a Finder"
     {{ end }}
 
-    set -gx EDITOR lvim
     fish_vi_key_bindings
     set sponge_purge_only_on_exit true
 
