@@ -1,7 +1,9 @@
 Include posit
 
 Host *
+{{ if eq .chezmoi.os "darwin" -}}
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{ end -}}
 Host zeus
   HostName ts.zeus.sjer.red
 Host zeus-public
