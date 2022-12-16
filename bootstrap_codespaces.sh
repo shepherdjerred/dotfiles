@@ -43,7 +43,7 @@ export PATH="$PATH":"$HOME"/bin/
 
 install_1password
 op account add --address my.1password.com --email shepherdjerred@gmail.com
-chezmoi apply --source="$HOME/dotfiles"
+chezmoi apply
 
 if command -v brew >/dev/null; then
     brew bundle install --file ~/.homebrew/codespaces.Brewfile
@@ -83,4 +83,4 @@ cargo install --locked bat
 
 LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
-chezmoi apply --source="$HOME/dotfiles"
+chezmoi apply
