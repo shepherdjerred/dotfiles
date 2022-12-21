@@ -17,8 +17,13 @@ if command -v brew > /dev/null; then
   brew update
   brew upgrade
   brew bundle install --file ~/.homebrew/Brewfile
-  rm ~/.homebrew/Brewfile
-  brew bundle dump --file ~/.homebrew/Brewfile
+  {{ if eq .is_codespaces true }}
+  rm ~/.local/share/chezmoi/dot_homebrew/codespaces.Brewfile
+  brew bundle dump --file ~/.local/share/chezmoi/dot_homebrew/codespaces.Brewfile
+  {{ else }}
+  rm ~/.local/share/chezmoi/dot_homebrew/{{ .machine_id }}.Brewfile
+  brew bundle dump --file ~/.local/share/chezmoi/dot_homebrew/{{ .machine_id }}.Brewfile
+  {{ end }}
 fi
 
 if command -v asdf > /dev/null; then
