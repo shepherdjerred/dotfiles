@@ -1,7 +1,7 @@
 Include posit
 
 Host *
-{{ if eq .chezmoi.os "darwin" -}}
+{{- if eq .chezmoi.os "darwin" }}
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 {{ end -}}
 Host zeus
@@ -11,4 +11,5 @@ Host zeus-public
 Host omscs
   HostName 100.64.209.19
 Host tsmc
+  User debian
   HostName minecraft.ts-mc.net
