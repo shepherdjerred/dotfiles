@@ -75,3 +75,4 @@ bin/
 .zsh_sessions
 .zsh_history
 install.sh
+bootstrap_codespaces.sh
