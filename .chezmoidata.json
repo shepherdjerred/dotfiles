@@ -2,7 +2,7 @@
   "languages": {
     "macbook": {
       "nodejs": "lts",
-      "golang": "1.19.4",
+      "golang": "1.19.5",
       "java": "openjdk-17",
       "python": "3.11.1",
       "rust": "nightly",
