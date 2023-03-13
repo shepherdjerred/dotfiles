@@ -18,9 +18,7 @@ function install_chezmoi() {
 
 function apply_chezmoi() {
     export CODESPACES=true
-    set -- init --apply --force --keep-going --promptString system_package_manager=apt,machine_id=codespaces
-
-    chezmoi "$@"
+    chezmoi init --apply --force --keep-going --promptString system_package_manager=apt,machine_id=codespaces
 }
 
 function install_1password() {
