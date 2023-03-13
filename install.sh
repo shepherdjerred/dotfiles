@@ -91,23 +91,21 @@ else
     fi
     # starship
     if ! command -v starship >/dev/null; then
-        FORCE=1 curl -sS https://starship.rs/install.sh | sh
+        curl -sS https://starship.rs/install.sh | sh -s -- --yes
     fi
     # exa
     if ! command -v exa >/dev/null; then
         sudo apt install -y exa
     fi
-
     # neovim
     # remove outdated versions
-    if ! command -v nvim >/dev/null; then
+    if command -v nvim >/dev/null; then
         if [ "$architecture" = "x86_64" ]; then
             if nvim --version && grep v0.6; then
                 sudo apt purge --auto-remove neovim
             fi
         fi
     fi
-
     if ! command -v nvim >/dev/null; then
         if [ "$architecture" = "x86_64" ]; then
           wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -O nvim.deb
