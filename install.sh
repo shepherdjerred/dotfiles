@@ -98,9 +98,15 @@ else
     fi
     # neovim
     if ! command -v nvim >/dev/null; then
-        sudo add-apt-repository --yes ppa:neovim-ppa/unstable
-        sudo apt update
-        sudo apt install -y neovim
+        if [ "$architecture" = "x86_64" ]; then
+          wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb -O nvim.deb
+          sudo apt install nvim.deb
+          rm nvim.deb
+        else
+          sudo add-apt-repository --yes ppa:neovim-ppa/unstable
+          sudo apt update
+          sudo apt install -y neovim
+        fi
     fi
     # fish
     if ! command -v fish >/dev/null; then
