@@ -70,7 +70,7 @@ if ! op account ls | grep shepherdjerred@gmail.com; then
 fi
 
 if ! op whoami; then
-  eval "$(op signin)"
+  eval "$(op signin my)"
 fi
 
 if ! command -v chezmoi >/dev/null; then
@@ -90,7 +90,7 @@ else
     fi
     # starship
     if ! command -v starship >/dev/null; then
-        curl -sS https://starship.rs/install.sh | sh
+        yes | curl -sS https://starship.rs/install.sh | sh
     fi
     # exa
     if ! command -v exa >/dev/null; then
@@ -99,7 +99,7 @@ else
     # neovim
     if ! command -v nvim >/dev/null; then
         if [ "$architecture" = "x86_64" ]; then
-          wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb -O nvim.deb
+          wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -O nvim.deb
           sudo dpkg -i nvim.deb
           rm nvim.deb
         else
@@ -131,9 +131,10 @@ else
 fi
 
 setup_asdf
-setup_fish
 
-. ~/.bash_profile
+export PATH=$PATH:/home/vscode/.asdf/shims
+
+setup_fish
 
 # ripgrep
 if ! command -v rg >/dev/null; then
