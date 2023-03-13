@@ -127,6 +127,8 @@ fi
 setup_asdf
 setup_fish
 
+. ~/.bash_profile
+
 # ripgrep
 if ! command -v rg >/dev/null; then
     cargo install ripgrep
@@ -140,5 +142,3 @@ fi
 if ! command -v lvim >/dev/null; then
     LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 fi
-
-chezmoi apply
