@@ -108,9 +108,13 @@ else
     fi
     # delta
     if ! command -v git-delta >/dev/null; then
-        wget https://github.com/dandavison/delta/releases/download/0.15.1/git-delta_0.15.1_$architecture.deb
-        sudo dpkg -i git-delta_0.15.1_$architecture.deb
-        rm git-delta_0.15.1_$architecture.deb
+        if [ "$architecture" = "x86_64" ]; then
+          wget https://github.com/dandavison/delta/releases/download/0.15.1/git-delta_0.15.1_amd64.deb -O git-delta.deb
+        else
+          wget https://github.com/dandavison/delta/releases/download/0.15.1/git-delta_0.15.1_$architecture.deb -O git-delta.deb
+        fi
+        sudo dpkg -i git-delta.deb
+        rm git-delta.deb
     fi
     # jq
     if ! command -v jq >/dev/null; then
