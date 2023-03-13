@@ -71,6 +71,10 @@ if ! op account ls | grep shepherdjerred@gmail.com; then
   op account add --address my.1password.com --email shepherdjerred@gmail.com
 fi
 
+if ! op whoami; then
+  eval "$(op signin)"
+fi
+
 if ! command -v chezmoi >/dev/null; then
     install_chezmoi
 fi
