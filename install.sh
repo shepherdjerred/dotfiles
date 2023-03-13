@@ -54,7 +54,8 @@ function setup_asdf() {
     asdf plugin add python || true
     asdf plugin add nodejs || true
     asdf plugin add rust || true
-    asdf install
+    # run twice; nodejs will fail the first time due do an alias issue
+    asdf install || asdf install
 }
 
 # for arm64
@@ -70,7 +71,7 @@ if ! op account ls | grep shepherdjerred@gmail.com; then
 fi
 
 if ! op whoami; then
-  eval "$(op signin my)"
+  eval "$(op signin)"
 fi
 
 if ! command -v chezmoi >/dev/null; then
@@ -90,7 +91,7 @@ else
     fi
     # starship
     if ! command -v starship >/dev/null; then
-        yes | curl -sS https://starship.rs/install.sh | sh
+        FORCE=1 curl -sS https://starship.rs/install.sh | sh
     fi
     # exa
     if ! command -v exa >/dev/null; then
@@ -147,5 +148,5 @@ if ! command -v bat >/dev/null; then
 fi
 
 if ! command -v lvim >/dev/null; then
-    LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+    ARGS_INSTALL_DEPENDENCIES=1 INTERACTIVE_MODE=0 LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 fi
