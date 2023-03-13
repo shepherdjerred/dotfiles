@@ -101,7 +101,7 @@ else
     # remove outdated versions
     if command -v nvim >/dev/null; then
         if [ "$architecture" = "x86_64" ]; then
-            if nvim --version && grep v0.6; then
+            if nvim --version || grep v0.6; then
                 sudo apt purge --auto-remove neovim
             fi
         fi
