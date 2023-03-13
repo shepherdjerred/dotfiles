@@ -20,8 +20,7 @@ function apply_chezmoi() {
     export CODESPACES=true
     set -- init --apply --force --keep-going --promptString system_package_manager=apt,machine_id=codespaces
 
-    echo "Running 'chezmoi $*'" >&2
-    exec "chezmoi" "$@"
+    chezmoi "$@"
 }
 
 function install_1password() {
