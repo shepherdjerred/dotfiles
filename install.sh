@@ -68,7 +68,7 @@ install_1password
 fi
 
 # Login to 1Password if we need to
-if ! op whoami; then
+if ! op account ls | grep shepherdjerred@gmail.com; then
   op account add --address my.1password.com --email shepherdjerred@gmail.com
 fi
 
