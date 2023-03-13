@@ -9,7 +9,7 @@
       "ruby": "3.2.1",
       "groovy": "4.0.9"
     },
-    "codespaces": {
+    "default": {
       "nodejs": "18.14.2",
       "python": "3.11.2",
       "rust": "nightly"

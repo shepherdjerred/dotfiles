@@ -2,4 +2,8 @@
 {{ range $key, $value := get .languages .machine_id }}
 {{ $key }} {{ $value -}}
 {{ end }}
+{{- else -}}
+{{ range $key, $value := get .languages "default" }}
+{{ $key }} {{ $value -}}
+{{ end }}
 {{ end -}}
