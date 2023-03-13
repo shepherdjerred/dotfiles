@@ -97,7 +97,17 @@ else
     if ! command -v exa >/dev/null; then
         sudo apt install -y exa
     fi
+
     # neovim
+    # remove outdated versions
+    if ! command -v nvim >/dev/null; then
+        if [ "$architecture" = "x86_64" ]; then
+            if nvim --version && grep v0.6; then
+                sudo apt purge --auto-remove neovim
+            fi
+        fi
+    fi
+
     if ! command -v nvim >/dev/null; then
         if [ "$architecture" = "x86_64" ]; then
           wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -O nvim.deb
@@ -148,5 +158,5 @@ if ! command -v bat >/dev/null; then
 fi
 
 if ! command -v lvim >/dev/null; then
-    ARGS_INSTALL_DEPENDENCIES=1 INTERACTIVE_MODE=0 LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+    ARGS_INSTALL_DEPENDENCIES=1 INTERACTIVE_MODE=0 LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh)
 fi
