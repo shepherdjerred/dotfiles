@@ -2,6 +2,8 @@
 
 set -euv
 
+architecture=$(uname -p)
+
 function install_1password() {
     sudo rm -f /usr/share/keyrings/1password-archive-keyring.gpg
     sudo rm -f /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
@@ -50,7 +52,7 @@ if command -v brew >/dev/null; then
 else
     # asdf
     sudo apt install -y curl git
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || true
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2 || true
     export PATH=$PATH:$HOME/.asdf/bin/
     # starship
     curl -sS https://starship.rs/install.sh | sh
@@ -65,9 +67,9 @@ else
     sudo apt update -y
     sudo apt install -y fish
     # delta
-    wget https://github.com/dandavison/delta/releases/download/0.15.1/git-delta_0.15.1_arm64.deb
-    sudo dpkg -i git-delta_0.15.1_arm64.deb
-    rm git-delta_0.15.1_arm64.deb
+    wget https://github.com/dandavison/delta/releases/download/0.15.1/git-delta_0.15.1_$architecture.deb
+    sudo dpkg -i git-delta_0.15.1_$architecture.deb
+    rm git-delta_0.15.1_$architecture.deb
     # jq
     sudo apt install -y jq
 fi
