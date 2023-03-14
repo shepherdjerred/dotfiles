@@ -1,9 +1,14 @@
 Include posit
 
+{{ if eq .chezmoi.os "darwin" }}
 Host *
-{{- if eq .chezmoi.os "darwin" }}
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-{{ end -}}
+{{ end }}
+Match Host i-*
+  ProxyCommand ssh-ssm %h %r
+  IdentityFile ~/.ssh/ssm-ssh-tmp
+  StrictHostKeyChecking no
+  BatchMode yes
 Host zeus
   HostName ts.zeus.sjer.red
 Host zeus-public
