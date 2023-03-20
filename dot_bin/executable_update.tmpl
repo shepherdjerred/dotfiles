@@ -18,10 +18,10 @@ if command -v brew > /dev/null; then
   brew upgrade
   brew bundle install --file ~/.homebrew/Brewfile
   {{ if eq .is_codespaces true }}
-  rm ~/.local/share/chezmoi/dot_homebrew/codespaces.Brewfile
+  rm -f ~/.local/share/chezmoi/dot_homebrew/codespaces.Brewfile
   brew bundle dump --file ~/.local/share/chezmoi/dot_homebrew/codespaces.Brewfile
   {{ else }}
-  rm ~/.local/share/chezmoi/dot_homebrew/{{ .machine_id }}.Brewfile
+  rm -f ~/.local/share/chezmoi/dot_homebrew/{{ .machine_id }}.Brewfile
   brew bundle dump --file ~/.local/share/chezmoi/dot_homebrew/{{ .machine_id }}.Brewfile
   {{ end }}
 fi
