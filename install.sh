@@ -41,6 +41,7 @@ function install_1password() {
 }
 
 function setup_fish() {
+    fish -c "fisher install jorgebucaran/nvm.fish"
     fish -c "fisher update"
     sudo add-shell "$(which fish)"
     if command -v brew >/dev/null; then
@@ -77,6 +78,8 @@ fi
 if ! command -v chezmoi >/dev/null; then
     install_chezmoi
 fi
+
+setup_fish
 
 apply_chezmoi
 
@@ -145,8 +148,6 @@ fi
 setup_asdf
 
 export PATH=$PATH:/home/vscode/.asdf/shims
-
-setup_fish
 
 # ripgrep
 if ! command -v rg >/dev/null; then
