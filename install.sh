@@ -59,6 +59,19 @@ function setup_asdf() {
     asdf install || asdf install
 }
 
+function setup_earthly() {
+    if [ "$architecture" = "x86_64" ]; then
+      sudo wget https://github.com/earthly/earthly/releases/latest/download/earthly-linux-amd64 -O /usr/local/bin/earthly
+    elif [ "$architecture" = "aarch64" ]; then
+      sudo wget https://github.com/earthly/earthly/releases/latest/download/earthly-linux-arm64 -O /usr/local/bin/earthly
+    else
+      sudo wget https://github.com/earthly/earthly/releases/latest/download/earthly-linux-"$architecture" -O /usr/local/bin/earthly
+    fi
+
+    sudo chmod +x /usr/local/bin/earthly
+    sudo earthly bootstrap --with-autocomplete
+}
+
 # for arm64
 export PATH="$PATH":"$HOME"/bin/
 
@@ -158,6 +171,8 @@ fi
 if ! command -v bat >/dev/null; then
     cargo install --locked bat
 fi
+
+setup_earthly
 
 if ! command -v lvim >/dev/null; then
     INTERACTIVE_MODE=0 LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh)
