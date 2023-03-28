@@ -41,13 +41,13 @@ function install_1password() {
 }
 
 function setup_fish() {
-    fish -c "fisher install jorgebucaran/nvm.fish"
+    fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
     fish -c "fisher update"
     sudo add-shell "$(which fish)"
     if command -v brew >/dev/null; then
-        sudo chsh --shell /home/linuxbrew/.linuxbrew/bin/fish "$USER"
+        sudo chsh --shell /home/linuxbrew/.linuxbrew/bin/fish "$(whoami)"
     else
-        sudo chsh --shell "$(which fish)" "$USER"
+        sudo chsh --shell "$(which fish)" "$(whoami)"
     fi
 }
 
