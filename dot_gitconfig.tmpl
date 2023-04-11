@@ -16,7 +16,11 @@
 	autocrlf = input
 	pager = delta
 	excludesfile = ~/.gitignore_global
+{{ if eq .is_codespaces true }}
+	editor = code --wait
+{{ else }}
 	editor = vim
+{{ end }}
 	whitespace = -trailing-space
 [commit]
 	gpgsign = true
