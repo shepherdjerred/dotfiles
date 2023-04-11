@@ -5,6 +5,6 @@ gazorby/fish-abbreviation-tips
 meaningful-ooo/sponge
 nickeb96/puffer-fish
 
-{{- if eq .chezmoi.os "linux" -}}
-danhper/fish-ssh-agent
-{{- end -}}
+{{ if eq .chezmoi.os "linux" }}
+  danhper/fish-ssh-agent
+{{ end }}
