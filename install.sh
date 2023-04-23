@@ -118,7 +118,7 @@ fi
 
 if ! command -v nvim >/dev/null; then
     sudo apt install -y ninja-build gettext cmake unzip curl cmake build-essential
-    git clone -b release-0.9 https://github.com/neovim/neovim
+    git clone -b release-0.9 https://github.com/neovim/neovim || true
     pushd neovim
     make CMAKE_BUILD_TYPE=Release
     sudo make install
