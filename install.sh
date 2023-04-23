@@ -41,6 +41,8 @@ function install_1password() {
 }
 
 function setup_fish() {
+    sudo apt update
+    sudo apt install -y fish
     fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
     fish -c "fisher update"
     sudo add-shell "$(which fish)"
@@ -74,6 +76,9 @@ function setup_earthly() {
 
 # for arm64
 export PATH="$PATH":"$HOME"/bin/
+
+# for add-apt-repository
+sudo apt install software-properties-common
 
 if ! command -v op >/dev/null; then
 install_1password
