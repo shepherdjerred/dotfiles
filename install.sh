@@ -117,16 +117,10 @@ if ! command -v exa >/dev/null; then
 fi
 
 if ! command -v nvim >/dev/null; then
-    if [ "$architecture" = "x86_64" ]; then
-        wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz -O nvim.tar.gz
-        tar -xf nvim.tar.gz
-        rm nvim.tar.gz
-        mv nvim-linux64/* /usr/local/
-    else
-        sudo add-apt-repository --yes ppa:neovim-ppa/unstable
-        sudo apt update
-        sudo apt install -y neovim
-    fi
+    sudo apt-get install ninja-build gettext cmake unzip curl cmake build-essential
+    git clone -b release-0.9 https://github.com/neovim/neovim
+    make CMAKE_BUILD_TYPE=Release
+    sudo make install
 fi
 
 # fish
