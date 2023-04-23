@@ -53,6 +53,7 @@ function setup_asdf() {
     asdf plugin add golang || true
     # run twice; nodejs will fail the first time due do an alias issue
     asdf install || asdf install
+    pip install --upgrade pip
 }
 
 function setup_earthly() {
@@ -114,21 +115,12 @@ if ! command -v exa >/dev/null; then
     sudo apt install -y exa
 fi
 
-# neovim
-# remove outdated versions
-if command -v nvim >/dev/null; then
-    if [ "$architecture" = "x86_64" ]; then
-        if nvim --version | grep v0.6; then
-            sudo apt purge --auto-remove -y neovim
-        fi
-    fi
-fi
-
 if ! command -v nvim >/dev/null; then
     if [ "$architecture" = "x86_64" ]; then
-        wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -O nvim.deb
-        sudo dpkg -i nvim.deb
-        rm nvim.deb
+        wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz -O nvim.tar.gz
+        tar -xf nvim.tar.gz
+        rm nvim.tar.gz
+        mv nvim-linux64/* /usr/local
     else
         sudo add-apt-repository --yes ppa:neovim-ppa/unstable
         sudo apt update
@@ -178,5 +170,5 @@ fi
 setup_earthly
 
 if ! command -v lvim >/dev/null; then
-    INTERACTIVE_MODE=0 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh)
+    INTERACTIVE_MODE=0 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
 fi
