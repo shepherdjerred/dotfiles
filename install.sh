@@ -6,12 +6,8 @@ architecture=$(uname -p)
 git_delta_version=0.15.1
 
 function install_chezmoi() {
-    if command -v brew >/dev/null; then
-        brew install chezmoi
-    else
-        (cd "$HOME" && sh -c "$(wget -qO- get.chezmoi.io)")
-        export PATH=$PATH:$HOME/bin/
-    fi
+    (cd "$HOME" && sh -c "$(wget -qO- get.chezmoi.io)")
+    export PATH=$PATH:$HOME/bin/
 
     mkdir -p ~/.local/share
     ln -s ~/dotfiles/ ~/.local/share/chezmoi
@@ -47,11 +43,7 @@ function setup_fish() {
     fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
     fish -c "fisher update"
     sudo add-shell "$(which fish)"
-    if command -v brew >/dev/null; then
-        sudo chsh --shell /home/linuxbrew/.linuxbrew/bin/fish "$(whoami)"
-    else
-        sudo chsh --shell "$(which fish)" "$(whoami)"
-    fi
+    sudo chsh --shell "$(which fish)" "$(whoami)"
 }
 
 function setup_asdf() {
@@ -79,6 +71,8 @@ function setup_earthly() {
 # for arm64
 export PATH="$PATH":"$HOME"/bin/
 
+sudo apt update
+sudo apt upgrade
 # for add-apt-repository
 sudo apt install -y software-properties-common
 
@@ -103,66 +97,68 @@ setup_fish
 
 apply_chezmoi
 
-if command -v brew >/dev/null; then
-    brew bundle install --file ~/.homebrew/codespaces.Brewfile
-else
-    # asdf
-    if ! command -v asdf >/dev/null; then
-      sudo apt install -y curl git
-      git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch main || true
-      export PATH=$PATH:$HOME/.asdf/bin/
-    fi
-    # starship
-    if ! command -v starship >/dev/null; then
-        curl -sS https://starship.rs/install.sh | sh -s -- --yes
-    fi
-    # exa
-    if ! command -v exa >/dev/null; then
-        sudo apt install -y exa
-    fi
-    # neovim
-    # remove outdated versions
-    if command -v nvim >/dev/null; then
-        if [ "$architecture" = "x86_64" ]; then
-            if nvim --version | grep v0.6; then
-                sudo apt purge --auto-remove -y neovim
-            fi
-        fi
-    fi
+# asdf
+if ! command -v asdf >/dev/null; then
+    sudo apt install -y curl git
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch master || true
+    export PATH=$PATH:$HOME/.asdf/bin/
+fi
 
-    if ! command -v nvim >/dev/null; then
-        if [ "$architecture" = "x86_64" ]; then
-          wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -O nvim.deb
-          sudo dpkg -i nvim.deb
-          rm nvim.deb
-        else
-          sudo add-apt-repository --yes ppa:neovim-ppa/unstable
-          sudo apt update
-          sudo apt install -y neovim
+# starship
+if ! command -v starship >/dev/null; then
+    curl -sS https://starship.rs/install.sh | sh -s -- --yes
+fi
+
+# exa
+if ! command -v exa >/dev/null; then
+    sudo apt install -y exa
+fi
+
+# neovim
+# remove outdated versions
+if command -v nvim >/dev/null; then
+    if [ "$architecture" = "x86_64" ]; then
+        if nvim --version | grep v0.6; then
+            sudo apt purge --auto-remove -y neovim
         fi
     fi
-    # fish
-    if ! command -v fish >/dev/null; then
-        sudo apt-add-repository --yes ppa:fish-shell/release-3
-        sudo apt update -y
-        sudo apt install -y fish
+fi
+
+if ! command -v nvim >/dev/null; then
+    if [ "$architecture" = "x86_64" ]; then
+        wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -O nvim.deb
+        sudo dpkg -i nvim.deb
+        rm nvim.deb
+    else
+        sudo add-apt-repository --yes ppa:neovim-ppa/unstable
+        sudo apt update
+        sudo apt install -y neovim
     fi
-    # delta
-    if ! command -v git-delta >/dev/null; then
-        if [ "$architecture" = "x86_64" ]; then
-          wget https://github.com/dandavison/delta/releases/download/${git_delta_version}/git-delta_${git_delta_version}_amd64.deb -O git-delta.deb
-        elif [ "$architecture" = "aarch64" ]; then
-          wget https://github.com/dandavison/delta/releases/download/${git_delta_version}/git-delta_${git_delta_version}_arm64.deb -O git-delta.deb
-        else
-          wget https://github.com/dandavison/delta/releases/download/${git_delta_version}/git-delta_${git_delta_version}_$architecture.deb -O git-delta.deb
-        fi
-        sudo dpkg -i git-delta.deb
-        rm git-delta.deb
+fi
+
+# fish
+if ! command -v fish >/dev/null; then
+    sudo apt-add-repository --yes ppa:fish-shell/release-3
+    sudo apt update -y
+    sudo apt install -y fish
+fi
+
+# delta
+if ! command -v git-delta >/dev/null; then
+    if [ "$architecture" = "x86_64" ]; then
+        wget https://github.com/dandavison/delta/releases/download/${git_delta_version}/git-delta_${git_delta_version}_amd64.deb -O git-delta.deb
+    elif [ "$architecture" = "aarch64" ]; then
+        wget https://github.com/dandavison/delta/releases/download/${git_delta_version}/git-delta_${git_delta_version}_arm64.deb -O git-delta.deb
+    else
+        wget https://github.com/dandavison/delta/releases/download/${git_delta_version}/git-delta_${git_delta_version}_$architecture.deb -O git-delta.deb
     fi
-    # jq
-    if ! command -v jq >/dev/null; then
-        sudo apt install -y jq
-    fi
+    sudo dpkg -i git-delta.deb
+    rm git-delta.deb
+fi
+
+# jq
+if ! command -v jq >/dev/null; then
+    sudo apt install -y jq
 fi
 
 setup_asdf
