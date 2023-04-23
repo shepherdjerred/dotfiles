@@ -3,7 +3,6 @@
 {{- $is_codespaces:= env "CODESPACES" | not | not -}}
 
 [data]
-    github_username = "shepherdjerred"
     machine_id = {{ $machine_id | quote }}
     is_codespaces = {{ $is_codespaces }}
     system_package_manager = {{ $system_package_manager | quote }}

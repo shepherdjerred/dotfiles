@@ -3,6 +3,7 @@
 set -euv
 
 architecture=$(uname -p)
+git_delta_version=0.15.1
 
 function install_chezmoi() {
     if command -v brew >/dev/null; then
@@ -57,6 +58,7 @@ function setup_asdf() {
     asdf plugin add python || true
     asdf plugin add nodejs || true
     asdf plugin add rust || true
+    asdf plugin add golang || true
     # run twice; nodejs will fail the first time due do an alias issue
     asdf install || asdf install
 }
@@ -78,7 +80,7 @@ function setup_earthly() {
 export PATH="$PATH":"$HOME"/bin/
 
 # for add-apt-repository
-sudo apt install software-properties-common
+sudo apt install -y software-properties-common
 
 if ! command -v op >/dev/null; then
 install_1password
@@ -107,7 +109,7 @@ else
     # asdf
     if ! command -v asdf >/dev/null; then
       sudo apt install -y curl git
-      git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2 || true
+      git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch main || true
       export PATH=$PATH:$HOME/.asdf/bin/
     fi
     # starship
@@ -122,7 +124,7 @@ else
     # remove outdated versions
     if command -v nvim >/dev/null; then
         if [ "$architecture" = "x86_64" ]; then
-            if nvim --version || grep v0.6; then
+            if nvim --version | grep v0.6; then
                 sudo apt purge --auto-remove -y neovim
             fi
         fi
@@ -148,11 +150,11 @@ else
     # delta
     if ! command -v git-delta >/dev/null; then
         if [ "$architecture" = "x86_64" ]; then
-          wget https://github.com/dandavison/delta/releases/download/0.15.1/git-delta_0.15.1_amd64.deb -O git-delta.deb
+          wget https://github.com/dandavison/delta/releases/download/${git_delta_version}/git-delta_${git_delta_version}_amd64.deb -O git-delta.deb
         elif [ "$architecture" = "aarch64" ]; then
-          wget https://github.com/dandavison/delta/releases/download/0.15.1/git-delta_0.15.1_arm64.deb -O git-delta.deb
+          wget https://github.com/dandavison/delta/releases/download/${git_delta_version}/git-delta_${git_delta_version}_arm64.deb -O git-delta.deb
         else
-          wget https://github.com/dandavison/delta/releases/download/0.15.1/git-delta_0.15.1_$architecture.deb -O git-delta.deb
+          wget https://github.com/dandavison/delta/releases/download/${git_delta_version}/git-delta_${git_delta_version}_$architecture.deb -O git-delta.deb
         fi
         sudo dpkg -i git-delta.deb
         rm git-delta.deb
@@ -180,5 +182,5 @@ fi
 setup_earthly
 
 if ! command -v lvim >/dev/null; then
-    INTERACTIVE_MODE=0 LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh)
+    INTERACTIVE_MODE=0 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh)
 fi
