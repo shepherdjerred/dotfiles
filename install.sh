@@ -4,6 +4,7 @@ set -euv
 
 architecture=$(uname -p)
 git_delta_version=0.15.1
+nu_version=0.78.0
 
 function install_chezmoi() {
     (cd "$HOME" && sh -c "$(wget -qO- get.chezmoi.io)")
@@ -120,7 +121,7 @@ if ! command -v nvim >/dev/null; then
         wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz -O nvim.tar.gz
         tar -xf nvim.tar.gz
         rm nvim.tar.gz
-        mv nvim-linux64/* /usr/local
+        mv nvim-linux64/* /usr/local/
     else
         sudo add-apt-repository --yes ppa:neovim-ppa/unstable
         sudo apt update
@@ -146,6 +147,20 @@ if ! command -v git-delta >/dev/null; then
     fi
     sudo dpkg -i git-delta.deb
     rm git-delta.deb
+fi
+
+# nu
+if ! command -v nu >/dev/null; then
+    if [ "$architecture" = "x86_64" ]; then
+        wget https://github.com/nushell/nushell/releases/download/$nu_version/nu-$nu_version-x86_64-unknown-linux-gnu.tar.gz -O nu.tar.gz
+    elif [ "$architecture" = "aarch64" ]; then
+        wget https://github.com/nushell/nushell/releases/download/$nu_version/nu-$nu_version-aarch64-unknown-linux-gnu.tar.gz -O nu.tar.gz
+    else
+        wget https://github.com/nushell/nushell/releases/download/$nu_version/nu-$nu_version-$architecture-unknown-linux-gnu.tar.gz -O nu.tar.gz
+    fi
+    tar -xf nu.tar.gz
+    sudo mv nu*/nu /usr/local/bin/
+    rm nu.tar.gz
 fi
 
 # jq
