@@ -55,6 +55,7 @@ function setup_asdf() {
     # run twice; nodejs will fail the first time due do an alias issue
     asdf install || asdf install
     pip install --upgrade pip
+    npm install -g npm
 }
 
 function setup_earthly() {
