@@ -1,9 +1,0 @@
-default-cache-ttl 3600
-max-cache-ttl 7200
-allow-loopback-pinentry
-{{ if eq .chezmoi.os "darwin" -}}
-# https://github.com/jorgelbg/pinentry-touchid/issues/3#issuecomment-915440261
-pinentry-program /opt/homebrew/bin/pinentry-touchid
-{{ else if eq .chezmoi.os "linux" -}}
-pinentry-program /usr/bin/pinentry
-{{ end -}}

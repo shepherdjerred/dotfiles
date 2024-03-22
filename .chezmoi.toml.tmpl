@@ -1,8 +1,0 @@
-{{ $machine_id := promptStringOnce . "machine_id" "Machine ID" }}
-{{ $system_package_manager := promptStringOnce . "system_package_manager" "What is the system packager manager" }}
-{{- $is_codespaces:= env "CODESPACES" | not | not -}}
-
-[data]
-    machine_id = {{ $machine_id | quote }}
-    is_codespaces = {{ $is_codespaces }}
-    system_package_manager = {{ $system_package_manager | quote }}
