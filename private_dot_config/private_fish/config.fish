@@ -7,6 +7,7 @@ atuin init fish | source
 alias vim lvim
 alias ls eza
 alias grep rg
+alias cat bat
 
 # carapace
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
