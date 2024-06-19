@@ -25,7 +25,8 @@
   difftool = true
 
 [core]
-    pager = delta
+  pager = delta
+  excludesFile = ~/.gitignore
 [interactive]
     diffFilter = delta --color-only
 [delta]
