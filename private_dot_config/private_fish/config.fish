@@ -6,6 +6,7 @@ atuin init fish | source
 
 alias vim lvim
 alias ls eza
+alias grep rg
 
 # carapace
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
@@ -15,6 +16,8 @@ carapace _carapace | source
 
 set -gx SHELL fish
 set -gx EDITOR lvim
+
+fish_vi_key_bindings
 
 if status is-interactive
   starship init fish | source
