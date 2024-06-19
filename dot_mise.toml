@@ -1,0 +1,8 @@
+[tools]
+bun = "latest"
+deno = "latest"
+go = "latest"
+java = "lts"
+node = "lts"
+python = "latest"
+rust = "nightly"
