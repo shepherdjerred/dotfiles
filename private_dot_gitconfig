@@ -18,9 +18,9 @@
   tool = difftastic
   external = difft
 [difftool]
-        prompt = false
+  prompt = false
 [difftool "difftastic"]
-        cmd = difft "$LOCAL" "$REMOTE"
+  cmd = difft "$LOCAL" "$REMOTE"
 [pager]
   difftool = true
 
@@ -28,11 +28,19 @@
   pager = delta
   excludesFile = ~/.gitignore
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [delta]
-    navigate = true    # use n and N to move between diff sections
+  navigate = true    # use n and N to move between diff sections
 [merge]
-    conflictstyle = diff3
+  conflictstyle = diff3
+  tool = smerge
 [diff]
   colorMoved = default
+
+[mergetool "smerge"]
+  cmd = smerge mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+  trustExitCode = true
+
+[pull]
+  rebase = true
 
