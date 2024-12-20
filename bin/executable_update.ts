@@ -27,7 +27,7 @@ async function run({ executable, args }: Command) {
 async function pipeThrough(
   prefix: string,
   readable: ReadableStream<Uint8Array>,
-  writable: WritableStreamDefaultWriter<Uint8Array>
+  writable: WritableStreamDefaultWriter<Uint8Array>,
 ) {
   const decoder = new TextDecoder();
   for await (const chunk of readable) {
