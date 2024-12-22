@@ -1,0 +1,327 @@
+{
+    "[astro]": {
+        "editor.defaultFormatter": "astro-build.astro-vscode"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "[dhall]": {
+        "editor.defaultFormatter": "dhall.vscode-dhall-lsp-server"
+    },
+    "[go]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "golang.go"
+    },
+    "[groovy]": {
+        "editor.defaultFormatter": "NicolasVuillamy.vscode-groovy-lint"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+        "editor.wordWrap": "on"
+    },
+    "[mdx]": {
+        "editor.wordWrap": "on"
+    },
+    "[purescript]": {
+        "editor.defaultFormatter": "nwolverson.ide-purescript"
+    },
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "accessibility.signals.terminalBell": {
+        "sound": "on"
+    },
+    "cmake.configureOnOpen": true,
+    "cmake.showOptionsMovedNotification": false,
+    "colorize.languages": [
+        "css",
+        "sass",
+        "scss",
+        "less",
+        "postcss",
+        "sss",
+        "stylus",
+        "xml",
+        "svg",
+        "typescript"
+    ],
+    "comments.openView": "never",
+    "debug.javascript.autoAttachFilter": "disabled",
+    "diffEditor.experimental.showMoves": true,
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "diffEditor.renderSideBySide": false,
+    "editor.accessibilitySupport": "off",
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.fontFamily": "Commit Mono, CommitMono, CommitMono Nerd Font, FiraCode Nerd Font Mono, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 16,
+    "editor.formatOnSave": true,
+    "editor.linkedEditing": true,
+    "editor.minimap.enabled": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "on",
+    "eslint.probe": [
+        "astro"
+    ],
+    "eslint.validate": [
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact",
+        "vue",
+        "astro"
+    ],
+    "explorer.autoReveal": "focusNoScroll",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "*.ts": "${capture}.js, ${capture}.typegen.ts",
+        "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+        "*.jsx": "${capture}.js",
+        "*.tsx": "${capture}.ts, ${capture}.typegen.ts",
+        "tsconfig.json": "tsconfig.*.json",
+        "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+        "*.mts": "${capture}.typegen.ts",
+        "*.cts": "${capture}.typegen.ts",
+        "*.sqlite": "${capture}.${extname}-*",
+        "*.db": "${capture}.${extname}-*",
+        "*.sqlite3": "${capture}.${extname}-*",
+        "*.db3": "${capture}.${extname}-*",
+        "*.sdb": "${capture}.${extname}-*",
+        "*.s3db": "${capture}.${extname}-*"
+    },
+    "files.associations": {
+        ".pages": "yaml",
+        ".earthlyignore": "ignore",
+        "*.mdx": "mdx",
+        "Earthfile": "earthfile"
+    },
+    "files.autoSave": "afterDelay",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "never",
+    "githubPullRequests.pullBranch": "never",
+    "githubPullRequests.queries": [
+        {
+            "label": "No Reviews",
+            "query": "is:open review:none"
+        },
+        {
+            "label": "Waiting For My Review",
+            "query": "is:open review-requested:${user}"
+        },
+        {
+            "label": "Assigned To Me",
+            "query": "is:open assignee:${user}"
+        },
+        {
+            "label": "Created By Me",
+            "query": "is:open author:${user}"
+        }
+    ],
+    "githubPullRequests.terminalLinksHandler": "github",
+    "go.formatTool": "goimports",
+    "go.lintTool": "golangci-lint",
+    "go.toolsManagement.autoUpdate": true,
+    "go.useLanguageServer": true,
+    "hadolint.hadolintPath": "/usr/local/bin/hadolint",
+    "haskell.manageHLS": "GHCup",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "jest.autoRun": "on-save",
+    "npm.packageManager": "npm",
+    "problems.showCurrentInStatus": true,
+    "python.formatting.provider": "black",
+    "remote.SSH.remotePlatform": {
+        "lamport": "linux"
+    },
+    "scm.workingSets.default": "current",
+    "scm.workingSets.enabled": true,
+    "search.exclude": {
+        "*.golden*": true,
+        "*.goldenfile*": true,
+        "*.map": true,
+        "**/.pytest_cache": true,
+        "**/*.snap": true,
+        "**/dist": true,
+        "**/golden": true,
+        "**/node_modules": true,
+        "**/results": true,
+        "**/site": true,
+        "**/src/services/gin-swag/custom": true,
+        "**/test/pypi": true,
+        "**/testdata": true,
+        "**/vendor": true,
+        "docs/main/development": true,
+        "docs/main/docs_site": true,
+        "docs/main/on_prem": true,
+        "test/selenium/*.html": true
+    },
+    "security.workspace.trust.untrustedFiles": "newWindow",
+    "settingsSync.ignoredSettings": [
+        "-dotfiles.repository",
+        "deno.path"
+    ],
+    "stylelint.validate": [
+        "css",
+        "less",
+        "postcss",
+        "astro"
+    ],
+    "task.allowAutomaticTasks": "on",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.defaultProfile.linux": "fish",
+    "terminal.integrated.enableVisualBell": true,
+    "terminal.integrated.env.osx": {
+        "FIG_NEW_SESSION": "1"
+    },
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.persistentSessionScrollback": 1000,
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "fish": {
+            "path": "/home/linuxbrew/.linuxbrew/bin/fish"
+        }
+    },
+    "terminal.integrated.profiles.osx": {
+        "bash": {
+            "path": "bash",
+            "args": [
+                "-l"
+            ],
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh",
+            "args": [
+                "-l"
+            ]
+        },
+        "fish": {
+            "path": "fish",
+            "args": [
+                "-l"
+            ]
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        },
+        "nu": {
+            "path": "/opt/homebrew/bin/nu"
+        }
+    },
+    "terminal.integrated.scrollback": 10000,
+    "typescript.preferences.preferTypeOnlyAutoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "vim.easymotion": true,
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false,
+        "<C-v>": false,
+        "<C-f>": false,
+        "<C-c>": false,
+        "<C-a>": false,
+        "<C-x>": false
+    },
+    "vim.history": 1000,
+    "vim.showMarksInGutter": true,
+    "vim.targets.enable": true,
+    "vite.autoStart": false,
+    "vite.devCommand": "npm run dev",
+    "vitest.enable": true,
+    "vs-kubernetes": {
+        "vscode-kubernetes.helm-path-linux": "/home/sjerred/.local/state/vs-kubernetes/tools/helm/linux-amd64/helm",
+        "vscode-kubernetes.minikube-path-linux": "/home/sjerred/.local/state/vs-kubernetes/tools/minikube/linux-amd64/minikube",
+        "vscode-kubernetes.helm-path-mac": "/Users/jerred/.vs-kubernetes/tools/helm/darwin-arm64/helm",
+        "vscode-kubernetes.minikube-path-mac": "/Users/jerred/.vs-kubernetes/tools/minikube/darwin-arm64/minikube",
+        "vs-kubernetes.crd-code-completion": "enabled",
+        "vs-kubernetes.kubeconfig": "/Users/jerred/.kube/config",
+        "vs-kubernetes.knownKubeconfigs": [
+            "/home/sjerred/.kube/config",
+            "/Users/jerred/.kube/config"
+        ],
+        "vs-kubernetes.minikube-show-information-expiration": "2025-03-12T18:19:44.930Z"
+    },
+    "vue.inlayHints.inlineHandlerLeading": true,
+    "vue.inlayHints.missingProps": true,
+    "vue.updateImportsOnFileMove.enabled": true,
+    "window.commandCenter": true,
+    "window.titleBarStyle": "custom",
+    "workbench.colorTheme": "Catppuccin Latte",
+    "workbench.commandPalette.history": 25,
+    "workbench.commandPalette.preserveInput": true,
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
+    "workbench.preferredLightColorTheme": "Catppuccin Latte",
+    "workbench.iconTheme": "catppuccin-latte",
+    "catppuccin.syncWithIconPack": true,
+    "workbench.quickOpen.preserveInput": true,
+    "workbench.settings.applyToAllProfiles": [
+        "window.autoDetectColorScheme"
+    ],
+    "yaml.schemas": {
+        "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+    },
+    "redhat.telemetry.enabled": true,
+    "prisma.showPrismaDataPlatformNotification": false,
+    "go.testEnvVars": {
+        "HEADFUL": true
+    },
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "julia.symbolCacheDownload": true,
+    "julia.enableTelemetry": true,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "mdx": false
+    },
+    "terminal.integrated.defaultProfile.osx": "fish",
+    "window.autoDetectColorScheme": true,
+    "javascript.inlayHints.enumMemberValues.enabled": true,
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "javascript.inlayHints.parameterTypes.enabled": true,
+    "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "javascript.inlayHints.variableTypes.enabled": true,
+    "typescript.inlayHints.enumMemberValues.enabled": true,
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "typescript.inlayHints.parameterNames.enabled": "literals",
+    "typescript.inlayHints.parameterTypes.enabled": true,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "vscode-home-assistant.hostUrl": "https://homeassistant.tailnet-1a49.ts.net/",
+    "vscode-home-assistant.longLivedAccessToken": "",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "typescript.preferences.importModuleSpecifier": "shortest",
+    "github.copilot.chat.temporalContext.enabled": true,
+    "github.copilot.chat.generateTests.codeLens": true,
+    "github.copilot.chat.search.semanticTextResults": true,
+}

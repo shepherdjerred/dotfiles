@@ -1,8 +1,12 @@
-#? Config file for btop v. 1.3.2
+#? Config file for btop v. 1.4.0
 
 #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
 #* Themes should be placed in "../share/btop/themes" relative to binary or "$HOME/.config/btop/themes"
-color_theme = "Default"
+{{ if eq .chezmoi.os "linux" -}}
+color_theme = "/home/jshepherd/.config/btop/themes/catppuccin_latte.theme"
+{{ else if eq .chezmoi.os "darwin" -}}
+color_theme = "catppuccin_latte"
+{{ end -}}
 
 #* If the theme set background should be shown, set to False if you want terminal background transparency.
 theme_background = True

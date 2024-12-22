@@ -1,36 +1,69 @@
 #!/bin/bash
 
-export NONINTERACTIVE=1
+set -eoux pipefail
 
-apt update
-apt upgrade -y
-apt install -y curl build-essential git
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove
+sudo apt install arcanist mosh
 
-# homebrew
+mkdir -p ~/code
+
+# install linuxbrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-echo >> /root/.bashrc
+# TODO dir
+(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/jshepherd/.bashrc
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc
 
 brew install chezmoi
-chezmoi init --source=~/dotfiles --apply
 
-# brew bundle install
-brew install neovim mise fish git curl starship carapace atuin eza bat ripgrep zellij btop difftastic git-delta
+# configure
+# TODO
+# chezmoi init --apply
 
-# fish
+# symlink dotfiles
+ln -s ~/.local/share/chezmoi/ ~/code/dotfiles
+
+# install Brewfile
+(cd ~ && brew bundle --file=.Brewfile)
+
+# install languages
+mise install --yes
+
+# install fisher
 fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
-echo /home/linuxbrew/.linuxbrew/bin/brew/bin/fish > /etc/shells
-# chsh -s /home/linuxbrew/.linuxbrew/bin/brew/bin/fish
+chezmoi apply --force && fish -c "fisher update"
 
-# fisher overwrite the plugin file
-chezmoi apply
+# install lunarvim
+# note: say no to the python install question; we install this manually
+# todo: automate these selections
+# manual step: setup copilot with :Copilot auth
+LV_BRANCH='release-1.4/neovim-0.9' fish -c "bash -c 'bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)'"
 
-fish -c "fisher update"
+# setup atuin (interactive)
+# TODO: make non-interactive
+atuin login -u sjerred
+atuin import auto
+atuin sync
 
-# todo: install mise if needed
-mise install
+# tmux
+# note: must run `prefix + I` to install plugins
+# note: must run through fish to use the updated tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# /root/.local/bin/lvim
-LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)
+# bat
+mkdir -p "$(bat --config-dir)/themes"
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+bat cache --build
+
+# delta
+mkdir -p ~/.config/delta
+git clone https://github.com/catppuccin/delta ~/.config/delta/themes
+
+# add fish to /etc/shells
+echo /home/linuxbrew/.linuxbrew/bin/fish | sudo tee -a /etc/shells
+
+# remove bash/zsh files, history, etc
+rm -rf ~/.profile ~/.bash_history ~/.bash_logout ~/.bash_profile ~/.bashrc ~/.zsh_history ~/.zshrc
