@@ -3,7 +3,7 @@
 set -eoux pipefail
 export NONINTERACTIVE=1
 
-apt update && apt upgrade -y && apt autoremove
+apt update
 apt install -y curl build-essential
 
 # install linuxbrew
@@ -15,7 +15,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew install chezmoi
 
 # configure
-chezmoi init --apply https://github.com/shepherdjerred/dotfiles
+chezmoi init --apply https://github.com/shepherdjerred/dotfiles --exclude templates
 
 # install Brewfile
 (cd ~ && brew bundle --file=.Brewfile)
@@ -25,7 +25,7 @@ mise install --yes
 
 # install fisher
 fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
-chezmoi apply --force && fish -c "fisher update"
+chezmoi apply --force --exclude templates && fish -c "fisher update"
 
 # install lunarvim
 # note: say no to the python install question; we install this manually
