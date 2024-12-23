@@ -1,27 +1,21 @@
 #!/bin/bash
 
 set -eoux pipefail
+export NONINTERACTIVE=1
 
-sudo apt update && sudo apt upgrade -y && sudo apt autoremove
-sudo apt install arcanist mosh
-
-mkdir -p ~/code
+apt update && apt upgrade -y && apt autoremove
+apt install -y curl build-essential
 
 # install linuxbrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# TODO dir
-(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/jshepherd/.bashrc
+(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.bashrc
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 brew install chezmoi
 
 # configure
-# TODO
-# chezmoi init --apply
-
-# symlink dotfiles
-ln -s ~/.local/share/chezmoi/ ~/code/dotfiles
+chezmoi init --apply https://github.com/shepherdjerred/dotfiles
 
 # install Brewfile
 (cd ~ && brew bundle --file=.Brewfile)
@@ -63,7 +57,7 @@ mkdir -p ~/.config/delta
 git clone https://github.com/catppuccin/delta ~/.config/delta/themes
 
 # add fish to /etc/shells
-echo /home/linuxbrew/.linuxbrew/bin/fish | sudo tee -a /etc/shells
+echo /home/linuxbrew/.linuxbrew/bin/fish >> /etc/shells
 
 # remove bash/zsh files, history, etc
 rm -rf ~/.profile ~/.bash_history ~/.bash_logout ~/.bash_profile ~/.bashrc ~/.zsh_history ~/.zshrc
