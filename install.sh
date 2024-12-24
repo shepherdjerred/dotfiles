@@ -4,7 +4,7 @@ set -eoux pipefail
 export NONINTERACTIVE=1
 
 apt update
-apt install -y curl build-essential
+apt install -y git curl build-essential
 
 # install linuxbrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -15,7 +15,8 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew install chezmoi
 
 # configure
-chezmoi init --apply https://github.com/shepherdjerred/dotfiles --exclude templates
+# allow failure; codespaces won't have access to secrets
+chezmoi init --apply https://github.com/shepherdjerred/dotfiles --keep-going || true
 
 # install Brewfile
 (cd ~ && brew bundle --file=.Brewfile)
@@ -31,7 +32,7 @@ chezmoi apply --force --exclude templates && fish -c "fisher update"
 # note: say no to the python install question; we install this manually
 # todo: automate these selections
 # manual step: setup copilot with :Copilot auth
-LV_BRANCH='release-1.4/neovim-0.9' fish -c "bash -c 'bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)'"
+LV_BRANCH='release-1.4/neovim-0.9' fish -c "bash -c 'bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)' --no-install-dependencies"
 
 # setup atuin (interactive)
 # TODO: make non-interactive
