@@ -7,5 +7,5 @@ else
   suffix="linux"
 fi
 
-rm -f ~/.local/share/chezmoi/dotfiles/.Brewfile_$suffix
-brew bundle dump --file=~/.local/share/chezmoi/dotfiles/.Brewfile_$suffix
+rm -f ~/.local/share/chezmoi/.Brewfile_$suffix
+brew bundle dump --file=~/.local/share/chezmoi/.Brewfile_$suffix
