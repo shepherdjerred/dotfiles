@@ -11,7 +11,10 @@ end
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.font = wezterm.font 'Berkeley Mono, Symbols Nerd Font'
+config.font = wezterm.font_with_fallback {
+  'Berkeley Mono',
+  'Symbols Nerd Font Mono',
+}
 config.font_size = 13.0
 config.use_fancy_tab_bar = false
 
