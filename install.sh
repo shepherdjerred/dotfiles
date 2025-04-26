@@ -4,7 +4,7 @@ set -eoux pipefail
 export NONINTERACTIVE=1
 
 apt update
-apt install -y git curl build-essential
+apt install build-essential procps curl file git
 
 # install linuxbrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

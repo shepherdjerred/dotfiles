@@ -63,7 +63,7 @@
     "editor.cursorBlinking": "smooth",
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.fontFamily": "Commit Mono, CommitMono, CommitMono Nerd Font, FiraCode Nerd Font Mono, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "Berkeley Mono, Symbols Nerd Font",
     "editor.fontLigatures": true,
     "editor.fontSize": 16,
     "editor.formatOnSave": true,

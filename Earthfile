@@ -1,7 +1,7 @@
 VERSION 0.8
 
 test:
-  FROM DOCKERFILE -f .devcontainer/Dockerfile .
+  FROM DOCKERFILE --platform=linux/amd64 -f .devcontainer/Dockerfile .
   ENV CODESPACES=true
   COPY . /workspaces/.codespaces/.persistedshare/dotfiles
   WORKDIR /workspaces/.codespaces/.persistedshare/dotfiles
