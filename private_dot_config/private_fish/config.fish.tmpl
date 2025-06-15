@@ -18,7 +18,12 @@ set -gx SHELL fish
 set -gx EDITOR lvim
 set -gx LANG en_US.UTF-8
 
-if status is-interactive; or (set -q CURSOR_TRACE_ID; and test -n "$CURSOR_TRACE_ID")
+set cursor_active 0
+if set -q CURSOR_TRACE_ID; and test -n "$CURSOR_TRACE_ID"
+    set cursor_active 1
+end
+
+if status is-interactive; or test $cursor_active -eq 1
   fish_vi_key_bindings
 
   starship init fish | source
