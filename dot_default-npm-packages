@@ -1,2 +1,5 @@
 tree-sitter-cli
 neovim
+prettier
+eslint
+typescript

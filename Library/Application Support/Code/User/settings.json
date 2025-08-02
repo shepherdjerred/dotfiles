@@ -144,9 +144,6 @@
     "npm.packageManager": "npm",
     "problems.showCurrentInStatus": true,
     "python.formatting.provider": "black",
-    "remote.SSH.remotePlatform": {
-        "lamport": "linux"
-    },
     "scm.workingSets.default": "current",
     "scm.workingSets.enabled": true,
     "search.exclude": {
