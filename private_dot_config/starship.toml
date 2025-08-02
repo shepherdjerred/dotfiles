@@ -110,6 +110,7 @@ format = 'via [$symbol]($style)'
 
 [lua]
 format = 'via [$symbol]($style)'
+disabled = true
 
 [meson]
 format = 'via [$symbol]($style)'
