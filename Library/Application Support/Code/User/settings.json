@@ -20,6 +20,9 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
     "[markdown]": {
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
         "editor.wordWrap": "on"
@@ -31,8 +34,8 @@
         "editor.defaultFormatter": "nwolverson.ide-purescript"
     },
     "[python]": {
-        "editor.formatOnType": true,
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
     },
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
@@ -40,6 +43,7 @@
     "accessibility.signals.terminalBell": {
         "sound": "on"
     },
+    "catppuccin.syncWithIconPack": true,
     "cmake.configureOnOpen": true,
     "cmake.showOptionsMovedNotification": false,
     "colorize.languages": [
@@ -86,25 +90,25 @@
     "explorer.confirmDragAndDrop": false,
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
-        "*.ts": "${capture}.js, ${capture}.typegen.ts",
+        "*.cts": "${capture}.typegen.ts",
+        "*.db": "${capture}.${extname}-*",
+        "*.db3": "${capture}.${extname}-*",
         "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
         "*.jsx": "${capture}.js",
-        "*.tsx": "${capture}.ts, ${capture}.typegen.ts",
-        "tsconfig.json": "tsconfig.*.json",
-        "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
         "*.mts": "${capture}.typegen.ts",
-        "*.cts": "${capture}.typegen.ts",
-        "*.sqlite": "${capture}.${extname}-*",
-        "*.db": "${capture}.${extname}-*",
-        "*.sqlite3": "${capture}.${extname}-*",
-        "*.db3": "${capture}.${extname}-*",
+        "*.s3db": "${capture}.${extname}-*",
         "*.sdb": "${capture}.${extname}-*",
-        "*.s3db": "${capture}.${extname}-*"
+        "*.sqlite": "${capture}.${extname}-*",
+        "*.sqlite3": "${capture}.${extname}-*",
+        "*.ts": "${capture}.js, ${capture}.typegen.ts",
+        "*.tsx": "${capture}.ts, ${capture}.typegen.ts",
+        "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+        "tsconfig.json": "tsconfig.*.json"
     },
     "files.associations": {
-        ".pages": "yaml",
-        ".earthlyignore": "ignore",
         "*.mdx": "mdx",
+        ".earthlyignore": "ignore",
+        ".pages": "yaml",
         "Earthfile": "earthfile"
     },
     "files.autoSave": "afterDelay",
@@ -113,6 +117,17 @@
     "files.trimTrailingWhitespace": true,
     "git.autofetch": true,
     "git.openRepositoryInParentFolders": "never",
+    "github.copilot.chat.generateTests.codeLens": true,
+    "github.copilot.chat.search.semanticTextResults": true,
+    "github.copilot.chat.temporalContext.enabled": true,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "github.copilot.enable": {
+        "*": true,
+        "markdown": false,
+        "mdx": false,
+        "plaintext": false,
+        "scminput": false
+    },
     "githubPullRequests.pullBranch": "never",
     "githubPullRequests.queries": [
         {
@@ -135,23 +150,32 @@
     "githubPullRequests.terminalLinksHandler": "github",
     "go.formatTool": "goimports",
     "go.lintTool": "golangci-lint",
+    "go.testEnvVars": {
+        "HEADFUL": true
+    },
     "go.toolsManagement.autoUpdate": true,
     "go.useLanguageServer": true,
     "hadolint.hadolintPath": "/usr/local/bin/hadolint",
     "haskell.manageHLS": "GHCup",
+    "javascript.inlayHints.enumMemberValues.enabled": true,
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "javascript.inlayHints.parameterTypes.enabled": true,
+    "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "javascript.inlayHints.variableTypes.enabled": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "jest.autoRun": "on-save",
+    "julia.enableTelemetry": true,
+    "julia.symbolCacheDownload": true,
     "npm.packageManager": "npm",
+    "prisma.showPrismaDataPlatformNotification": false,
     "problems.showCurrentInStatus": true,
     "python.formatting.provider": "black",
+    "redhat.telemetry.enabled": true,
     "scm.workingSets.default": "current",
     "scm.workingSets.enabled": true,
     "search.exclude": {
-        "*.golden*": true,
-        "*.goldenfile*": true,
-        "*.map": true,
-        "**/.pytest_cache": true,
         "**/*.snap": true,
+        "**/.pytest_cache": true,
         "**/dist": true,
         "**/golden": true,
         "**/node_modules": true,
@@ -161,6 +185,9 @@
         "**/test/pypi": true,
         "**/testdata": true,
         "**/vendor": true,
+        "*.golden*": true,
+        "*.goldenfile*": true,
+        "*.map": true,
         "docs/main/development": true,
         "docs/main/docs_site": true,
         "docs/main/on_prem": true,
@@ -178,8 +205,12 @@
         "astro"
     ],
     "task.allowAutomaticTasks": "on",
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.defaultProfile.linux": "fish",
+    "terminal.integrated.defaultProfile.osx": "fish",
     "terminal.integrated.enableVisualBell": true,
     "terminal.integrated.env.osx": {
         "FIG_NEW_SESSION": "1"
@@ -188,8 +219,8 @@
     "terminal.integrated.persistentSessionScrollback": 1000,
     "terminal.integrated.profiles.linux": {
         "bash": {
-            "path": "bash",
-            "icon": "terminal-bash"
+            "icon": "terminal-bash",
+            "path": "bash"
         },
         "fish": {
             "path": "/home/linuxbrew/.linuxbrew/bin/fish"
@@ -197,49 +228,56 @@
     },
     "terminal.integrated.profiles.osx": {
         "bash": {
-            "path": "bash",
             "args": [
                 "-l"
             ],
-            "icon": "terminal-bash"
-        },
-        "zsh": {
-            "path": "zsh",
-            "args": [
-                "-l"
-            ]
+            "icon": "terminal-bash",
+            "path": "bash"
         },
         "fish": {
-            "path": "fish",
             "args": [
                 "-l"
-            ]
-        },
-        "tmux": {
-            "path": "tmux",
-            "icon": "terminal-tmux"
-        },
-        "pwsh": {
-            "path": "pwsh",
-            "icon": "terminal-powershell"
+            ],
+            "path": "fish"
         },
         "nu": {
             "path": "/opt/homebrew/bin/nu"
+        },
+        "pwsh": {
+            "icon": "terminal-powershell",
+            "path": "pwsh"
+        },
+        "tmux": {
+            "icon": "terminal-tmux",
+            "path": "tmux"
+        },
+        "zsh": {
+            "args": [
+                "-l"
+            ],
+            "path": "zsh"
         }
     },
     "terminal.integrated.scrollback": 10000,
+    "typescript.inlayHints.enumMemberValues.enabled": true,
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "typescript.inlayHints.parameterNames.enabled": "literals",
+    "typescript.inlayHints.parameterTypes.enabled": true,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "typescript.preferences.importModuleSpecifier": "shortest",
     "typescript.preferences.preferTypeOnlyAutoImports": true,
     "typescript.updateImportsOnFileMove.enabled": "always",
     "vim.easymotion": true,
     "vim.handleKeys": {
-        "<C-d>": true,
-        "<C-s>": false,
-        "<C-z>": false,
-        "<C-v>": false,
-        "<C-f>": false,
-        "<C-c>": false,
         "<C-a>": false,
-        "<C-x>": false
+        "<C-c>": false,
+        "<C-d>": true,
+        "<C-f>": false,
+        "<C-s>": false,
+        "<C-v>": false,
+        "<C-x>": false,
+        "<C-z>": false
     },
     "vim.history": 1000,
     "vim.showMarksInGutter": true,
@@ -248,21 +286,24 @@
     "vite.devCommand": "npm run dev",
     "vitest.enable": true,
     "vs-kubernetes": {
-        "vscode-kubernetes.helm-path-linux": "/home/sjerred/.local/state/vs-kubernetes/tools/helm/linux-amd64/helm",
-        "vscode-kubernetes.minikube-path-linux": "/home/sjerred/.local/state/vs-kubernetes/tools/minikube/linux-amd64/minikube",
-        "vscode-kubernetes.helm-path-mac": "/Users/jerred/.vs-kubernetes/tools/helm/darwin-arm64/helm",
-        "vscode-kubernetes.minikube-path-mac": "/Users/jerred/.vs-kubernetes/tools/minikube/darwin-arm64/minikube",
         "vs-kubernetes.crd-code-completion": "enabled",
-        "vs-kubernetes.kubeconfig": "/Users/jerred/.kube/config",
         "vs-kubernetes.knownKubeconfigs": [
             "/home/sjerred/.kube/config",
             "/Users/jerred/.kube/config"
         ],
-        "vs-kubernetes.minikube-show-information-expiration": "2025-03-12T18:19:44.930Z"
+        "vs-kubernetes.kubeconfig": "/Users/jerred/.kube/config",
+        "vs-kubernetes.minikube-show-information-expiration": "2025-03-12T18:19:44.930Z",
+        "vscode-kubernetes.helm-path-linux": "/home/sjerred/.local/state/vs-kubernetes/tools/helm/linux-amd64/helm",
+        "vscode-kubernetes.helm-path-mac": "/Users/jerred/.vs-kubernetes/tools/helm/darwin-arm64/helm",
+        "vscode-kubernetes.minikube-path-linux": "/home/sjerred/.local/state/vs-kubernetes/tools/minikube/linux-amd64/minikube",
+        "vscode-kubernetes.minikube-path-mac": "/Users/jerred/.vs-kubernetes/tools/minikube/darwin-arm64/minikube"
     },
+    "vscode-home-assistant.hostUrl": "https://homeassistant.tailnet-1a49.ts.net/",
+    "vscode-home-assistant.longLivedAccessToken": "",
     "vue.inlayHints.inlineHandlerLeading": true,
     "vue.inlayHints.missingProps": true,
     "vue.updateImportsOnFileMove.enabled": true,
+    "window.autoDetectColorScheme": true,
     "window.commandCenter": true,
     "window.titleBarStyle": "custom",
     "workbench.colorTheme": "Catppuccin Latte",
@@ -270,55 +311,14 @@
     "workbench.commandPalette.preserveInput": true,
     "workbench.editor.empty.hint": "hidden",
     "workbench.editor.highlightModifiedTabs": true,
+    "workbench.iconTheme": "catppuccin-latte",
     "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
     "workbench.preferredLightColorTheme": "Catppuccin Latte",
-    "workbench.iconTheme": "catppuccin-latte",
-    "catppuccin.syncWithIconPack": true,
     "workbench.quickOpen.preserveInput": true,
     "workbench.settings.applyToAllProfiles": [
         "window.autoDetectColorScheme"
     ],
     "yaml.schemas": {
         "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
-    },
-    "redhat.telemetry.enabled": true,
-    "prisma.showPrismaDataPlatformNotification": false,
-    "go.testEnvVars": {
-        "HEADFUL": true
-    },
-    "terminal.integrated.commandsToSkipShell": [
-        "language-julia.interrupt"
-    ],
-    "julia.symbolCacheDownload": true,
-    "julia.enableTelemetry": true,
-    "github.copilot.editor.enableAutoCompletions": true,
-    "github.copilot.enable": {
-        "*": true,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false,
-        "mdx": false
-    },
-    "terminal.integrated.defaultProfile.osx": "fish",
-    "window.autoDetectColorScheme": true,
-    "javascript.inlayHints.enumMemberValues.enabled": true,
-    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
-    "javascript.inlayHints.parameterTypes.enabled": true,
-    "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
-    "javascript.inlayHints.variableTypes.enabled": true,
-    "typescript.inlayHints.enumMemberValues.enabled": true,
-    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-    "typescript.inlayHints.parameterNames.enabled": "literals",
-    "typescript.inlayHints.parameterTypes.enabled": true,
-    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-    "typescript.inlayHints.variableTypes.enabled": true,
-    "vscode-home-assistant.hostUrl": "https://homeassistant.tailnet-1a49.ts.net/",
-    "vscode-home-assistant.longLivedAccessToken": "",
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "typescript.preferences.importModuleSpecifier": "shortest",
-    "github.copilot.chat.temporalContext.enabled": true,
-    "github.copilot.chat.generateTests.codeLens": true,
-    "github.copilot.chat.search.semanticTextResults": true,
+    }
 }

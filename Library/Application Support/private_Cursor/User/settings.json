@@ -1,0 +1,156 @@
+{
+    "[astro]": {
+        "editor.defaultFormatter": "astro-build.astro-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+        "editor.wordWrap": "on"
+    },
+    "[mdx]": {
+        "editor.wordWrap": "on"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "accessibility.signals.terminalBell": {
+        "sound": "on"
+    },
+    "catppuccin.syncWithIconPack": true,
+    "cursor.composer.shouldChimeAfterChatFinishes": true,
+    "cursor.cpp.disabledLanguages": [
+        "plaintext",
+        "markdown",
+        "scminput",
+        "mdx"
+    ],
+    "cursor.cpp.enablePartialAccepts": true,
+    "docker.extension.enableComposeLanguageServer": false,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.fontFamily": "Berkeley Mono, Symbols Nerd Font",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 16,
+    "editor.formatOnSave": true,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "on",
+    "eslint.probe": [
+        "astro"
+    ],
+    "eslint.validate": [
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact",
+        "astro"
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "explorer.fileNesting.enabled": true,
+    "files.associations": {
+        "*.mdx": "mdx",
+        ".earthlyignore": "ignore",
+        "Earthfile": "earthfile"
+    },
+    "files.autoSave": "afterDelay",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "never",
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "javascript.inlayHints.parameterTypes.enabled": true,
+    "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "javascript.inlayHints.variableTypes.enabled": true,
+    "json.schemaDownload.enable": true,
+    "prisma.showPrismaDataPlatformNotification": false,
+    "problems.showCurrentInStatus": true,
+    "remote.SSH.remotePlatform": {
+        "homelab.devpod": "linux"
+    },
+    "security.workspace.trust.untrustedFiles": "newWindow",
+    "task.allowAutomaticTasks": "on",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.defaultProfile.linux": "fish",
+    "terminal.integrated.defaultProfile.osx": "fish",
+    "terminal.integrated.enableImages": true,
+    "terminal.integrated.enableVisualBell": true,
+    "terminal.integrated.fontLigatures.enabled": true,
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.persistentSessionScrollback": 1000,
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "icon": "terminal-bash",
+            "path": "bash"
+        },
+        "fish": {
+            "path": "/home/linuxbrew/.linuxbrew/bin/fish"
+        }
+    },
+    "terminal.integrated.profiles.osx": {
+        "fish": {
+            "args": [
+                "-l"
+            ],
+            "path": "fish"
+        }
+    },
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.shellIntegration.environmentReporting": true,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.suggest.enabled": true,
+    "terminal.integrated.suggest.providers": {
+        "pwsh-shell-integration": true,
+        "terminal-suggest": true
+    },
+    "typescript.inlayHints.enumMemberValues.enabled": true,
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "typescript.inlayHints.parameterNames.enabled": "literals",
+    "typescript.inlayHints.parameterTypes.enabled": true,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "typescript.preferences.importModuleSpecifier": "shortest",
+    "typescript.preferences.preferTypeOnlyAutoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "vim.easymotion": true,
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-c>": false,
+        "<C-d>": true,
+        "<C-f>": false,
+        "<C-s>": false,
+        "<C-v>": false,
+        "<C-x>": false,
+        "<C-z>": false
+    },
+    "vim.history": 1000,
+    "vim.showMarksInGutter": true,
+    "vim.targets.enable": true,
+    "vs-kubernetes": {
+        "vs-kubernetes.crd-code-completion": "disabled"
+    },
+    "window.autoDetectColorScheme": true,
+    "window.commandCenter": true,
+    "window.titleBarStyle": "custom",
+    "workbench.colorTheme": "Catppuccin Latte",
+    "workbench.commandPalette.history": 25,
+    "workbench.commandPalette.preserveInput": true,
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.iconTheme": "catppuccin-latte",
+    "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
+    "workbench.preferredLightColorTheme": "Catppuccin Latte",
+    "workbench.quickOpen.preserveInput": true,
+    "workbench.settings.applyToAllProfiles": [
+        "window.autoDetectColorScheme"
+    ]
+}
