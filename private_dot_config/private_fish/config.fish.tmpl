@@ -26,6 +26,7 @@ end
 if status is-interactive; or test $cursor_active -eq 1
   fish_vi_key_bindings
 
+  jj util completion fish | source
   starship init fish | source
   atuin init fish | source
 
