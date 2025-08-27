@@ -143,7 +143,7 @@ if ! grep -qx "/home/linuxbrew/.linuxbrew/bin/fish" /etc/shells; then
 fi
 
 # git credential manager
-curl -L https://aka.ms/gcm/linux-install-source.sh | sh
+curl -L https://aka.ms/gcm/linux-install-source.sh | bash
 git-credential-manager configure
 git config --global credential.credentialStore cache
 git config --global credential.cacheOptions "--timeout 300"
