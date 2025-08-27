@@ -3,6 +3,41 @@
 set -eoux pipefail
 export NONINTERACTIVE=1
 
+# System-wide SSL CA fix for dockerless environments
+if [ -f "/.dockerless/ssl/certs/ca-certificates.crt" ]; then
+    echo 'export SSL_CERT_FILE=/.dockerless/ssl/certs/ca-certificates.crt' > /etc/profile.d/ssl_ca.sh
+    echo 'unset SSL_CERT_DIR' >> /etc/profile.d/ssl_ca.sh
+    echo 'export CURL_CA_BUNDLE=/.dockerless/ssl/certs/ca-certificates.crt' >> /etc/profile.d/ssl_ca.sh
+    chmod 0644 /etc/profile.d/ssl_ca.sh
+
+    # Immediate effect for this session
+    export SSL_CERT_FILE=/.dockerless/ssl/certs/ca-certificates.crt
+    unset SSL_CERT_DIR || true
+    export CURL_CA_BUNDLE=/.dockerless/ssl/certs/ca-certificates.crt
+
+    # Create default CAfile symlink for common toolchains
+    mkdir -p /etc/ssl/certs
+    ln -sf /.dockerless/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+
+    # Persist for non-interactive sessions
+    if grep -q '^SSL_CERT_FILE=' /etc/environment 2>/dev/null; then
+        sed -i 's|^SSL_CERT_FILE=.*|SSL_CERT_FILE=/.dockerless/ssl/certs/ca-certificates.crt|' /etc/environment
+    else
+        echo 'SSL_CERT_FILE=/.dockerless/ssl/certs/ca-certificates.crt' >> /etc/environment
+    fi
+
+    if grep -q '^CURL_CA_BUNDLE=' /etc/environment 2>/dev/null; then
+        sed -i 's|^CURL_CA_BUNDLE=.*|CURL_CA_BUNDLE=/.dockerless/ssl/certs/ca-certificates.crt|' /etc/environment
+    else
+        echo 'CURL_CA_BUNDLE=/.dockerless/ssl/certs/ca-certificates.crt' >> /etc/environment
+    fi
+
+    # Best-effort: remove SSL_CERT_DIR from /etc/environment if present
+    if grep -q '^SSL_CERT_DIR=' /etc/environment 2>/dev/null; then
+        sed -i '/^SSL_CERT_DIR=/d' /etc/environment
+    fi
+fi
+
 apt update
 apt install -y build-essential procps curl file git
 
