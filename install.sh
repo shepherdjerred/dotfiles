@@ -71,6 +71,7 @@ apt update
 apt install -y build-essential procps curl file git
 
 # install linuxbrew
+touch /.dockerenv
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.bashrc
