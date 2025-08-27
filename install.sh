@@ -72,7 +72,7 @@ LV_BRANCH='release-1.4/neovim-0.9' fish -c "bash -c 'bash <(curl -s https://raw.
 # setup atuin (interactive)
 # TODO: make non-interactive
 atuin login -u sjerred
-atuin import auto
+atuin import auto || true
 atuin sync
 
 # tmux
@@ -94,6 +94,12 @@ git clone https://github.com/catppuccin/delta ~/.config/delta/themes
 
 # add fish to /etc/shells
 echo /home/linuxbrew/.linuxbrew/bin/fish >> /etc/shells
+
+# git credential manager
+curl -L https://aka.ms/gcm/linux-install-source.sh | sh
+git-credential-manager configure
+git config --global credential.credentialStore cache
+git config --global credential.cacheOptions "--timeout 300"
 
 # remove bash/zsh files, history, etc
 rm -rf ~/.profile ~/.bash_history ~/.bash_logout ~/.bash_profile ~/.bashrc ~/.zsh_history ~/.zshrc
