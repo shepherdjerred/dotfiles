@@ -15,6 +15,16 @@ log_warn() { printf "[%s] [WARN] %s\n" "$(timestamp)" "$*" 1>&2; }
 log_error() { printf "[%s] [ERROR] %s\n" "$(timestamp)" "$*" 1>&2; }
 log_success() { printf "[%s] [OK] %s\n" "$(timestamp)" "$*"; }
 
+# --- run metadata & diagnostics ---
+START_TIME_EPOCH="$(date -u +%s)"
+START_TIME_ISO="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+LOG_DIR="/var/lib/dotfiles"
+LOG_FILE=""
+STATUS_JSON=""
+SYSTEM_INFO_FILE=""
+LAST_ERROR_LINE=""
+LAST_ERROR_CMD=""
+
 # --- retry helper ---
 retry() {
     local max_attempts="${1:-5}"
@@ -40,11 +50,13 @@ retry() {
 on_error() {
     local exit_code=$?
     local line_no=${BASH_LINENO[0]:-unknown}
+    LAST_ERROR_LINE="${line_no}"
+    LAST_ERROR_CMD="${BASH_COMMAND}"
     log_error "Exited with status ${exit_code} at line ${line_no}. Last command: ${BASH_COMMAND}"
 }
 trap on_error ERR
 
-log_info "Starting dotfiles install"
+# Logging, run metadata, and diagnostics will be initialized after privilege escalation
 
 # Idempotency marker: skip if a successful run already completed
 INSTALL_MARKER="/var/lib/dotfiles/install_success"
@@ -63,6 +75,94 @@ if [ "${EUID:-$(id -u)}" -ne 0 ]; then
         exit 1
     fi
 fi
+
+# --- initialize logging to /var/lib/dotfiles ---
+mkdir -p "${LOG_DIR}"
+RUN_ID="$(date -u +%Y%m%dT%H%M%SZ)$$"
+LOG_FILE="${LOG_DIR}/install_${RUN_ID}.log"
+STATUS_JSON="${LOG_DIR}/status_${RUN_ID}.json"
+SYSTEM_INFO_FILE="${LOG_DIR}/system_info_${RUN_ID}.txt"
+
+# Symlinks for convenience
+ln -sfn "${LOG_FILE}" "${LOG_DIR}/install_latest.log"
+ln -sfn "${STATUS_JSON}" "${LOG_DIR}/status_latest.json"
+
+# Route stdout and stderr through tee to log file
+exec > >(tee -a "${LOG_FILE}") 2>&1
+
+# Improve xtrace formatting when enabled
+if [[ "${TRACE:-0}" == "1" ]]; then
+    # Prefix xtrace lines similarly to our logger with timestamp and TRACE tag
+    export PS4='+ [$(date -u +%Y-%m-%dT%H:%M:%SZ)] [TRACE] ${BASH_SOURCE}:${LINENO}: '
+    set -x
+fi
+
+log_info "Starting dotfiles install"
+
+# Capture system info snapshot (avoid dumping sensitive envs)
+{
+    echo "==== SYSTEM INFO (${START_TIME_ISO}) ===="
+    echo "Kernel: $(uname -a)"
+    echo "OS release:"; (cat /etc/os-release 2>/dev/null || true)
+    echo
+    echo "Users: $(id -a)"
+    echo "Shell: ${SHELL:-unknown}"
+    echo "PATH: ${PATH}"
+    echo
+    echo "Disk usage:"; df -h 2>/dev/null || true
+    echo
+    echo "Memory:"; free -h 2>/dev/null || true
+    echo
+    echo "Network:"; (ip a 2>/dev/null || true)
+    echo
+    echo "Environment (safe subset):"
+    env | grep -E '^(CI|CODESPACES|GITHUB|HOME|LANG|LC_|LOGNAME|PATH|PWD|SHELL|SHLVL|TERM|TZ|USER)=' || true
+} > "${SYSTEM_INFO_FILE}" 2>/dev/null || true
+
+# Write an initial status file; final status written on EXIT
+write_status_json() {
+    local final_status="$1"  # "running", "success", or "error"
+    local end_time_epoch="$(date -u +%s)"
+    local end_time_iso="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+    local last_error_line_json
+    local last_error_cmd_json
+    if [ -n "${LAST_ERROR_LINE}" ]; then
+        last_error_line_json=", \"last_error_line\": ${LAST_ERROR_LINE}"
+    else
+        last_error_line_json=""
+    fi
+    if [ -n "${LAST_ERROR_CMD}" ]; then
+        # Escape backslashes and quotes in command for JSON
+        local esc
+        esc="$(printf '%s' "${LAST_ERROR_CMD}" | sed 's/\\/\\\\/g; s/\"/\\\"/g')"
+        last_error_cmd_json=", \"last_error_command\": \"${esc}\""
+    else
+        last_error_cmd_json=""
+    fi
+    cat > "${STATUS_JSON}" <<EOF
+{
+  "run_id": "${RUN_ID}",
+  "start_time_iso": "${START_TIME_ISO}",
+  "start_time_epoch": ${START_TIME_EPOCH},
+  "end_time_iso": "${end_time_iso}",
+  "end_time_epoch": ${end_time_epoch},
+  "status": "${final_status}",
+  "log_file": "${LOG_FILE}",
+  "system_info_file": "${SYSTEM_INFO_FILE}"${last_error_line_json}${last_error_cmd_json}
+}
+EOF
+}
+
+# Ensure status is written on any exit
+on_exit_write_status() {
+    local exit_code=$?
+    if [ $exit_code -eq 0 ]; then
+        write_status_json "success"
+    else
+        write_status_json "error"
+    fi
+}
+trap on_exit_write_status EXIT
 
 # System-wide SSL CA fix for dockerless environments
 if [ -f "/.dockerless/ssl/certs/ca-certificates.crt" ]; then
@@ -250,7 +350,7 @@ if ! command -v git-credential-manager >/dev/null 2>&1; then
     log_info "Installing Git Credential Manager"
     tmpfile="$(mktemp)"
     if retry 3 5 curl -fsSL https://aka.ms/gcm/linux-install-source.sh -o "$tmpfile"; then
-        bash "$tmpfile" || log_warn "GCM install script failed"
+        bash "$tmpfile" -y || log_warn "GCM install script failed"
     else
         log_warn "Failed to download GCM install script"
     fi
@@ -271,3 +371,6 @@ rm -rf ~/.profile ~/.bash_history ~/.bash_logout ~/.bash_profile ~/.bashrc ~/.zs
 mkdir -p /var/lib/dotfiles
 touch "$INSTALL_MARKER"
 log_success "Dotfiles install completed"
+
+# Also update status file to success explicitly at the very end
+write_status_json "success" || true
