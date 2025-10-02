@@ -24,7 +24,7 @@
 [core]
   pager = delta
   excludesFile = ~/.gitignore
-  autoclrf = input
+  autoclrf = true
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -35,13 +35,51 @@
   tool = smerge
 {{ end }}
 [diff]
-  colorMoved = default
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
 
 [mergetool "smerge"]
   cmd = smerge mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
   trustExitCode = true
 
+[push]
+  autoSetupRemote = true
+  default = simple
+  followTags = true
 [pull]
   rebase = true
 [rebase]
-  autostash = true
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[init]
+  defaultBranch = main
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[help]
+  autocorrect = prompt
+[commit]
+  verbose = true
+[rerere]
+  enabled = true
+  autoupdate = true
+[core]
+  excludesfile = ~/.gitignore
+
+[core]
+  fsmonitor = true
+  untrackedCache = true
+[merge]
+  conflictstyle = zdiff3
