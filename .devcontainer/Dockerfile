@@ -1,3 +1,3 @@
 FROM ubuntu:noble
 
-RUN apt update && apt install -y git
+RUN apt update && apt install -y git curl wget
