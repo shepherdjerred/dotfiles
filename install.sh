@@ -164,70 +164,6 @@ on_exit_write_status() {
 }
 trap on_exit_write_status EXIT
 
-# System-wide SSL CA fix for dockerless environments
-if [ -f "/.dockerless/ssl/certs/ca-certificates.crt" ]; then
-    echo 'export SSL_CERT_FILE=/.dockerless/ssl/certs/ca-certificates.crt' >/etc/profile.d/ssl_ca.sh
-    echo 'unset SSL_CERT_DIR' >>/etc/profile.d/ssl_ca.sh
-    echo 'export CURL_CA_BUNDLE=/.dockerless/ssl/certs/ca-certificates.crt' >>/etc/profile.d/ssl_ca.sh
-    chmod 0644 /etc/profile.d/ssl_ca.sh
-
-    # Immediate effect for this session
-    export SSL_CERT_FILE=/.dockerless/ssl/certs/ca-certificates.crt
-    unset SSL_CERT_DIR || true
-    export CURL_CA_BUNDLE=/.dockerless/ssl/certs/ca-certificates.crt
-
-    # Create default CAfile symlink for common toolchains
-    mkdir -p /etc/ssl/certs
-    ln -sf /.dockerless/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-
-    # Ensure interactive non-login bash shells pick this up
-    if [ -f "/etc/bash.bashrc" ]; then
-        if ! grep -q "SSL_CERT_FILE=/.dockerless/ssl/certs/ca-certificates.crt" /etc/bash.bashrc; then
-            cat >>/etc/bash.bashrc <<'BASHSSL'
-
-# Dockerless CA bundle
-if [ -f "/.dockerless/ssl/certs/ca-certificates.crt" ]; then
-    export SSL_CERT_FILE=/.dockerless/ssl/certs/ca-certificates.crt
-    export CURL_CA_BUNDLE=/.dockerless/ssl/certs/ca-certificates.crt
-    unset SSL_CERT_DIR
-fi
-BASHSSL
-        fi
-    fi
-
-    # Ensure fish shells pick this up
-    if command -v fish >/dev/null 2>&1; then
-        mkdir -p /etc/fish/conf.d
-        cat >/etc/fish/conf.d/ssl_ca.fish <<'FISHSSL'
-# Dockerless CA bundle
-if test -f /.dockerless/ssl/certs/ca-certificates.crt
-    set -gx SSL_CERT_FILE /.dockerless/ssl/certs/ca-certificates.crt
-    set -e SSL_CERT_DIR
-    set -gx CURL_CA_BUNDLE /.dockerless/ssl/certs/ca-certificates.crt
-end
-FISHSSL
-        chmod 0644 /etc/fish/conf.d/ssl_ca.fish
-    fi
-
-    # Persist for non-interactive sessions
-    if grep -q '^SSL_CERT_FILE=' /etc/environment 2>/dev/null; then
-        sed -i 's|^SSL_CERT_FILE=.*|SSL_CERT_FILE=/.dockerless/ssl/certs/ca-certificates.crt|' /etc/environment
-    else
-        echo 'SSL_CERT_FILE=/.dockerless/ssl/certs/ca-certificates.crt' >>/etc/environment
-    fi
-
-    if grep -q '^CURL_CA_BUNDLE=' /etc/environment 2>/dev/null; then
-        sed -i 's|^CURL_CA_BUNDLE=.*|CURL_CA_BUNDLE=/.dockerless/ssl/certs/ca-certificates.crt|' /etc/environment
-    else
-        echo 'CURL_CA_BUNDLE=/.dockerless/ssl/certs/ca-certificates.crt' >>/etc/environment
-    fi
-
-    # Best-effort: remove SSL_CERT_DIR from /etc/environment if present
-    if grep -q '^SSL_CERT_DIR=' /etc/environment 2>/dev/null; then
-        sed -i '/^SSL_CERT_DIR=/d' /etc/environment
-    fi
-fi
-
 retry 5 3 apt-get -yq update
 retry 5 3 apt-get -yq install build-essential procps curl file git
 
@@ -254,7 +190,14 @@ fi
 
 # configure
 # allow failure; codespaces won't have access to secrets
-chezmoi init --apply https://github.com/shepherdjerred/dotfiles --keep-going || true
+# Use local dotfiles if DOTFILES_LOCAL_PATH is set, otherwise clone from GitHub
+if [ -n "${DOTFILES_LOCAL_PATH:-}" ] && [ -d "${DOTFILES_LOCAL_PATH}" ]; then
+    log_info "Using local dotfiles from: ${DOTFILES_LOCAL_PATH}"
+    chezmoi init --apply "${DOTFILES_LOCAL_PATH}" --keep-going || true
+else
+    log_info "Cloning dotfiles from GitHub"
+    chezmoi init --apply https://github.com/shepherdjerred/dotfiles --keep-going || true
+fi
 
 # install Brewfile
 if command -v brew >/dev/null 2>&1; then
