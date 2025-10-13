@@ -308,7 +308,7 @@ else
 fi
 
 # remove bash/zsh files, history, etc
-rm -rf ~/.profile ~/.bash_history ~/.bash_logout ~/.bash_profile ~/.bashrc ~/.zsh_history ~/.zshrc
+rm -rf ~/.bash_history ~/.bash_logout ~/.zsh_history ~/.zshrc
 
 # Mark successful completion so subsequent runs are no-ops
 mkdir -p /var/lib/dotfiles
