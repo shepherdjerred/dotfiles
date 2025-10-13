@@ -22,15 +22,68 @@ set -gx SHELL fish
 set -gx EDITOR lvim
 set -gx LANG en_US.UTF-8
 
-set cursor_active 0
-if set -q CURSOR_TRACE_ID; and test -n "$CURSOR_TRACE_ID"
-    set cursor_active 1
+# Setup Dagger engine with caching
+function _setup_dagger_engine
+    set -l cache_dir "$HOME/.cache/dagger"
+    set -l cache_file "$cache_dir/pod_name"
+    set -l cache_ttl 3600  # 1 hour in seconds
+
+    mkdir -p "$cache_dir"
+
+    # Check if cache exists and is fresh
+    if test -f "$cache_file"
+        set -l current_time (date +%s)
+        set -l cache_mtime (stat -c %Y "$cache_file" 2>/dev/null; or stat -f %m "$cache_file" 2>/dev/null)
+        set -l cache_age (math $current_time - $cache_mtime)
+
+        if test $cache_age -lt $cache_ttl
+            set -gx _EXPERIMENTAL_DAGGER_RUNNER_HOST (cat "$cache_file")
+            return
+        end
+    end
+
+    # Try to get the pod name
+    if command -v kubectl &> /dev/null
+        set -l pod_name (kubectl get pod --selector=name=dagger-dagger-helm-engine --namespace=dagger --output=jsonpath='{.items[0].metadata.name}' 2>/dev/null)
+
+        if test -n "$pod_name"
+            set -l runner_host "kube-pod://$pod_name?namespace=dagger"
+            echo "$runner_host" > "$cache_file"
+            set -gx _EXPERIMENTAL_DAGGER_RUNNER_HOST "$runner_host"
+        end
+    end
 end
 
-if status is-interactive; or test $cursor_active -eq 1
+_setup_dagger_engine
+
+# Setup Starship config for Coder environment
+function _setup_starship_config
+    # Check if we're in Coder
+    if test "$CODER" = "true"
+        set -l runtime_config "$HOME/.config/starship-runtime.toml"
+        set -l base_config "$HOME/.config/starship.toml"
+
+        # Create Coder-specific config by appending overrides to base config
+        if test -f "$base_config"
+            cat "$base_config" > "$runtime_config"
+            echo "" >> "$runtime_config"
+            echo "# Coder environment overrides" >> "$runtime_config"
+            echo "[hostname]" >> "$runtime_config"
+            echo "disabled = true" >> "$runtime_config"
+            echo "" >> "$runtime_config"
+            echo "[container]" >> "$runtime_config"
+            echo "disabled = true" >> "$runtime_config"
+
+            set -gx STARSHIP_CONFIG "$runtime_config"
+        end
+    end
+end
+
+_setup_starship_config
+
+if status is-interactive
   fish_vi_key_bindings
 
-  jj util completion fish | source
   starship init fish | source
   atuin init fish | source
 
