@@ -63,11 +63,6 @@ jobs:
           load: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          # Enable compression
-          outputs: type=docker,compression=zstd,compression-level=3,force-compression=true
-          provenance: false
 
       - name: Install crane
         if: github.event_name != 'pull_request'
@@ -86,19 +81,17 @@ jobs:
           # Show original image size
           docker images "${PRIMARY_TAG}" --format "Size before flatten: {{.Size}}"
 
-          # Flatten the image (combines all layers into one)
-          crane flatten "${PRIMARY_TAG}" "${PRIMARY_TAG}"
+          # Flatten the image and push it (crane flatten only takes one arg and pushes directly)
+          crane flatten "${PRIMARY_TAG}"
 
-          # Show flattened image size
+          # Show flattened image size (pull it back to check)
+          docker pull "${PRIMARY_TAG}"
           docker images "${PRIMARY_TAG}" --format "Size after flatten: {{.Size}}"
 
-          # Push the flattened primary tag
-          crane push "${PRIMARY_TAG}" "${PRIMARY_TAG}"
-
-          # Push all other tags pointing to the same flattened image
+          # Tag and push all other tags pointing to the same flattened image
           echo "${{ steps.meta.outputs.tags }}" | tail -n +2 | while read -r tag; do
             if [ -n "$tag" ]; then
-              echo "Pushing additional tag: $tag"
-              crane push "${PRIMARY_TAG}" "$tag"
+              echo "Tagging and pushing: $tag"
+              crane tag "${PRIMARY_TAG}" "$tag"
             fi
           done
