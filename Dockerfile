@@ -20,6 +20,13 @@ COPY . /opt/dotfiles
 # Set working directory
 WORKDIR /opt/dotfiles
 
+# Initialize git repo for chezmoi (it expects a git repository)
+RUN git init && \
+    git config user.email "docker@localhost" && \
+    git config user.name "Docker Build" && \
+    git add . && \
+    git commit -m "Initial commit"
+
 # Make install.sh executable and run it with local dotfiles, then clean up aggressively
 RUN chmod +x /opt/dotfiles/install.sh && \
     DOTFILES_LOCAL_PATH=/opt/dotfiles bash /opt/dotfiles/install.sh && \

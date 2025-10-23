@@ -107,9 +107,7 @@
     },
     "files.associations": {
         "*.mdx": "mdx",
-        ".earthlyignore": "ignore",
         ".pages": "yaml",
-        "Earthfile": "earthfile"
     },
     "files.autoSave": "afterDelay",
     "files.insertFinalNewline": true,

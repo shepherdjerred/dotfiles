@@ -58,8 +58,6 @@
     "explorer.fileNesting.enabled": true,
     "files.associations": {
         "*.mdx": "mdx",
-        ".earthlyignore": "ignore",
-        "Earthfile": "earthfile"
     },
     "files.autoSave": "afterDelay",
     "files.insertFinalNewline": true,
