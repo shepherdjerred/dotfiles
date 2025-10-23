@@ -20,9 +20,34 @@ COPY . /opt/dotfiles
 # Set working directory
 WORKDIR /opt/dotfiles
 
-# Make install.sh executable and run it with local dotfiles
+# Make install.sh executable and run it with local dotfiles, then clean up aggressively
 RUN chmod +x /opt/dotfiles/install.sh && \
-    DOTFILES_LOCAL_PATH=/opt/dotfiles bash /opt/dotfiles/install.sh
+    DOTFILES_LOCAL_PATH=/opt/dotfiles bash /opt/dotfiles/install.sh && \
+    # Clean up Homebrew cache and downloads
+    /home/linuxbrew/.linuxbrew/bin/brew cleanup --prune=all -s && \
+    rm -rf /home/linuxbrew/.cache/Homebrew/* && \
+    rm -rf /root/.cache/Homebrew/* && \
+    # Clean up apt cache
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /var/cache/apt/archives/* && \
+    # Clean up mise cache
+    rm -rf /root/.local/share/mise/installs/*/downloads/* && \
+    rm -rf /root/.local/share/mise/downloads/* && \
+    # Clean up installation logs (keep marker but remove logs)
+    rm -rf /var/lib/dotfiles/*.log /var/lib/dotfiles/*.json /var/lib/dotfiles/*.txt && \
+    # Remove .git directories from cloned repos to save space
+    rm -rf /root/.tmux/plugins/*/.git && \
+    rm -rf /root/.config/delta/themes/.git && \
+    # Clean up chezmoi cache
+    rm -rf /root/.cache/chezmoi/* && \
+    # Remove temporary files
+    rm -rf /tmp/* /var/tmp/* && \
+    # Clean up npm/pip caches if they exist
+    rm -rf /root/.npm/_cacache/* && \
+    rm -rf /root/.cache/pip/* && \
+    # Remove the copied dotfiles directory as it's no longer needed
+    rm -rf /opt/dotfiles
 
 # Add linuxbrew to PATH for all users
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
