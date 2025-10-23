@@ -300,9 +300,9 @@ if ! command -v git-credential-manager >/dev/null 2>&1; then
     rm -f "$tmpfile"
 fi
 if command -v git-credential-manager >/dev/null 2>&1; then
-    git-credential-manager configure || log_warn "GCM configure failed"
-    git config --global credential.credentialStore cache
-    git config --global credential.cacheOptions "--timeout 43200" # 12 hours
+    # git-credential-manager configure || log_warn "GCM configure failed"
+    # git config --global credential.credentialStore cache
+    # git config --global credential.cacheOptions "--timeout 43200" # 12 hours
 else
     log_warn "GCM unavailable; skipping configuration"
 fi
