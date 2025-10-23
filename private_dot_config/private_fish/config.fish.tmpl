@@ -65,14 +65,21 @@ function _setup_starship_config
 
         # Create Coder-specific config by appending overrides to base config
         if test -f "$base_config"
-            cat "$base_config" > "$runtime_config"
-            echo "" >> "$runtime_config"
-            echo "# Coder environment overrides" >> "$runtime_config"
-            echo "[hostname]" >> "$runtime_config"
-            echo "disabled = true" >> "$runtime_config"
-            echo "" >> "$runtime_config"
-            echo "[container]" >> "$runtime_config"
-            echo "disabled = true" >> "$runtime_config"
+            # Copy base config if runtime config doesn't exist or is older
+            if not test -f "$runtime_config"; or test "$base_config" -nt "$runtime_config"
+                cat "$base_config" > "$runtime_config"
+            end
+
+            # Only append overrides if they don't already exist
+            if not grep -q "# Coder environment overrides" "$runtime_config" 2>/dev/null
+                echo "" >> "$runtime_config"
+                echo "# Coder environment overrides" >> "$runtime_config"
+                echo "[hostname]" >> "$runtime_config"
+                echo "disabled = true" >> "$runtime_config"
+                echo "" >> "$runtime_config"
+                echo "[container]" >> "$runtime_config"
+                echo "disabled = true" >> "$runtime_config"
+            end
 
             set -gx STARSHIP_CONFIG "$runtime_config"
         end
