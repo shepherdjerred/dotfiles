@@ -18,8 +18,12 @@ alias cat bat
 alias htop btop
 alias top btop
 
-set -gx SHELL fish
-set -gx EDITOR lvim
+{{ if eq .chezmoi.os "linux" -}}
+set -gx SHELL /home/linuxbrew/.linuxbrew/bin/fish
+{{ else if eq .chezmoi.os "darwin" -}}
+set -gx SHELL /opt/homebrew/bin/fish
+{{ end -}}
+set -gx EDITOR ~/.local/bin/lvim
 set -gx LANG en_US.UTF-8
 
 # Setup Dagger engine with caching
