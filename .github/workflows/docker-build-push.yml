@@ -17,6 +17,8 @@ on:
       - 'Dockerfile'
       - 'install.sh'
       - '.github/workflows/docker-build-push.yml'
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
   workflow_dispatch:
 
 env:
