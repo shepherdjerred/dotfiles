@@ -64,8 +64,9 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # Disable cache for scheduled builds to ensure fresh builds daily
+          cache-from: ${{ github.event_name != 'schedule' && 'type=gha' || '' }}
+          cache-to: ${{ github.event_name != 'schedule' && 'type=gha,mode=max' || '' }}
           # Enable compression (zstd is better than gzip and doesn't bloat like flattening does)
           outputs: type=image,compression=zstd,compression-level=3,force-compression=true
           provenance: false
