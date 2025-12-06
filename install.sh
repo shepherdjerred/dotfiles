@@ -165,7 +165,9 @@ on_exit_write_status() {
 trap on_exit_write_status EXIT
 
 retry 5 3 apt-get -yq update
-retry 5 3 apt-get -yq install build-essential procps curl file git
+retry 5 3 apt-get -yq install build-essential procps curl file git \
+    libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
+    libffi-dev liblzma-dev libncursesw5-dev xz-utils tk-dev
 
 # install linuxbrew
 touch /.dockerenv
