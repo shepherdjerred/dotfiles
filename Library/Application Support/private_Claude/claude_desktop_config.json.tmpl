@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "canvas": {
-      "command": "npx",
+      "command": "/Users/jerred/.local/share/mise/shims/bunx",
       "args": ["-y", "@r-huijts/canvas-mcp"],
       "env": {
         "CANVAS_API_TOKEN": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/re4xchxtigfkwy2tdc2woa4pji/credential" }}",
@@ -9,15 +9,16 @@
       }
     },
     "todoist": {
-      "command": "npx",
+      "command": "/Users/jerred/.local/share/mise/shims/bunx",
       "args": ["-y", "@doist/todoist-ai"],
       "env": {
-        "TODOIST_API_KEY": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/3rcwqebodgypzkntpopuqowzuy/credential" }}"
+        "TODOIST_API_KEY": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/3rcwqebodgypzkntpopuqowzuy/credential" }}",
+        "DOTENV_CONFIG_QUIET": "true"
       }
     },
     "obsidian": {
-      "command": "npx",
-      "args": ["-y", "mcp-obsidian"],
+      "command": "/Users/jerred/.local/share/mise/shims/bunx",
+      "args": ["-y", "mcp-obsidian", "/Users/jerred/Sync/Obsidian"],
       "env": {
         "OBSIDIAN_API_KEY": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/jihlc2hvz5wkv3xd5tmv3t3c4m/credential" }}"
       }
