@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+import sys
+import json
+
+# Read existing file
+data = json.load(sys.stdin)
+
+# Update mcpServers with templated secrets
+data["mcpServers"] = {
+    "grafana": {
+        "type": "stdio",
+        "command": "go",
+        "args": [
+            "run",
+            "github.com/grafana/mcp-grafana/cmd/mcp-grafana@latest",
+            "--disable-oncall",
+            "--disable-incident",
+            "--disable-admin",
+            "--disable-navigation",
+            "--disable-pyroscope"
+        ],
+        "env": {
+            "GRAFANA_URL": "https://grafana.tailnet-1a49.ts.net/",
+            "GRAFANA_API_KEY": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/w5y6wldczvojkh3yxe5zadkpvi/password" }}"
+        }
+    },
+    "pagerduty-mcp": {
+        "type": "stdio",
+        "command": "uvx",
+        "args": ["pagerduty-mcp"],
+        "env": {
+            "PAGERDUTY_USER_API_KEY": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/yio3tx4wkvysvy5umdrqh7fe2e/password" }}"
+        }
+    },
+    "github": {
+        "type": "stdio",
+        "command": "/Users/jerred/.local/share/mise/shims/bunx",
+        "args": ["-y", "@modelcontextprotocol/server-github"],
+        "env": {
+            "GITHUB_PERSONAL_ACCESS_TOKEN": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/kjzy27cw4ialemerahutnxis3a/password" }}"
+        }
+    },
+    "sentry": {
+        "type": "stdio",
+        "command": "/Users/jerred/.local/share/mise/shims/bunx",
+        "args": ["-y", "@sentry/mcp-server"],
+        "env": {
+            "SENTRY_ACCESS_TOKEN": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/qguprvewkkqig7snxc4ffyqbwu/credential" }}"
+        }
+    },
+    "playwright": {
+        "type": "stdio",
+        "command": "/Users/jerred/.local/share/mise/shims/bunx",
+        "args": ["-y", "@playwright/mcp"],
+        "env": {}
+    }
+}
+
+# Output modified file
+json.dump(data, sys.stdout, indent=2)
+sys.stdout.write("\n")
