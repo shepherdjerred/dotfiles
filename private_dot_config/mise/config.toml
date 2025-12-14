@@ -6,3 +6,6 @@ java = "lts"
 node = "lts"
 python = "latest"
 rust = "nightly"
+
+[settings]
+idiomatic_version_file_enable_tools = []
