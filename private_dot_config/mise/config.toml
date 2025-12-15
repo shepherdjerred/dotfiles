@@ -1,6 +1,5 @@
 [tools]
 bun = "latest"
-deno = "latest"
 go = "latest"
 java = "lts"
 node = "lts"
