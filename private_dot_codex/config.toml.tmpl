@@ -1,3 +1,5 @@
+model = "gpt-5.1-codex-max"
+model_reasoning_effort = "high"
 # Codex CLI MCP Server Configuration
 
 [mcp_servers.grafana]
@@ -32,3 +34,12 @@ SENTRY_ACCESS_TOKEN = "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/qgupr
 [mcp_servers.playwright]
 command = "/Users/jerred/.local/share/mise/shims/bunx"
 args = ["-y", "@playwright/mcp"]
+
+[projects."/Users/jerred/git/monorepo"]
+trust_level = "trusted"
+
+[projects."/Users/jerred/git"]
+trust_level = "trusted"
+
+[projects."/Users/jerred/git/scout-for-lol"]
+trust_level = "trusted"

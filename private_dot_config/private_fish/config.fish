@@ -1,8 +1,4 @@
-{{ if eq .chezmoi.os "linux" }}
-fish_add_path /home/linuxbrew/.linuxbrew/bin
-{{ else if eq .chezmoi.os "darwin" -}}
 fish_add_path /opt/homebrew/bin
-{{ end -}}
 fish_add_path ~/.local/bin
 # for some reason, these can be missing
 fish_add_path /bin
@@ -11,18 +7,15 @@ fish_add_path /usr/local/bin
 
 mise activate fish --shims | source
 
-alias vim lvim
-alias ls eza
-alias grep rg
-alias cat bat
-alias htop btop
-alias top btop
+# Use abbreviations so scripts use real commands, but your typing expands
+abbr vim lvim
+abbr ls eza
+abbr grep rg
+abbr cat bat
+abbr htop btop
+abbr top btop
 
-{{ if eq .chezmoi.os "linux" -}}
-set -gx SHELL /home/linuxbrew/.linuxbrew/bin/fish
-{{ else if eq .chezmoi.os "darwin" -}}
 set -gx SHELL /opt/homebrew/bin/fish
-{{ end -}}
 set -gx EDITOR ~/.local/bin/lvim
 set -gx LANG en_US.UTF-8
 
@@ -111,5 +104,9 @@ if status is-interactive
       echo "running carapace..."
       carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
   end
-  carapace _carapace | source
+  # Lazy-load carapace on first tab completion
+  function _carapace_lazy --on-event fish_complete
+      functions -e _carapace_lazy  # remove this bootstrap function
+      carapace _carapace | source
+  end
 end
