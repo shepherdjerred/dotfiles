@@ -79,6 +79,52 @@ for repo in "$GIT_DIR"/*/; do
 
     # Prune any stale worktree references
     git worktree prune 2>/dev/null || true
+
+    # Delete merged local branches (excluding default and current)
+    merged_branches=$(git branch --merged "origin/$default_branch" 2>/dev/null | grep -v "^\*" | grep -v "^[[:space:]]*$default_branch$" | tr -d ' ' || true)
+    if [ -n "$merged_branches" ]; then
+        echo "  Cleaning merged local branches:"
+        for branch in $merged_branches; do
+            if [ "$DRY_RUN" = "true" ]; then
+                echo "    [DRY RUN] Would delete branch: $branch"
+            else
+                git branch -d "$branch" 2>/dev/null && echo "    Deleted: $branch" || true
+            fi
+        done
+    fi
+
+    # Check for uncommitted changes
+    if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+        echo "  WARNING: Repo has uncommitted changes, skipping checkout/pull/stash-clear"
+        continue
+    fi
+
+    # Checkout default branch
+    current_branch=$(git branch --show-current 2>/dev/null || true)
+    if [ "$current_branch" != "$default_branch" ]; then
+        if [ "$DRY_RUN" = "true" ]; then
+            echo "  [DRY RUN] Would checkout $default_branch (currently on $current_branch)"
+        else
+            git checkout "$default_branch" 2>/dev/null && echo "  Checked out $default_branch" || echo "  Failed to checkout $default_branch"
+        fi
+    fi
+
+    # Pull latest
+    if [ "$DRY_RUN" = "true" ]; then
+        echo "  [DRY RUN] Would pull latest"
+    else
+        git pull 2>/dev/null && echo "  Pulled latest" || echo "  Failed to pull"
+    fi
+
+    # Drop stashes
+    stash_count=$(git stash list 2>/dev/null | wc -l | tr -d ' ')
+    if [ "$stash_count" -gt 0 ]; then
+        if [ "$DRY_RUN" = "true" ]; then
+            echo "  [DRY RUN] Would drop $stash_count stash(es)"
+        else
+            git stash clear && echo "  Dropped $stash_count stash(es)"
+        fi
+    fi
 done
 
 echo ""
