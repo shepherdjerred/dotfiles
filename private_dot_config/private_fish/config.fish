@@ -14,6 +14,8 @@ abbr grep rg
 abbr cat bat
 abbr htop btop
 abbr top btop
+abbr less ov
+abbr ping gping
 
 set -gx SHELL /opt/homebrew/bin/fish
 set -gx EDITOR ~/.local/bin/lvim
