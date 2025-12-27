@@ -1,4 +1,5 @@
 fish_add_path /opt/homebrew/bin
+fish_add_path ~/bin
 fish_add_path ~/.local/bin
 # for some reason, these can be missing
 fish_add_path /bin
