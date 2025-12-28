@@ -8,8 +8,10 @@ from __future__ import annotations
 
 import os
 import random
+import shlex
 import subprocess
 import sys
+import time
 from pathlib import Path
 from typing import Optional
 
@@ -92,86 +94,216 @@ def get_worktree_path(branch_name: str) -> Optional[Path]:
 
 def create_worktree(branch_name: str, path: Path, new_branch: bool) -> None:
     """Create a git worktree."""
-    try:
-        # Ensure parent directory exists
-        path.parent.mkdir(parents=True, exist_ok=True)
+    # Ensure parent directory exists
+    path.parent.mkdir(parents=True, exist_ok=True)
 
+    try:
         if new_branch:
             # Create new branch and worktree
+            print(f"Creating new worktree at {path}...")
             subprocess.run(
                 ["git", "worktree", "add", "-b", branch_name, str(path)],
                 check=True,
-                capture_output=True,
                 text=True,
             )
             print(f"Created new worktree: {path}")
         else:
             # Create worktree from existing branch
+            print(f"Creating worktree from existing branch at {path}...")
             subprocess.run(
                 ["git", "worktree", "add", str(path), branch_name],
                 check=True,
-                capture_output=True,
                 text=True,
             )
             print(f"Created worktree from existing branch: {path}")
     except subprocess.CalledProcessError as e:
-        print(f"Error creating worktree: {e.stderr}", file=sys.stderr)
-        sys.exit(1)
-
-
-def ensure_zellij_session() -> None:
-    """Ensure the Zellij session exists (create in background if needed)."""
-    try:
-        subprocess.run(
-            ["zellij", "attach", "-c", ZELLIJ_SESSION, "--create-background"],
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-    except subprocess.CalledProcessError as e:
-        # Ignore error if session already exists
-        if "already exists" not in e.stderr.lower():
-            print(f"Error creating Zellij session: {e.stderr}", file=sys.stderr)
+        # Check if worktree was actually created despite the error
+        # (this can happen when post-checkout hooks fail)
+        if path.exists() and (path / ".git").exists():
+            print(
+                f"Warning: git worktree command failed, but worktree was created successfully at {path}",
+                file=sys.stderr,
+            )
+            print(f"Error message: {e.stderr.strip()}", file=sys.stderr)
+            # Continue execution - the worktree is usable
+        else:
+            print(f"Error creating worktree: {e.stderr}", file=sys.stderr)
             sys.exit(1)
 
 
-def create_zellij_pane(pane_name: str, worktree_path: Path) -> None:
-    """Create a new Zellij pane with the given name and working directory."""
+def session_exists(session_name: str) -> bool:
+    """Check if a Zellij session exists and is active (not exited)."""
+    result = subprocess.run(
+        ["zellij", "list-sessions"],
+        capture_output=True,
+        text=True,
+    )
+
+    # Check if session exists AND is not in EXITED state
+    if session_name not in result.stdout:
+        return False
+
+    # Check if the session line contains "EXITED"
+    for line in result.stdout.splitlines():
+        if session_name in line and "EXITED" in line:
+            # Session exists but is exited - delete it so we can create a fresh one
+            subprocess.run(
+                ["zellij", "delete-session", session_name],
+                capture_output=True,
+                text=True,
+            )
+            return False
+
+    return True
+
+
+def ensure_zellij_session() -> bool:
+    """Check if Zellij session exists.
+    Returns True if this is a new session (session doesn't exist yet)."""
+    return not session_exists(ZELLIJ_SESSION)
+
+
+def create_tab_and_run_claude(tab_name: str, worktree_path: Path, is_new_session: bool) -> None:
+    """Create a new tab and run claude in it."""
+    import tempfile
+
     try:
-        subprocess.run(
-            [
-                "zellij",
-                "-s",
-                ZELLIJ_SESSION,
-                "action",
-                "new-pane",
-                "--name",
-                pane_name,
-                "--cwd",
-                str(worktree_path),
-                "--",
-                "claude",
-            ],
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-        print(f"Created pane '{pane_name}' in session '{ZELLIJ_SESSION}'")
+        # Create a temporary layout file that runs claude
+        # For new sessions: include full layout with tab-bar and status-bar
+        # For existing sessions: just the pane (inherits session's default template)
+        if is_new_session:
+            layout_content = f'''layout {{
+    default_tab_template {{
+        pane size=1 borderless=true {{
+            plugin location="tab-bar"
+        }}
+        children
+        pane size=2 borderless=true {{
+            plugin location="status-bar"
+        }}
+    }}
+    tab name="{tab_name}" {{
+        pane command="claude"
+    }}
+}}
+'''
+        else:
+            layout_content = f'''layout {{
+    tab name="{tab_name}" {{
+        pane size=1 borderless=true {{
+            plugin location="tab-bar"
+        }}
+        pane command="claude"
+        pane size=2 borderless=true {{
+            plugin location="status-bar"
+        }}
+    }}
+}}
+'''
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.kdl', delete=False) as f:
+            f.write(layout_content)
+            layout_file = f.name
+
+        try:
+            print(f"Creating tab '{tab_name}' and starting claude in {worktree_path}")
+
+            if is_new_session:
+                # For new sessions: create session with layout directly (no empty default tab)
+                # Run from worktree directory so it inherits the cwd
+                subprocess.run(
+                    [
+                        "zellij",
+                        "-l",
+                        layout_file,
+                        "attach",
+                        "-c",
+                        "-b",
+                        ZELLIJ_SESSION,
+                    ],
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                    timeout=10,
+                    cwd=str(worktree_path),
+                )
+            else:
+                # For existing sessions: add a new tab with layout
+                subprocess.run(
+                    [
+                        "zellij",
+                        "-s",
+                        ZELLIJ_SESSION,
+                        "action",
+                        "new-tab",
+                        "--name",
+                        tab_name,
+                        "--layout",
+                        layout_file,
+                        "--cwd",
+                        str(worktree_path),
+                    ],
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                    timeout=10,
+                )
+
+            print(f"Created tab '{tab_name}' and started claude in {worktree_path}")
+        finally:
+            # Clean up temp file
+            Path(layout_file).unlink(missing_ok=True)
     except subprocess.CalledProcessError as e:
-        print(f"Error creating Zellij pane: {e.stderr}", file=sys.stderr)
+        print(f"Error creating tab: {e.stderr}", file=sys.stderr)
         sys.exit(1)
+    except subprocess.TimeoutExpired:
+        print("Error: Timed out creating tab", file=sys.stderr)
+        sys.exit(1)
+
+
 
 
 def attach_to_zellij() -> None:
     """Attach to the Zellij session (replaces current process)."""
+    # Give zellij time to process commands and start claude before attaching
+    # This ensures the CWD is set and claude is running when we attach
+    time.sleep(1.5)
     os.execvp("zellij", ["zellij", "attach", ZELLIJ_SESSION])
+
+
+def print_help() -> None:
+    """Print help message."""
+    help_text = """
+claude-worktree - Create git worktrees and manage them in Zellij tabs
+
+USAGE:
+    claude-worktree <name>
+
+DESCRIPTION:
+    Creates a new git worktree with a branch named '{prefix}/<name>-<random>'
+    in ~/git/worktrees, then opens it in a new Zellij tab running Claude.
+
+    If a branch/worktree with the same name exists, it will be reused.
+
+ARGUMENTS:
+    <name>    Name for the worktree (spaces will be replaced with hyphens)
+
+EXAMPLES:
+    claude-worktree "fix login bug"
+    claude-worktree feature-123
+
+NOTES:
+    - Creates worktrees in: ~/git/worktrees
+    - Branch prefix: {prefix}
+    - Zellij session: {session}
+""".format(prefix=BRANCH_PREFIX, session=ZELLIJ_SESSION)
+    print(help_text)
 
 
 def main() -> int:
     """Main function."""
     # Check arguments
     if len(sys.argv) != 2:
-        print("Usage: claude-worktree <name>", file=sys.stderr)
+        print_help()
         return 1
 
     name = sys.argv[1]
@@ -194,7 +326,7 @@ def main() -> int:
         digits = generate_random_digits()
         candidate_branch = f"{BRANCH_PREFIX}/{sanitized_name}-{digits}"
         candidate_path = WORKTREE_BASE / f"{sanitized_name}-{digits}"
-        pane_name = f"{sanitized_name}-{digits}"
+        tab_name = f"{sanitized_name}-{digits}"
 
         # Check if branch exists
         if branch_exists(candidate_branch):
@@ -227,11 +359,11 @@ def main() -> int:
         )
         return 1
 
-    # Ensure Zellij session exists
-    ensure_zellij_session()
+    # Ensure Zellij session exists and check if it's new
+    is_new_session = ensure_zellij_session()
 
-    # Create pane with claude command
-    create_zellij_pane(pane_name, worktree_path)
+    # Always create a new tab (and delete the default first tab if new session)
+    create_tab_and_run_claude(tab_name, worktree_path, is_new_session)
 
     # Attach to session (replaces current process)
     attach_to_zellij()
