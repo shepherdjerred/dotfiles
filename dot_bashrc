@@ -1,8 +1,9 @@
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+# ~/.bashrc - Sourced by interactive non-login shells
 
-eval "$(mise activate bash --shims)"
+# Source environment setup (PATH, mise)
+[[ -f ~/.bash_env ]] && source ~/.bash_env
 
+# Aliases (interactive only)
 alias vim=lvim
 alias ls=eza
 alias grep=rg
@@ -10,6 +11,7 @@ alias cat=bat
 alias htop=btop
 alias top=btop
 
+# Environment
 export SHELL=bash
 export EDITOR=lvim
 export LANG=en_US.UTF-8
