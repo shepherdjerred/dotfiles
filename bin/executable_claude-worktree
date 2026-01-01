@@ -124,10 +124,12 @@ def create_worktree(branch_name: str, path: Path, new_branch: bool) -> None:
                 f"Warning: git worktree command failed, but worktree was created successfully at {path}",
                 file=sys.stderr,
             )
-            print(f"Error message: {e.stderr.strip()}", file=sys.stderr)
+            if e.stderr:
+                print(f"Error message: {e.stderr.strip()}", file=sys.stderr)
             # Continue execution - the worktree is usable
         else:
-            print(f"Error creating worktree: {e.stderr}", file=sys.stderr)
+            error_msg = e.stderr.strip() if e.stderr else str(e)
+            print(f"Error creating worktree: {error_msg}", file=sys.stderr)
             sys.exit(1)
 
 

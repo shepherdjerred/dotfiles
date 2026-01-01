@@ -1,5 +1,5 @@
 {
-  "model": "sonnet",
+  "model": "opus",
   "permissions": {
     "allow": [
       "Bash(ls:*)",
@@ -213,7 +213,7 @@
       "Bash(nslookup:*)",
       "Bash(host:*)",
       "Bash(ping:*)",
-      "Bash(whois:*)",
+      "Bash(whois:*)"
     ]
   },
   "hooks": {
