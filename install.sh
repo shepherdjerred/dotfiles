@@ -65,19 +65,10 @@ if [ -f "$INSTALL_MARKER" ]; then
     exit 0
 fi
 
-# Require root privileges for system operations
-if [ "${EUID:-$(id -u)}" -ne 0 ]; then
-    if command -v sudo >/dev/null 2>&1; then
-        log_info "Elevating privileges with sudo..."
-        exec sudo -E bash "$0" "$@"
-    else
-        log_error "This script must be run as root (no sudo found)."
-        exit 1
-    fi
-fi
-
 # --- initialize logging to /var/lib/dotfiles ---
-mkdir -p "${LOG_DIR}"
+# Create log directory with sudo, then set ownership to current user
+sudo mkdir -p "${LOG_DIR}"
+sudo chown "$(id -u):$(id -g)" "${LOG_DIR}"
 RUN_ID="$(date -u +%Y%m%dT%H%M%SZ)$$"
 LOG_FILE="${LOG_DIR}/install_${RUN_ID}.log"
 STATUS_JSON="${LOG_DIR}/status_${RUN_ID}.json"
@@ -164,13 +155,14 @@ on_exit_write_status() {
 }
 trap on_exit_write_status EXIT
 
-retry 5 3 apt-get -yq update
-retry 5 3 apt-get -yq install build-essential procps curl file git \
+retry 5 3 sudo apt-get -yq update
+retry 5 3 sudo apt-get -yq install build-essential procps curl file git \
     libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
     libffi-dev liblzma-dev libncursesw5-dev xz-utils tk-dev
 
 # install linuxbrew
-touch /.dockerenv
+# Create .dockerenv to trick Homebrew into CI mode (skips some interactive prompts)
+sudo touch /.dockerenv
 {
     tmpfile="$(mktemp)"
     retry 5 3 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh -o "$tmpfile"
@@ -287,7 +279,7 @@ fi
 
 # add fish to /etc/shells
 if ! grep -qx "/home/linuxbrew/.linuxbrew/bin/fish" /etc/shells; then
-    echo /home/linuxbrew/.linuxbrew/bin/fish >>/etc/shells
+    echo /home/linuxbrew/.linuxbrew/bin/fish | sudo tee -a /etc/shells >/dev/null
 fi
 
 # git credential manager
@@ -314,8 +306,8 @@ fi
 rm -rf ~/.bash_history ~/.bash_logout ~/.zsh_history ~/.zshrc
 
 # Mark successful completion so subsequent runs are no-ops
-mkdir -p /var/lib/dotfiles
-touch "$INSTALL_MARKER"
+sudo mkdir -p /var/lib/dotfiles
+sudo touch "$INSTALL_MARKER"
 log_success "Dotfiles install completed"
 
 # Also update status file to success explicitly at the very end
