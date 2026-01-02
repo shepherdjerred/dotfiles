@@ -36,7 +36,7 @@ jobs:
       - name: Free up disk space
         uses: jlumbroso/free-disk-space@main
         with:
-          tool-cache: false
+          tool-cache: true
           android: true
           dotnet: true
           haskell: true
@@ -75,14 +75,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          # Scheduled builds skip cache-from to pull fresh base images
-          # but still write to cache so other builds benefit from fresh layers
-          cache-from: |
-            ${{ github.event_name != 'schedule' && 'type=gha' || '' }}
-            ${{ github.event_name != 'schedule' && format('type=registry,ref={0}/{1}:buildcache', env.REGISTRY, env.IMAGE_NAME) || '' }}
-          cache-to: |
-            type=gha,mode=max
-            ${{ format('type=registry,ref={0}/{1}:buildcache,mode=max', env.REGISTRY, env.IMAGE_NAME) }}
-          # Enable compression (zstd is better than gzip and doesn't bloat like flattening does)
           outputs: type=image,compression=zstd,compression-level=3,force-compression=true
           provenance: false

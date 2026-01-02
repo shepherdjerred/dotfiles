@@ -1,4 +1,6 @@
+# Add common paths
 fish_add_path /opt/homebrew/bin
+fish_add_path /home/linuxbrew/.linuxbrew/bin
 fish_add_path ~/bin
 fish_add_path ~/.local/bin
 # for some reason, these can be missing
@@ -18,17 +20,31 @@ abbr top btop
 abbr less ov
 abbr ping gping
 
-set -gx SHELL /opt/homebrew/bin/fish
+# Set shell to fish (detect location)
+if test -x /opt/homebrew/bin/fish
+    set -gx SHELL /opt/homebrew/bin/fish
+else if test -x /home/linuxbrew/.linuxbrew/bin/fish
+    set -gx SHELL /home/linuxbrew/.linuxbrew/bin/fish
+else
+    set -gx SHELL (which fish)
+end
 set -gx EDITOR ~/.local/bin/lvim
 set -gx LANG en_US.UTF-8
 
-# CLI tool credentials (via 1Password)
+# CLI tool credentials (via 1Password) - only set if op CLI is available
+{{ if lookPath "op" -}}
 set -gx GITHUB_TOKEN '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/kjzy27cw4ialemerahutnxis3a/password" }}'
 set -gx GRAFANA_URL 'https://grafana.tailnet-1a49.ts.net/'
 set -gx GRAFANA_API_KEY '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/w5y6wldczvojkh3yxe5zadkpvi/password" }}'
 set -gx PAGERDUTY_API_KEY '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/yio3tx4wkvysvy5umdrqh7fe2e/password" }}'
 set -gx SENTRY_AUTH_TOKEN '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/qguprvewkkqig7snxc4ffyqbwu/credential" }}'
 set -gx SENTRY_ORG 'jerred-shepherd'
+{{ else -}}
+# 1Password CLI (op) not available - secrets not loaded
+# Install op and run 'chezmoi apply' to load secrets
+set -gx GRAFANA_URL 'https://grafana.tailnet-1a49.ts.net/'
+set -gx SENTRY_ORG 'jerred-shepherd'
+{{ end -}}
 
 # Setup Dagger engine with caching
 function _setup_dagger_engine

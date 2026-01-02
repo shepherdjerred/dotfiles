@@ -18,6 +18,19 @@ if [[ "$CURRENT_UID" == "0" ]] && [[ -n "${HOST_UID:-}" ]]; then
     chown -R "$TARGET_UID:$TARGET_GID" "/home/$TARGET_USER" 2>/dev/null || true
     chown -R "$TARGET_UID:$TARGET_GID" /home/linuxbrew 2>/dev/null || true
 
+    # Fix ownership of cache directories (typically mounted as volumes)
+    # These may be shared across containers for build caching
+    CACHE_DIRS=(
+        "/workspace/.cargo/registry"
+        "/workspace/.cargo/git"
+        "/workspace/.cache/sccache"
+    )
+    for dir in "${CACHE_DIRS[@]}"; do
+        if [[ -d "$dir" ]]; then
+            chown -R "$TARGET_UID:$TARGET_GID" "$dir" 2>/dev/null || true
+        fi
+    done
+
     # Switch to the user and execute
     exec gosu "$TARGET_USER" "$@"
 fi
