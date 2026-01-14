@@ -261,8 +261,8 @@ RUN echo "ALL ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/arbitrary-uids && \
     chgrp -R root /home/${USERNAME} /home/linuxbrew /var/lib/dotfiles && \
     chmod -R g+w /home/${USERNAME} /home/linuxbrew /var/lib/dotfiles && \
     # Allow entrypoint to add passwd/group entries for arbitrary UIDs
-    chgrp root /etc/passwd /etc/group && \
-    chmod g+w /etc/passwd /etc/group
+    # Must be world-writable since arbitrary UIDs won't be in root group
+    chmod a+w /etc/passwd /etc/group
 
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}

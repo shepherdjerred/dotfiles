@@ -40,12 +40,9 @@ if [[ -f /proc/1/cmdline ]]; then
 fi
 
 # Check for host network namespace
-if [[ -d /sys/class/net/eth0 ]] && [[ -f /proc/net/route ]]; then
-    # In host network mode, we typically see many more interfaces and routes
-    IFACE_COUNT=$(ls -1 /sys/class/net 2>/dev/null | wc -l)
-    if [[ "$IFACE_COUNT" -gt 5 ]]; then
-        warn_security "Host network namespace likely detected - container has direct host network access"
-    fi
+# In host network mode, we can see the docker0 bridge interface (only visible from host)
+if [[ -d /sys/class/net/docker0 ]]; then
+    warn_security "Host network namespace likely detected - container has direct host network access"
 fi
 
 # Check for raw device access
