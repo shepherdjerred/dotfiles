@@ -228,8 +228,6 @@ RUN apt-get update && \
 # -----------------------------------------------------------------------------
 RUN (groupadd --gid ${USER_GID} ${USERNAME} 2>/dev/null || groupmod -n ${USERNAME} $(getent group ${USER_GID} | cut -d: -f1)) && \
     (useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} -s /bin/bash 2>/dev/null || usermod -l ${USERNAME} -d /home/${USERNAME} -m $(getent passwd ${USER_UID} | cut -d: -f1) 2>/dev/null || true) && \
-    echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${USERNAME} && \
-    chmod 0440 /etc/sudoers.d/${USERNAME} && \
     groupadd -r brew && \
     usermod -aG brew ${USERNAME} && \
     mkdir -p /home/linuxbrew
@@ -251,6 +249,20 @@ COPY --from=builder --chown=${USERNAME}:${USERNAME} /var/lib/dotfiles /var/lib/d
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh && \
     chsh -s /home/linuxbrew/.linuxbrew/bin/fish ${USERNAME}
+
+# -----------------------------------------------------------------------------
+# Support arbitrary UIDs (OpenShift/Kubernetes compatibility)
+# Allow any user to use sudo and make directories writable by root group
+# Must come AFTER COPY commands to preserve permissions
+# -----------------------------------------------------------------------------
+RUN echo "ALL ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/arbitrary-uids && \
+    chmod 0440 /etc/sudoers.d/arbitrary-uids && \
+    chmod -R g+w /var/lib/apt/lists /var/cache/apt && \
+    chgrp -R root /home/${USERNAME} /home/linuxbrew /var/lib/dotfiles && \
+    chmod -R g+w /home/${USERNAME} /home/linuxbrew /var/lib/dotfiles && \
+    # Allow entrypoint to add passwd/group entries for arbitrary UIDs
+    chgrp root /etc/passwd /etc/group && \
+    chmod g+w /etc/passwd /etc/group
 
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
