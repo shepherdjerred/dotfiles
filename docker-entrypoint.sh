@@ -97,4 +97,9 @@ if [[ "$CURRENT_UID" != "0" ]] && ! getent passwd "$CURRENT_UID" &>/dev/null; th
     fi
 fi
 
+# Trust mise configuration files (suppresses interactive prompts)
+if command -v mise &>/dev/null; then
+    mise trust --all 2>/dev/null || true
+fi
+
 exec "$@"

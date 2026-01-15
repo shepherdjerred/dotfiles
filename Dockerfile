@@ -195,12 +195,13 @@ ARG USERNAME=jerred
 ENV DEBIAN_FRONTEND=noninteractive \
     NONINTERACTIVE=1 \
     APT_LISTCHANGES_FRONTEND=none \
-    PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
-    BASH_ENV="/etc/profile.d/linuxbrew.sh" \
     HOME="/home/${USERNAME}" \
     USER="${USERNAME}" \
     LANG="en_US.UTF-8" \
-    LC_ALL="en_US.UTF-8"
+    LC_ALL="en_US.UTF-8" \
+    # PATH includes mise shims for bun/node/rust/etc, cargo bin, and user local bin
+    PATH="/home/${USERNAME}/.local/share/mise/shims:/home/${USERNAME}/.cargo/bin:/home/${USERNAME}/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+    BASH_ENV="/etc/profile.d/linuxbrew.sh"
 
 # -----------------------------------------------------------------------------
 # Install runtime dependencies
@@ -215,10 +216,9 @@ RUN apt-get update && \
     sudo \
     gosu \
     locales \
-    # Build tools for Rust compilation (~55MB vs Homebrew's ~860MB)
-    gcc \
-    g++ \
-    libc6-dev \
+    # Build tools for Rust/native modules (~55MB vs Homebrew's ~860MB)
+    # build-essential includes gcc, g++, make, libc6-dev, and sets up cc symlink
+    build-essential \
     mold \
     && locale-gen en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
