@@ -220,6 +220,8 @@ RUN apt-get update && \
     # build-essential includes gcc, g++, make, libc6-dev, and sets up cc symlink
     build-essential \
     mold \
+    lld \
+    pkg-config \
     && locale-gen en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
 
