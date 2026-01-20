@@ -39,6 +39,13 @@ set -gx GRAFANA_API_KEY '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/w5y
 set -gx PAGERDUTY_API_KEY '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/yio3tx4wkvysvy5umdrqh7fe2e/password" }}'
 set -gx SENTRY_AUTH_TOKEN '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/qguprvewkkqig7snxc4ffyqbwu/credential" }}'
 set -gx SENTRY_ORG 'jerred-shepherd'
+# sccache S3 backend (SeaweedFS)
+set -gx AWS_ACCESS_KEY_ID '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/seaweedfs-s3-credentials/access_key" }}'
+set -gx AWS_SECRET_ACCESS_KEY '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/seaweedfs-s3-credentials/secret_key" }}'
+set -gx SCCACHE_BUCKET sccache
+set -gx SCCACHE_ENDPOINT https://seaweedfs.sjer.red
+set -gx SCCACHE_REGION us-east-1
+set -gx RUSTC_WRAPPER sccache
 {{ else -}}
 # 1Password CLI (op) not available - secrets not loaded
 # Install op and run 'chezmoi apply' to load secrets
