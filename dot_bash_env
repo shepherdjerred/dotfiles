@@ -15,3 +15,7 @@ fi
 if command -v mise &>/dev/null; then
     eval "$(mise activate bash --shims)"
 fi
+
+# Fix gRPC DNS resolution for Tailscale split DNS on macOS
+# Required for tools like talosctl to resolve Tailscale hostnames
+export GRPC_DNS_RESOLVER=native
