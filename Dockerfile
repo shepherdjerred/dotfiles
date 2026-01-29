@@ -102,6 +102,13 @@ RUN git config --global --add safe.directory '*' && \
     DOTFILES_LOCAL_PATH=/opt/dotfiles bash /opt/dotfiles/install.sh
 
 # -----------------------------------------------------------------------------
+# Verify mise tools were installed and trust config if needed
+# -----------------------------------------------------------------------------
+RUN /home/${USERNAME}/.local/bin/mise trust /home/${USERNAME}/.config/mise/config.toml 2>/dev/null || true && \
+    /home/${USERNAME}/.local/bin/mise install --yes && \
+    /home/${USERNAME}/.local/bin/mise list
+
+# -----------------------------------------------------------------------------
 # Cleanup Homebrew AS USER (brew refuses to run as root)
 # Remove gcc/binutils - we use apt's versions instead (~800MB saved)
 # -----------------------------------------------------------------------------
@@ -219,6 +226,7 @@ RUN apt-get update && \
     # Build tools for Rust/native modules (~55MB vs Homebrew's ~860MB)
     # build-essential includes gcc, g++, make, libc6-dev, and sets up cc symlink
     build-essential \
+    clang \
     mold \
     lld \
     pkg-config \
