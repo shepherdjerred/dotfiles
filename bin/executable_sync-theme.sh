@@ -16,19 +16,35 @@ pkill -USR2 btop 2>/dev/null || true
 # starship (only change the palette = line, not the section headers)
 sed -i '' "s/^palette = \"catppuccin_[a-z]*\"/palette = \"catppuccin_$M\"/" ~/.config/starship.toml 2>/dev/null || true
 
-# fzf + difftastic (fish env vars)
+# Atuin (sed replacement like starship)
+sed -i '' "s/catppuccin-[a-z]*/catppuccin-$M/" ~/.config/atuin/config.toml 2>/dev/null || true
+
+# eza (macOS - symlink theme file)
+EZA_DIR=~/Library/"Application Support"/eza
+[[ -d "$EZA_DIR" ]] && ln -sf "$EZA_DIR/theme-$M.yml" "$EZA_DIR/theme.yml"
+
+# ov (symlink config file)
+OV_DIR=~/.config/ov
+[[ -d "$OV_DIR" ]] && ln -sf "$OV_DIR/config-$M.yaml" "$OV_DIR/config.yaml"
+
+# fzf + difftastic + jq + LS_COLORS (fish env vars)
 THEME_FILE=~/.config/fish/conf.d/theme-env.fish
 mkdir -p "$(dirname "$THEME_FILE")"
 if [[ "$M" == "mocha" ]]; then
   cat > "$THEME_FILE" << 'EOF'
 set -gx FZF_DEFAULT_OPTS "--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 set -gx DFT_BACKGROUND dark
+set -gx JQ_COLORS "2;37:0;31:0;32:0;33:0;32:0;34:0;34:1;35"
 EOF
+  # LS_COLORS needs command substitution, append separately
+  echo 'set -gx LS_COLORS (vivid generate catppuccin-mocha)' >> "$THEME_FILE"
 else
   cat > "$THEME_FILE" << 'EOF'
 set -gx FZF_DEFAULT_OPTS "--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39,fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78,marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
 set -gx DFT_BACKGROUND light
+set -gx JQ_COLORS "0;90:0;31:0;32:0;33:0;32:0;34:0;34:1;35"
 EOF
+  echo 'set -gx LS_COLORS (vivid generate catppuccin-latte)' >> "$THEME_FILE"
 fi
 
 # Git config (difft + delta)
