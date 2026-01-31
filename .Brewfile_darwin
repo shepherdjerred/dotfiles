@@ -1,4 +1,5 @@
 tap "artginzburg/tap"
+tap "cormacrelf/tap"
 tap "coder/coder"
 tap "dagger/tap"
 tap "homebrew/bundle"
@@ -18,6 +19,7 @@ brew "ccache"
 brew "cdk8s"
 brew "chezmoi"
 brew "cloudflared"
+brew "cormacrelf/tap/dark-notify"
 brew "cocoapods"
 brew "container", link: false
 brew "difftastic"

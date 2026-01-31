@@ -28,7 +28,9 @@
 [interactive]
   diffFilter = delta --color-only
 [delta]
-  navigate = true    # use n and N to move between diff sections
+  navigate = true
+  dark = true
+  syntax-theme = Catppuccin Mocha
 [merge]
   conflictstyle = diff3
 {{ if eq .chezmoi.os "darwin" }}

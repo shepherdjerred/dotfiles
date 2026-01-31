@@ -20,7 +20,18 @@ table.insert(lvim.plugins, {
   end
 })
 
-lvim.colorscheme = "catppuccin latte"
+table.insert(lvim.plugins, {
+  "catppuccin/nvim",
+  name = "catppuccin",
+  priority = 1000,
+  config = function()
+    require("catppuccin").setup({
+      flavour = "auto",
+      background = { light = "latte", dark = "mocha" },
+    })
+    vim.cmd.colorscheme "catppuccin"
+  end,
+})
 
 -- Disable treesitter indent to work around Neovim 0.11.x compatibility issue
 lvim.builtin.treesitter.indent = { enable = false }
