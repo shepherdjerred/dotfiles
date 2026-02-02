@@ -47,7 +47,11 @@ if command -v git &>/dev/null; then
 fi
 
 # Claude Code
-command -v claude &>/dev/null && claude config set -g theme "$THEME_MODE" 2>/dev/null || true
+CLAUDE_SETTINGS=~/.claude/settings.json
+if [[ -f "$CLAUDE_SETTINGS" ]] && command -v jq &>/dev/null; then
+  TMP=$(mktemp)
+  jq --arg t "$THEME_MODE" '.theme = $t' "$CLAUDE_SETTINGS" > "$TMP" && mv "$TMP" "$CLAUDE_SETTINGS"
+fi
 
 # Gemini CLI
 GEMINI=~/.gemini/settings.json
