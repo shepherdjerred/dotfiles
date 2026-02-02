@@ -1,35 +1,10 @@
-{{- /* Define OS-specific paths */ -}}
-{{- $bunxCmd := "" -}}
-{{- $obsidianPath := "" -}}
-{{- if eq .chezmoi.os "darwin" -}}
-  {{- $bunxCmd = printf "%s/.local/share/mise/shims/bunx" .chezmoi.homeDir -}}
-  {{- $obsidianPath = printf "%s/Sync/Obsidian" .chezmoi.homeDir -}}
-{{- else if eq .chezmoi.os "windows" -}}
-  {{- $bunxCmd = "bunx" -}}
-  {{- $obsidianPath = printf "%s\\Sync\\Obsidian" .chezmoi.homeDir -}}
-{{- end -}}
 {
   "canvas": {
-    "command": {{ $bunxCmd | quote }},
-    "args": ["-y", "@r-huijts/canvas-mcp"],
-    "env": {
-      "CANVAS_API_TOKEN": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/re4xchxtigfkwy2tdc2woa4pji/credential" }}",
-      "CANVAS_BASE_URL": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/re4xchxtigfkwy2tdc2woa4pji/hostname" }}"
-    }
+    "command": "npx",
+    "args": ["-y", "mcp-remote", "https://mcp-gateway.tailnet-1a49.ts.net/canvas/sse"]
   },
   "todoist": {
-    "command": {{ $bunxCmd | quote }},
-    "args": ["-y", "@doist/todoist-ai"],
-    "env": {
-      "TODOIST_API_KEY": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/3rcwqebodgypzkntpopuqowzuy/credential" }}",
-      "DOTENV_CONFIG_QUIET": "true"
-    }
-  },
-  "obsidian": {
-    "command": {{ $bunxCmd | quote }},
-    "args": ["-y", "mcp-obsidian", {{ $obsidianPath | quote }}],
-    "env": {
-      "OBSIDIAN_API_KEY": "{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/jihlc2hvz5wkv3xd5tmv3t3c4m/credential" }}"
-    }
+    "command": "npx",
+    "args": ["-y", "mcp-remote", "https://mcp-gateway.tailnet-1a49.ts.net/todoist/sse"]
   }
 }
