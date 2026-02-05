@@ -1,6 +1,10 @@
 ---
 name: pr-health
-description: Check PR health status (conflicts, CI, approval) and get actionable next steps
+description: |
+  This skill should be used when the user asks to check PR health, needs PR status,
+  wants to check for merge conflicts, CI failures, or approval status. Provides
+  actionable next steps for pull request health issues.
+version: 1.0.0
 user-invocable: true
 allowed-tools:
   - Bash
@@ -113,7 +117,7 @@ The workflow run may not have generated logs yet. Wait for the run to complete.
 
 ### Merge conflict detection is inaccurate
 
-Ensure you have fetched the latest from origin:
+Ensure the latest has been fetched from origin:
 
 ```bash
 git fetch origin main

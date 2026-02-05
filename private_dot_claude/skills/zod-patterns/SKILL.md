@@ -1,8 +1,8 @@
 ---
 name: zod-patterns
 description: |
-  Zod schema validation - composable schemas, type inference, transforms, refinements, and error handling patterns
-  When user works with Zod, validates data, creates schemas, handles form validation, or mentions z.object/z.string patterns
+  This skill should be used when the user works with Zod, validates data, creates schemas, handles form validation, or mentions z.object/z.string patterns. Provides guidance on Zod schema validation including composable schemas, type inference, transforms, refinements, and error handling patterns.
+version: 1.0.0
 ---
 
 # Zod Patterns Agent

@@ -1,8 +1,10 @@
 ---
 name: helm-helper
 description: |
-  Helm chart management for Kubernetes deployments
-  When user mentions Helm, charts, helm commands, values, releases, or Kubernetes packaging
+  This skill should be used when the user mentions Helm, charts, helm commands, values,
+  releases, or Kubernetes packaging. Provides guidance for Helm chart management and
+  Kubernetes deployments.
+version: 1.0.0
 ---
 
 # Helm Helper Agent

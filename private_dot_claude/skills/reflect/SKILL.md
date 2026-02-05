@@ -1,6 +1,7 @@
 ---
 name: reflect
 description: This skill should be used when the user asks to "reflect on this conversation", "optimize my Claude setup", "improve Claude instructions", "analyze chat patterns", "audit CLAUDE.md", "suggest Claude improvements", "fix Claude misunderstandings", or mentions "prompt optimization", "instruction tuning", or "Claude configuration audit". Analyzes chat history and configuration to identify improvements for CLAUDE.md files, skills, MCPs, hooks, and permissions.
+version: 1.0.0
 user-invocable: true
 allowed-tools:
   - Read

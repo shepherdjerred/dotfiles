@@ -1,13 +1,16 @@
 ---
 name: bun-workspaces
 description: |
-  Bun monorepo workspaces - configuration, filtering, dependencies, and multi-package management
-  When user works with Bun monorepos, workspaces, multi-package projects, or mentions bun --filter
+  This skill should be used when the user works with Bun monorepos, workspaces,
+  monorepo configuration, multi-package projects, or mentions bun --filter, workspace
+  protocol, or catalogs. Provides guidance for Bun workspace configuration, filtering,
+  dependencies, and multi-package management.
+version: 1.0.0
 ---
 
 # Bun Workspaces Agent
 
-## What's New in Bun Workspaces (2024-2025)
+## What's New in Bun Workspaces (2025)
 
 - **Text-based lockfile**: `bun.lock` replaces binary `bun.lockb` (v1.2+)
 - **Catalogs**: Define shared dependency versions once in root package.json

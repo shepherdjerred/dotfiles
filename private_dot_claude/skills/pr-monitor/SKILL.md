@@ -1,9 +1,10 @@
 ---
 name: pr-monitor
 description: |
-  Monitor a PR through CI, reviews, and merge conflicts until ready for human review.
-  Use when user says "monitor PR", "watch PR", "wait for CI", or wants automated PR workflow.
-  Creates PR if needed, then monitors Dagger CI, automated review comments, and merge conflicts.
+  This skill should be used when the user says "monitor PR", "watch PR", "wait for CI",
+  or wants an automated PR workflow. Provides PR monitoring through CI, reviews, and merge
+  conflicts until ready for human review, creating the PR if needed.
+version: 1.0.0
 user-invocable: true
 allowed-tools:
   - Bash
@@ -131,7 +132,7 @@ git push --force-with-lease
 
 2. **Automated Reviews**: Claude Code automated reviews must ALL be addressed. The PR isn't approved until GitHub shows an approval.
 
-3. **Approval State**: A PR may be approved, then after you make changes, it may have "changes requested" status again. Keep iterating.
+3. **Approval State**: A PR may be approved, then after making changes, it may have "changes requested" status again. Keep iterating.
 
 4. **Merge Conflicts**: Always resolve these yourself rather than asking the user.
 

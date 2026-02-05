@@ -1,8 +1,8 @@
 ---
 name: sentry-helper
 description: |
-  Complete Sentry operations via sentry-cli and REST API - issues, releases, source maps, traces, events
-  When user mentions Sentry, errors, issues, releases, source maps, error tracking, stack traces
+  This skill should be used when the user mentions Sentry, error tracking, stack traces, or asks about issues, releases, source maps, traces, events, or sentry-cli commands. Provides complete Sentry operations via sentry-cli and REST API.
+version: 1.0.0
 ---
 
 # Sentry Helper Agent
@@ -601,7 +601,7 @@ Sentry.init({
   dsn: "your-dsn",
   release: process.env.SENTRY_RELEASE,
   environment: process.env.NODE_ENV,
-  integrations: [new Sentry.BrowserTracing()],
+  integrations: [Sentry.browserTracingIntegration()],
   tracesSampleRate: 1.0,
 });
 ```

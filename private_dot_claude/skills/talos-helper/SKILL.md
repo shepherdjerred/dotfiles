@@ -1,8 +1,8 @@
 ---
 name: talos-helper
 description: |
-  Talos Linux cluster administration using talosctl
-  When user mentions Talos, talosctl, or Talos cluster operations
+  This skill should be used when the user mentions Talos, talosctl, Talos Linux, or asks about Talos cluster operations, node configuration, or cluster bootstrapping. Provides Talos Linux cluster administration guidance using talosctl.
+version: 1.0.0
 ---
 
 # Talos Helper Agent
@@ -18,7 +18,7 @@ description: |
 
 ## Overview
 
-This agent helps you manage Talos Linux Kubernetes clusters using `talosctl` for node configuration, cluster bootstrapping, and system maintenance.
+Provides guidance for managing Talos Linux Kubernetes clusters using `talosctl` for node configuration, cluster bootstrapping, and system maintenance.
 
 **Key Philosophy**: Talos is API-driven infrastructure:
 - **No SSH Access**: All operations through API

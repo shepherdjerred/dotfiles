@@ -1,13 +1,16 @@
 ---
 name: bun-test-patterns
 description: |
-  Bun test runner - Jest-compatible testing with mocks, snapshots, coverage, and DOM testing patterns
-  When user writes tests with Bun, uses bun:test, creates mocks, runs test coverage, or mentions describe/it/expect patterns
+  This skill should be used when the user writes tests with Bun, uses bun:test,
+  creates mocks, runs test coverage, or mentions describe/it/expect patterns.
+  Provides Jest-compatible testing guidance with mocks, snapshots, coverage,
+  DOM testing, and custom matchers for the Bun test runner.
+version: 1.0.0
 ---
 
 # Bun Test Patterns Agent
 
-## What's New in Bun Test (2024-2025)
+## What's New in Bun Test (2025)
 
 - **Vitest compatibility**: `vi` alias for easier migration
 - **Module mocking**: `mock.module()` for ESM/CJS mocking

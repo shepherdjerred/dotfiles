@@ -1,8 +1,11 @@
 ---
 name: docker-helper
 description: |
-  Complete Docker operations via CLI - containers, images, networks, volumes, and compose
-  When user mentions Docker, containers, docker commands, Dockerfile, images, docker-compose, or container registry
+  This skill should be used when the user mentions Docker, containers, Dockerfile,
+  docker-compose, or asks to run containers, build images, debug container issues,
+  or set up docker-compose. Provides complete Docker CLI guidance for containers,
+  images, networks, volumes, and compose.
+version: 1.0.0
 ---
 
 # Docker Helper Agent

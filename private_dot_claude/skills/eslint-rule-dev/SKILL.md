@@ -1,13 +1,16 @@
 ---
 name: eslint-rule-dev
 description: |
-  ESLint custom rule development - AST traversal, rule testing, plugins, and flat config
-  When user creates ESLint rules, develops ESLint plugins, works with AST, or mentions RuleTester
+  This skill should be used when the user creates custom ESLint rules, develops ESLint
+  plugins, works with AST traversal, or mentions RuleTester. Not for general ESLint
+  configuration; specifically for rule authoring and plugin development. Provides
+  guidance for AST visitors, fixers, rule testing, and flat config plugin structure.
+version: 1.0.0
 ---
 
 # ESLint Rule Development Agent
 
-## What's New in ESLint 9+ (2024-2025)
+## What's New in ESLint 9+ (2025)
 
 - **Flat config**: `eslint.config.js` replaces `.eslintrc.*`
 - **ESM support**: Native ES modules in configs and rules

@@ -1,8 +1,8 @@
 ---
 name: typescript-helper
 description: |
-  TypeScript development guidance for type systems and tooling
-  When user works with .ts or .tsx files, mentions TypeScript, or encounters type errors
+  This skill should be used when the user works with .ts or .tsx files, mentions TypeScript, encounters type errors, or asks about type systems and tooling. Provides TypeScript development guidance including configuration, patterns, and error resolution.
+version: 1.0.0
 ---
 
 # TypeScript Helper Agent
@@ -18,7 +18,7 @@ description: |
 
 ## Overview
 
-This agent helps you work with TypeScript for type-safe development, including type system usage, configuration, error resolution, and tooling integration.
+Provides guidance for working with TypeScript for type-safe development, including type system usage, configuration, error resolution, and tooling integration.
 
 ## CLI Commands
 
@@ -439,46 +439,24 @@ export default defineConfig({
 })
 ```
 
-### Webpack
+### ESLint (Flat Config)
 
 ```javascript
-// webpack.config.js
-module.exports = {
-  entry: './src/index.ts',
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
+// eslint.config.js
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+
+export default tseslint.config(
+  eslint.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    languageOptions: {
+      parserOptions: {
+        project: './tsconfig.json',
       },
-    ],
+    },
   },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-};
-```
-
-### ESLint
-
-```javascript
-// .eslintrc.js
-module.exports = {
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-  ],
-  parserOptions: {
-    project: './tsconfig.json',
-  },
-};
+);
 ```
 
 ## Testing with TypeScript
@@ -668,3 +646,8 @@ Ask the user for clarification when:
 - Migration from JavaScript needs strategy decisions
 - Build tool integration specifics are unclear
 - Type error resolution requires code refactoring decisions
+
+## Additional Resources
+
+For detailed guidance on specific aspects:
+- **`references/strict-typescript.md`** - Strict TypeScript philosophy: Zod over type guards, no type assertions (except `as unknown`/`as const`), `type` over `interface`, strict tsconfig options

@@ -1,8 +1,10 @@
 ---
 name: op-helper
 description: |
-  Helps with 1Password CLI (op) for secure secret retrieval and management
-  When user mentions 1Password, secrets, op command, or asks about credential management
+  This skill should be used when the user mentions 1Password, secrets, the op command,
+  or asks about credential management. Provides guidance for the 1Password CLI (op)
+  including secure secret retrieval and management.
+version: 1.0.0
 ---
 
 # 1Password Helper Agent
@@ -17,7 +19,7 @@ description: |
 
 ## Overview
 
-This agent helps you work with the 1Password CLI (`op`) for secure secret retrieval, credential management, and secret injection into your applications and scripts.
+Provides guidance for working with the 1Password CLI (`op`) for secure secret retrieval, credential management, and secret injection into applications and scripts.
 
 ## CLI Commands
 
@@ -226,7 +228,7 @@ op whoami
 - Don't commit `op://` references to public repositories without proper access controls
 - Don't use `op item get --reveal` in scripts that might log output
 - Don't share service account tokens in plain text
-- Always verify you're in the correct vault before retrieving secrets
+- Always verify the correct vault is selected before retrieving secrets
 
 ## Examples
 

@@ -1,8 +1,10 @@
 ---
 name: pagerduty-helper
 description: |
-  Complete PagerDuty operations via REST API - incidents, schedules, oncall, services, orchestrations
-  When user mentions PagerDuty, incidents, oncall, schedules, escalation, pages, alerts
+  This skill should be used when the user mentions PagerDuty, incidents, oncall, schedules,
+  escalation, pages, or alerts. Provides guidance for PagerDuty operations via REST API
+  including incidents, schedules, oncall, services, and orchestrations.
+version: 1.0.0
 ---
 
 # PagerDuty Helper Agent

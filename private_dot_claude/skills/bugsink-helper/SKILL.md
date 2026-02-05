@@ -1,8 +1,11 @@
 ---
 name: bugsink-helper
 description: |
-  Bugsink self-hosted error tracking via REST API - teams, projects, issues, events, releases, stacktraces
-  When user mentions Bugsink, self-hosted error tracking, or needs to query Bugsink API for issues, events, stacktraces, or releases
+  This skill should be used when the user mentions Bugsink, self-hosted error tracking,
+  or needs to query the Bugsink REST API for issues, events, stacktraces, releases,
+  teams, or projects. Provides complete Bugsink API guidance for error investigation,
+  SDK integration, and project management.
+version: 1.0.0
 ---
 
 # Bugsink Helper Agent

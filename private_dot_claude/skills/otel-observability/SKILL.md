@@ -1,13 +1,16 @@
 ---
 name: otel-observability
 description: |
-  OpenTelemetry observability - tracing, metrics, logs, instrumentation, and context propagation patterns
-  When user works with OpenTelemetry, adds tracing/metrics/logging, configures exporters, or mentions spans and observability
+  This skill should be used when the user works with OpenTelemetry, OTEL, adds tracing,
+  metrics, or logging, configures exporters, mentions spans and observability, needs to
+  instrument code, or asks to add monitoring. Provides guidance for OpenTelemetry
+  observability including tracing, metrics, logs, instrumentation, and context propagation.
+version: 1.0.0
 ---
 
 # OpenTelemetry Observability Agent
 
-## What's New in OpenTelemetry (2024-2025)
+## What's New in OpenTelemetry (2025)
 
 - **Stable Logs**: Logging API and SDK now stable in many languages
 - **Events API**: New semantic event support

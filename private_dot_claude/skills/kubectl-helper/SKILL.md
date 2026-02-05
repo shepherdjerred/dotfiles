@@ -1,8 +1,10 @@
 ---
 name: kubectl-helper
 description: |
-  Kubernetes troubleshooting and resource management with kubectl
-  When user works with Kubernetes, mentions kubectl, pods, deployments, or k8s errors
+  This skill should be used when the user works with Kubernetes, mentions kubectl, pods,
+  deployments, services, or encounters k8s errors. Provides kubectl guidance for
+  troubleshooting and resource management.
+version: 1.0.0
 ---
 
 # Kubernetes Helper Agent
@@ -18,7 +20,7 @@ description: |
 
 ## Overview
 
-This agent helps you work with Kubernetes clusters using `kubectl` for resource management, troubleshooting, and debugging.
+Provides guidance for working with Kubernetes clusters using `kubectl` for resource management, troubleshooting, and debugging.
 
 ## CLI Commands
 
