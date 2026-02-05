@@ -1,11 +1,8 @@
 ---
 name: bun-runtime-best-practices
 description: |
-  This skill should be used when the user works with Bun runtime APIs, file I/O,
-  environment variables, subprocess spawning, or uses Node.js APIs that have Bun
-  equivalents. Provides Bun-specific best practices and API usage patterns for
-  replacing Node.js imports with faster Bun alternatives.
-version: 1.0.0
+  Bun runtime best practices and API usage patterns
+  When user works with file I/O, environment variables, subprocess spawning, or uses Node.js APIs that have Bun equivalents
 ---
 
 # Bun Runtime Best Practices Agent
@@ -23,7 +20,7 @@ version: 1.0.0
 
 ## Overview
 
-Provides Bun-specific APIs and patterns to replace Node.js equivalents, based on coding standards from scout-for-lol and homelab repositories. Bun provides faster, more modern alternatives to Node.js APIs.
+This agent teaches Bun-specific APIs and patterns to replace Node.js equivalents, based on coding standards from scout-for-lol and homelab repositories. Bun provides faster, more modern alternatives to Node.js APIs.
 
 **Performance Note**: Bun 1.3 delivers 8x faster startup than Node.js with 145k requests/second HTTP server performance. Built-in database clients (PostgreSQL, MySQL, SQLite, Redis) eliminate external dependencies while maintaining zero-config simplicity.
 

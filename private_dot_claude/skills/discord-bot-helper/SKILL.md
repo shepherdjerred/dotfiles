@@ -1,16 +1,13 @@
 ---
 name: discord-bot-helper
 description: |
-  This skill should be used when the user works with Discord bots, discord.js,
-  slash commands, Discord API, or mentions discord.js patterns, embeds, buttons,
-  or modals. Provides Discord.js v14 guidance for building bots with slash commands,
-  events, components, embeds, and permissions.
-version: 1.0.0
+  Discord.js v14 for building Discord bots - slash commands, events, components, embeds, and permissions
+  When user works with Discord bots, discord.js, slash commands, Discord API, or mentions discord.js patterns
 ---
 
 # Discord Bot Helper Agent
 
-## What's New in Discord.js v14 (2025)
+## What's New in Discord.js v14 (2024-2025)
 
 - **Node.js 18.17+** required (v14.14+), 22+ recommended
 - **PascalCase enums**: `ButtonStyle.Primary` instead of `'PRIMARY'`

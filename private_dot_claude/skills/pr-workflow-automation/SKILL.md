@@ -1,10 +1,8 @@
 ---
 name: pr-workflow-automation
 description: |
-  This skill should be used when the user asks to create a PR, merge changes, or needs
-  CI-aware PR management. Provides automated PR workflow with CI monitoring, amendments,
-  and retry logic.
-version: 1.0.0
+  Automated PR workflow with CI monitoring, amendments, and retry logic
+  When user asks to create a PR, merge changes, or needs CI-aware PR management
 ---
 
 # PR Workflow Automation Agent

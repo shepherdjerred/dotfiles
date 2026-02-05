@@ -1,10 +1,8 @@
 ---
 name: mastra-helper
 description: |
-  This skill should be used when the user works with Mastra, AI agents, LLM orchestration,
-  or mentions Mastra commands and patterns. Provides guidance for the Mastra AI agent
-  framework including agents, tools, workflows, memory, and MCP integration.
-version: 1.0.0
+  Mastra AI agent framework for TypeScript - agents, tools, workflows, memory, and MCP integration
+  When user works with Mastra, AI agents, LLM orchestration, or mentions mastra commands and patterns
 ---
 
 # Mastra Helper Agent
@@ -595,7 +593,7 @@ const workflow = mastra.getWorkflow("userWorkflow");
 4. **Use Zod schemas** for type-safe inputs/outputs in tools and workflows
 5. **Configure storage** for production to persist state across restarts
 6. **Enable semantic recall** for conversations needing long-term context
-7. **Use structured output** for typed, validated responses
+7. **Use structured output** when you need typed, validated responses
 8. **Implement suspend/resume** for human-in-the-loop workflows
 9. **Scope working memory** appropriately (thread vs resource)
 10. **Run evals** to measure and improve agent quality

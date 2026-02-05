@@ -1,18 +1,15 @@
 ---
 name: dagger-helper
 description: |
-  This skill should be used when the user works with Dagger, mentions CI/CD pipelines,
-  dagger commands, .dagger/ directory, needs to run pipelines locally, or asks about
-  CI/CD in TypeScript. Provides guidance for Dagger pipeline development, caching
-  strategies, service bindings, and container publishing.
-version: 1.0.0
+  Dagger pipeline development and CI/CD workflow assistance
+  When user works with Dagger, mentions CI/CD pipelines, dagger commands, or .dagger/ directory
 ---
 
 # Dagger Helper Agent
 
 ## Overview
 
-Provides guidance for developing Dagger CI/CD pipelines using the **TypeScript SDK** with **Bun** runtime. This monorepo uses Dagger for portable, programmable pipelines that run locally and in CI.
+This agent helps develop Dagger CI/CD pipelines using the **TypeScript SDK** with **Bun** runtime. This monorepo uses Dagger for portable, programmable pipelines that run locally and in CI.
 
 **Key Files:**
 - `dagger.json` - Module configuration (engine version, SDK source)

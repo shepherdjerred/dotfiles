@@ -1,11 +1,8 @@
 ---
 name: grafana-helper
 description: |
-  This skill should be used when the user mentions Grafana, dashboards, Prometheus,
-  Loki, metrics, logs, alerts, PromQL, or LogQL. Provides complete Grafana REST API
-  guidance for dashboards, datasources, Prometheus/Loki queries, alerting, annotations,
-  and Sift investigations.
-version: 1.0.0
+  Complete Grafana operations via REST API - dashboards, Prometheus/Loki queries, alerting, annotations, Sift
+  When user mentions Grafana, dashboards, Prometheus, Loki, metrics, logs, alerts, PromQL, LogQL
 ---
 
 # Grafana Helper Agent
