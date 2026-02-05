@@ -259,8 +259,7 @@
     "plugin-dev@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "jerred@shepherdjerred": true
+    "typescript-lsp@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
   "terminalEditorMode": "vim"
