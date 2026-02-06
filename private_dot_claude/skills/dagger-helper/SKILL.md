@@ -40,9 +40,17 @@ dagger call ci --source=. -v    # basic
 dagger call ci --source=. -vv   # detailed
 dagger call ci --source=. -vvv  # maximum
 
+# Update dependencies
+dagger update
+
+# Uninstall a dependency
+dagger uninstall <module>
+
 # Open trace in browser
 dagger call ci --source=. -w
 ```
+
+**Supported Runtimes (0.19+):** docker, podman, nerdctl, finch, Apple containers — no Docker required.
 
 ## Three-Level Caching
 
@@ -76,6 +84,12 @@ class Monorepo {
       .withExec(["bun", "run", "build"]);
   }
 }
+
+// Enum declaration (registered when used by module)
+export enum Status { Active = "Active", Inactive = "Inactive" }
+
+// Type object declaration
+export type Message = { content: string }
 ```
 
 **Key Decorators:**
@@ -407,6 +421,8 @@ dag.container()
   .stderr()                            // Get stderr
   .sync()                              // Force execution
   .terminal()                          // Interactive debug
+  .combinedOutput()                    // Get interleaved stdout+stderr (0.19)
+  .exportImage("name")                 // Export to local container runtime (0.19)
 ```
 
 ## Examples
@@ -463,6 +479,10 @@ async birmelPublish(
   });
 }
 ```
+
+## Reference Files
+
+- **`references/release-notes.md`** - Features from Dagger 0.15, 0.16, and 0.19: container import/export, Changeset API, Build-an-Agent, engine config, metrics, TypeScript SDK improvements
 
 ## When to Ask for Help
 
