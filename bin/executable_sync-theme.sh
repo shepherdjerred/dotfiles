@@ -31,20 +31,18 @@ OV_DIR=~/.config/ov
 THEME_DIR=~/.config/fish/conf.d
 [[ -f "$THEME_DIR/theme-env-$M.fish" ]] && ln -sf "theme-env-$M.fish" "$THEME_DIR/theme-env.fish"
 
-# Git config (difft + delta)
-if command -v git &>/dev/null; then
-  if [[ "$M" == "mocha" ]]; then
-    git config --global diff.external "difft --background=dark" 2>/dev/null || true
-    git config --global difftool.difftastic.cmd 'difft --background=dark "$LOCAL" "$REMOTE"' 2>/dev/null || true
-    git config --global delta.dark true 2>/dev/null || true
-    git config --global delta.syntax-theme "Catppuccin Mocha" 2>/dev/null || true
-  else
-    git config --global diff.external "difft --background=light" 2>/dev/null || true
-    git config --global difftool.difftastic.cmd 'difft --background=light "$LOCAL" "$REMOTE"' 2>/dev/null || true
-    git config --global delta.dark false 2>/dev/null || true
-    git config --global delta.syntax-theme "Catppuccin Latte" 2>/dev/null || true
-  fi
-fi
+# Git config (difft + delta) — write to include file to avoid clobbering chezmoi-managed .gitconfig
+DARK=$([[ "$M" == "mocha" ]] && echo true || echo false)
+CATPPUCCIN=$([[ "$M" == "mocha" ]] && echo Mocha || echo Latte)
+cat > ~/.gitconfig-theme << EOF
+[diff]
+  external = difft --background=$THEME_MODE
+[difftool "difftastic"]
+  cmd = difft --background=$THEME_MODE "\$LOCAL" "\$REMOTE"
+[delta]
+  dark = $DARK
+  syntax-theme = Catppuccin $CATPPUCCIN
+EOF
 
 # Claude Code
 CLAUDE_SETTINGS=~/.claude/settings.json
