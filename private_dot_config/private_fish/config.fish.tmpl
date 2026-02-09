@@ -40,8 +40,8 @@ set -gx GITHUB_TOKEN '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/kjzy27
 set -gx GRAFANA_SERVER 'https://grafana.tailnet-1a49.ts.net/'
 set -gx GRAFANA_TOKEN '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/w5y6wldczvojkh3yxe5zadkpvi/password" }}'
 set -gx PAGERDUTY_TOKEN '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/yio3tx4wkvysvy5umdrqh7fe2e/password" }}'
-set -gx SENTRY_AUTH_TOKEN '{{ onepasswordRead "op://v64ocnykdqju4ui6j6pua56xw4/qguprvewkkqig7snxc4ffyqbwu/credential" }}'
-set -gx SENTRY_ORG 'jerred-shepherd'
+set -gx BUGSINK_URL 'https://bugsink.sjer.red'
+set -gx BUGSINK_TOKEN '{{ onepasswordRead "op://63lcesgoblzbpkdr4koye66rei/76xqbj2znu6lkspwxhljuae554/credential" }}'
 set -gx ARGOCD_AUTH_TOKEN '{{ onepasswordRead "op://bic45kuflnwsnxnd67dzcnxjze/5p65mbzr237yyzt2sfnfao3a5a/ARGOCD_TOKEN" }}'
 # sccache S3 backend (SeaweedFS) - credentials via ~/.aws/credentials
 set -gx AWS_PROFILE seaweedfs
@@ -53,7 +53,7 @@ set -gx RUSTC_WRAPPER sccache
 # 1Password CLI (op) not available - secrets not loaded
 # Install op and run 'chezmoi apply' to load secrets
 set -gx GRAFANA_SERVER 'https://grafana.tailnet-1a49.ts.net/'
-set -gx SENTRY_ORG 'jerred-shepherd'
+set -gx BUGSINK_URL 'https://bugsink.sjer.red'
 {{ end -}}
 
 # Setup Dagger engine with caching
