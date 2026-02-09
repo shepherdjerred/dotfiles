@@ -236,6 +236,15 @@ const variants = platforms.map(p =>
 );
 ```
 
+## CI Log Analysis
+
+When reading Dagger CI logs (e.g. from `gh run view --log-failed`), these are **not true errors** and should be ignored:
+
+- **Dagger Cloud token errors** (`401 Unauthorized`, `invalid API key` to `api.dagger.cloud`) — telemetry upload failures, does not affect the pipeline
+- **GraphQL errors** (`Encountered an unknown error while requesting data via graphql`) — Dagger internal communication noise, does not mean the pipeline failed
+
+Always look past these messages for the actual build/test/lint output to find real failures (e.g. `exit code: 1` from `withExec` steps).
+
 ## Debugging
 
 ### Interactive Breakpoints
